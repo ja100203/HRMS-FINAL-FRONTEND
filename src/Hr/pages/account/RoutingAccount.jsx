@@ -14,7 +14,6 @@ import EditSubType from "./subType/Mainfile/EditSubtype";
 import EditFinancialYear from "./financialYear/Mainfile/EditFinancialYear";
 
 const routesData = [
-  { path: "/", element: <Dashboard /> },
   { path: "/hr/account/account-balance", element: <AccountBalanceView /> },
   {
     path: "/account/edit-account-balance/:id",
