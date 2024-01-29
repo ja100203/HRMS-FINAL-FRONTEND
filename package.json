@@ -21,6 +21,7 @@
     "date-and-time": "^3.1.1",
     "date-fns": "^3.0.6",
     "install": "^0.13.0",
+    "jquery": "^3.7.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.1",
     "keycloak-js": "^23.0.3",
