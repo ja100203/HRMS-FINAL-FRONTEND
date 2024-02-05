@@ -31,7 +31,7 @@ const EditProject = () => {
   }, []);
 
   const loadProject = async () => {
-    const result = await axios.get(`http://13.126.190.50:5000/projects/get/${id}`);
+    const result = await axios.get(`http://13.126.190.50:8086/projects/get/${id}`);
     setProject(result.data);
   };
 
@@ -43,7 +43,7 @@ const EditProject = () => {
   };
   const updateProject = async (e) => {
     e.preventDefault();
-    await axios.put(`http://13.126.190.50:5000/projects/update/${id}`, project);
+    await axios.put(`http://13.126.190.50:8086/projects/update/${id}`, project);
     navigate("/hr/project");
   };
 

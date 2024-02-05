@@ -25,7 +25,7 @@ const EditDesignation = () => {
 
   const loadDesignation = async () => {
     const result = await axios.get(
-      `http://13.126.190.50:5000/designation/get/${id}`
+      `http://13.126.190.50:8081/designation/get/${id}`
     );
     setDesignation(result.data);
   };
@@ -40,7 +40,7 @@ const EditDesignation = () => {
   const updateDesignation = async (e) => {
     e.preventDefault();
     await axios.put(
-      `http://13.126.190.50:5000/designation/update/${id}`,
+      `http://13.126.190.50:8081/designation/update/${id}`,
       designation
     );
     navigate("/hr/organisation/designation");

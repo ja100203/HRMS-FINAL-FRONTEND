@@ -34,7 +34,7 @@ export const saveAccountBalance = async (formData) => {
 export const fetchEmployee = async () => {
   try {
       const response = await axios.get(
-          "http://localhost:8082/employee/get/employee"
+          "http://13.126.190.50:5000/employee/get/employee"
         );
         return response.data
   } catch (error){
@@ -45,7 +45,7 @@ export const fetchEmployee = async () => {
 export const fetchDepartment = async () => {
   try {
       const response = await axios.get(
-          "http://localhost:8081/department/get/department"
+          "http://13.126.190.50:5000/department/get/department"
         );
         return response.data
   } catch (error){

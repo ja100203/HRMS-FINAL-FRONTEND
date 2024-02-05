@@ -381,6 +381,7 @@ const GrantLoanTable = ({loan,setRecDelete}) => {
               elem.amount.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.installment.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.installmentPeriod.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.installmentCleared.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.repaymentTotal.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.totalPaymentCleared.toLowerCase().includes(search.toLocaleLowerCase())  
               )

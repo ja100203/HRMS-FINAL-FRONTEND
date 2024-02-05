@@ -26,7 +26,7 @@ const PoliciesProfile = () => {
 
   const loadExpenses = async () => {
     const result = await axios.get(
-      `http://13.126.190.50:5000/policies/get/${id}`
+      `http://13.126.190.50:8081/policies/get/${id}`
     );
     setPolicies(result.data);
   };
@@ -60,7 +60,7 @@ const PoliciesProfile = () => {
                   {`${policies.departmentName} ${policies.companyName}`}
                 </h5>
                 <div className="d-flex justify-content-center mb-2">
-                        <Link to="/organisation/policies">
+                        <Link to="/hr/organisation/policies">
                           <button
                             type="button"
                             className="btn btn-outline-secondary ms-1"

@@ -81,6 +81,7 @@ const WorksheetForm = ({ formData, setFormData,setFormVisible,setToggle }) => {
     await api.saveWorksheet(formData);
     navigate("/hr/worksheets");
     setFormData({
+      employeeId:"",
       workSheetTitle: "",
       startDate: "",
       endDate: "",
@@ -132,6 +133,7 @@ const WorksheetForm = ({ formData, setFormData,setFormVisible,setToggle }) => {
     setFormVisible(false)
     setToggle(false)
     setFormData({
+      employeeId: "",
       workSheetTitle: "",
     startDate: "",
     endDate: "",
@@ -154,6 +156,17 @@ const WorksheetForm = ({ formData, setFormData,setFormVisible,setToggle }) => {
     <form onSubmit={handleSubmit}>
 
     <div className="data-input-fields">
+    <TextField
+          margin="dense"
+          label="Employee ID"
+          type="text"
+          fullWidth
+          name="employeeId"
+          id="employeeId"
+          value={formData.employeeId}
+          onChange={(e) => handleInputChange(e)}
+          required
+        />
     <FormControl fullWidth>
           <InputLabel id="demo-worksheet-select-label">Employee Name</InputLabel>
           <Select

@@ -223,6 +223,7 @@ const CompanyForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
 
   const saveCompany = async () => {
     await api.saveCompany(formData);
+    alert("Company added successfully");
    navigate("/hr/organisation/company")
     setFormData({
       companyName: "",
@@ -241,6 +242,7 @@ const CompanyForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
       gst: "",
       uan: "",
       createdDate: "",
+      file:""
     });
     setFile("")
     setSwalProps({
@@ -288,6 +290,7 @@ const CompanyForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
       gst: "",
       uan: "",
       createdDate: "",
+      file:""
     });
   };  
 
@@ -295,7 +298,7 @@ const CompanyForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
   loadCompany()
     console.log("Form submitted:", formData);
   };
-
+console.log(formData);
   return (
     <form onSubmit={handleSubmit}>
       <div className="data-input-fields">

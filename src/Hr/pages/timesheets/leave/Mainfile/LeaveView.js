@@ -20,7 +20,7 @@ import LeaveForm from "../LeaveForm";
 
 const LeaveView = () => {
 
-  const { leave, formData,setFormData, formVisible, setFormVisible, toggle, setToggle, recDelete, setRecDelete
+  const { leave, setLeave,formData,setFormData, formVisible, setFormVisible, toggle, setToggle, recDelete, setRecDelete
   } = StateLeave()
 
   
@@ -31,13 +31,13 @@ const LeaveView = () => {
  
 
   useEffect(() => {
-    api.loadLeave();
-  }, );
+    loadLeave();
+  },[] );
 
   const loadLeave= async () => {
     const result = await api.loadLeave()
     console.log("rec", result);
-    StateLeave(result);
+    setLeave(result);
   };
 
 

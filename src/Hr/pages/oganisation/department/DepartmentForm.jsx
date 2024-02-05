@@ -11,7 +11,7 @@ const DepartmentForm = ({formData,setFormData,setFormVisible, setToggle}) => {
 
     const navigate = useNavigate()
 
-    const {setCompany, setLocation, dateError, setDateError,location,company,setDepartment} = StateDepartment()
+    const {setCompany,location, setLocation, dateError, setDateError,company,setDepartment} = StateDepartment()
 
     const loadDepartment = async () => {
         const result = await api.loadDepartment()
@@ -163,7 +163,7 @@ const DepartmentForm = ({formData,setFormData,setFormVisible, setToggle}) => {
     
       let buttonCheck =
         formData.departmentName.length > 0 &&
-        formData.companyName.length > 0 &&
+        // formData.companyName.length > 0 &&
         formData.departmentHead.length > 0 &&
         formData.createdDate.length > 0 &&
         formData.locationName.length > 0;

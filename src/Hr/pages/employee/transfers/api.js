@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveTransfer = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/transfers/create/transfers",
+            "http://13.126.190.50:8082/transfers/create/transfers",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveTransfer = async (formData) => {
 
 export const deleteTransfer = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/transfers/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8082/transfers/delete/${id}`)
     } catch(error) {
         console.error("Error deleting department",error)
     }
@@ -22,7 +22,7 @@ export const deleteTransfer = async (id) => {
 export const loadTransfer = async () => {
     try {
        const result =  await axios.get(
-            "http://13.126.190.50:5000/transfers/get/transfers",
+            "http://13.126.190.50:8082/transfers/get/transfers",
             {
               validateStatus: () => {
                 return true;
@@ -39,7 +39,7 @@ export const loadTransfer = async () => {
 export const fetchEmployee = async () => {
     try {
         const response = await axios.get(
-            "http://13.126.190.50:5000/employee/get/employee"
+            "http://13.126.190.50:8082/employee/get/employee"
           );
           return response.data
     } catch (error){
@@ -51,7 +51,7 @@ export const fetchEmployee = async () => {
 export const fetchLocations = async () => {
     try {
         const response = await axios.get(
-          "http://13.126.190.50:5000/location/get/location"
+          "http://13.126.190.50:8082/location/get/location"
         );
        return response.data 
       } catch (error) {

@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveLocation = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/location/create/location",
+            "http://13.126.190.50:8081/location/create/location",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveLocation = async (formData) => {
 
 export const deleteLocation = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/location/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8081/location/delete/${id}`)
     } catch(error) {
         console.error("Error deleting location",error)
     }
@@ -22,7 +22,7 @@ export const deleteLocation = async (id) => {
 export const loadLocation = async () => {
     try {
        const result =  await axios.get(
-            "http://13.126.190.50:5000/location/get/location",
+            "http://13.126.190.50:8081/location/get/location",
             {
               validateStatus: () => {
                 return true;
@@ -39,7 +39,7 @@ export const loadLocation = async () => {
 export const fetchCompanies = async () => {
     try {
         const response = await axios.get(
-            "http://13.126.190.50:5000/company/get/company"
+            "http://13.126.190.50:8081/company/get/company"
           );
           return response.data
     } catch (error){

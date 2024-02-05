@@ -91,7 +91,7 @@ const LocationForm = ({formData, setFormData, setFormVisible, setToggle}) => {
 console.log(formData);
 
 let buttonCheck =
-formData.companyName.length > 0 &&
+// formData.companyName.length > 0 &&
 formData.locationName.length > 0 &&
 formData.email.length > 0 &&
 formData.phone.length > 0 &&

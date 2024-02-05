@@ -25,7 +25,7 @@ const LeaveForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
 
   useEffect(() => {
     loadLeave();
-  });
+  },[]);
 
   const validateEmail = (input) => {
     const emailRegex = /^[^\s@]+@[^\s@] + \.[^\s@]+$/;

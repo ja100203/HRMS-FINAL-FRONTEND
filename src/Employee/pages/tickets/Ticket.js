@@ -186,7 +186,7 @@ const Ticket = () => {
   const saveTicket = async () => {
     try {
       await axios.post(
-        "http://13.126.190.50:5000/tickets/create/tickets",
+        "http://13.126.190.50:8088/tickets/create/tickets",
         formData
       );
     } catch (error) {
@@ -197,8 +197,10 @@ const Ticket = () => {
   const [ticketData, setTicketData] = useState([]);
 
   const loadTicket = async () => {
-    const result = await axios.get("http://13.126.190.50:5000/tickets/121");
-    setTicketData(result.data);
+    await axios
+      .get("http://13.126.190.50:8088/tickets/12")
+      .then((result) => setTicketData(result.data))
+      .catch(() => setTicketData([]));
   };
 
   useEffect(() => {

@@ -128,7 +128,7 @@ const ExpensesForm = ({ formData, setFormData }) => {
 
     setTotalAmount(updatedTotalAmount);
 
-    await axios.delete(`http://localhost:8081/expencelist/delete/${id}`);
+    await axios.delete(`http://13.126.190.50:8081/expencelist/delete/${id}`);
   };
 
   const handleItemChange = (id, field, value) => {
@@ -389,7 +389,7 @@ const ExpensesForm = ({ formData, setFormData }) => {
   const handleAdd = async (id) => {
     console.log(items[id - 1]);
     setSaveDisable(false);
-    await axios.post("http://localhost:8081/expencelist/add", items[id - 1]);
+    await axios.post("http://13.126.190.50:8081/expencelist/add", items[id - 1]);
   };
 
   console.log(items);

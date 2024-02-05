@@ -23,7 +23,7 @@ const EditPolicies = () => {
   }, []);
 
   const loadExpenses = async () => {
-    const result = await axios.get(`http://13.126.190.50:5000/policies/get/${id}`);
+    const result = await axios.get(`http://13.126.190.50:8081/policies/get/${id}`);
     setExpenses(result.data);
   };
 
@@ -36,7 +36,7 @@ const EditPolicies = () => {
 
   const updateExpenses = async (e) => {
     e.preventDefault();
-    await axios.put(`http://13.126.190.50:5000/policies/update/${id}`, expenses);
+    await axios.put(`http://13.126.190.50:8081/policies/update/${id}`, expenses);
     navigate("/hr/organisation/policies");
   };
   const [menu, setMenu] = useState(false);

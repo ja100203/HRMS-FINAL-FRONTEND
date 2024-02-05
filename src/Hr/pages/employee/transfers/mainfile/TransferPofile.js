@@ -13,10 +13,10 @@ const TransferPofile = () => {
 	const { id } = useParams();
 
 	const [transfer, settransfer] = useState({
-		transferName: "",
-		transferType: "",
-		email: "",
-		webiste: "",
+		departmentName: "",
+		transferDate: "",
+		locationName: "",
+		description: "",
 	});
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ const TransferPofile = () => {
 
 	const loadtransfer = async () => {
 		const result = await axios.get(
-			`http://13.126.190.50:5000/transfer/get/${id}`
+			`http://13.126.190.50:8082/transfers/get/${id}`
 		);
 		settransfer(result.data);
 	};
@@ -56,7 +56,7 @@ const TransferPofile = () => {
 									style={{ width: 150 }}
 								/>
 								<h5 className="my-3">
-									{`${transfer.transferName} ${transfer.transferType}`}
+									{`${transfer.employeeName}`}
 								</h5>
 								<div className="d-flex justify-content-center mb-2">
                         <Link to="/employee/transfer">
@@ -80,13 +80,13 @@ const TransferPofile = () => {
 								<div className="row">
 									<div className="col-sm-3">
 										<h5 className="mb-0">
-											transfer Name
+											Department Name
 										</h5>
 									</div>
 
 									<div className="col-sm-9">
 										<p className="text-muted mb-0">
-											{transfer.transferName}
+											{transfer.departmentName}
 										</p>
 									</div>
 								</div>
@@ -96,13 +96,13 @@ const TransferPofile = () => {
 								<div className="row">
 									<div className="col-sm-3">
 										<h5 className="mb-0">
-											transfer Type
+											Transfer Date
 										</h5>
 									</div>
 
 									<div className="col-sm-9">
 										<p className="text-muted mb-0">
-											{transfer.transferType}
+											{transfer.transferDate}
 										</p>
 									</div>
 								</div>
@@ -111,13 +111,13 @@ const TransferPofile = () => {
 								<div className="row">
 									<div className="col-sm-3">
 										<h5 className="mb-0">
-											Email
+										Location Name
 										</h5>
 									</div>
 
 									<div className="col-sm-9">
 										<p className="text-muted mb-0">
-											{transfer.email}
+											{transfer.locationName}
 										</p>
 									</div>
 								</div>
@@ -126,13 +126,13 @@ const TransferPofile = () => {
 								<div className="row">
 									<div className="col-sm-3">
 										<h5 className="mb-0">
-											Website
+										Description
 										</h5>
 									</div>
 
 									<div className="col-sm-9">
 										<p className="text-muted mb-0">
-											{transfer.website}
+											{transfer.description}
 										</p>
 									</div>
 								</div>

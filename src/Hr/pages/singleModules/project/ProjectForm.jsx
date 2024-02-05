@@ -91,7 +91,7 @@ const ProjectForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
   const fetchCompany = async () => {
     const response = await api.fetchCompanies();
     console.log("first", response);
-    setCompany(response);
+    setCompany(response?response:[]);
   };
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const ProjectForm = ({ formData, setFormData, setFormVisible, setToggle }) => {
   let buttonCheck =
     formData.projectTitle.length > 0 &&
     formData.clientName.length > 0 &&
-    formData.companyName.length > 0 &&
+    // formData.companyName.length > 0 &&
     formData.startDate.length > 0 &&
     formData.endDate.length > 0 &&
     formData.projectManagers.length > 0 &&

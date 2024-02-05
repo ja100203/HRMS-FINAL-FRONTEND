@@ -150,10 +150,10 @@ const TransferForm = ({formData,
   };
 
   let buttonClick =
-    formData.employeeName.length > 0 &&
+    // formData.employeeName.length > 0 &&
     formData.transferDate.length > 0 &&
     formData.departmentName.length > 0 &&
-    formData.locationName.length > 0 &&
+    // formData.locationName.length > 0 &&
     formData.description.length > 0;
 
   return (

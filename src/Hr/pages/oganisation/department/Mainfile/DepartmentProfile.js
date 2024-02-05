@@ -25,7 +25,7 @@ const DepartmentProfile = () => {
 
   const loadDepartment = async () => {
     const result = await axios.get(
-      `http://13.126.190.50:5000/department/get/${id}`
+      `http://13.126.190.50:8081/department/get/${id}`
     );
     setDepartment(result.data);
   };
@@ -59,7 +59,7 @@ const DepartmentProfile = () => {
                   {`${department.departmentName} ${department.companyName}`}
                 </h5>
                 <div className="d-flex justify-content-center mb-2">
-                        <Link to="/organisation/department">
+                        <Link to="/hr/organisation/department">
                           <button
                             type="button"
                             className="btn btn-outline-secondary ms-1"

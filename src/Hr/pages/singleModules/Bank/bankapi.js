@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveAddbank = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/addbank/create/addbank",
+            "http://13.126.190.50:8092/addbank/create/addbank",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveAddbank = async (formData) => {
 
 export const deleteBank = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/addbank/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8092/addbank/delete/${id}`)
     } catch(error) {
         console.error("Error deleting addbank",error)
     }
@@ -22,7 +22,7 @@ export const deleteBank = async (id) => {
 export const loadAddbank = async () => {
     try {
        const result =  await axios.get(
-            "http://13.126.190.50:5000/addbank/get/addbank",
+            "http://13.126.190.50:8092/addbank/get/addbank",
             {
               validateStatus: () => {
                 return true;
@@ -39,7 +39,7 @@ export const loadAddbank = async () => {
 export const loadBankById = async (id) => {
     try {
        const result =  await axios.get(
-            `http://13.126.190.50:5000/addbank/get/${id}`,
+            `http://13.126.190.50:8092/addbank/get/${id}`,
             {
               validateStatus: () => {
                 return true;
@@ -56,7 +56,7 @@ export const loadBankById = async (id) => {
 export const updateBank = async (formData, id) => {
     try {
         const result = await axios.patch(
-          `http://13.126.190.50:5000/addbank/update/${id}`,
+          `http://13.126.190.50:8092/addbank/update/${id}`,
           formData
         );
     

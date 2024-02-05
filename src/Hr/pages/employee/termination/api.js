@@ -39,7 +39,7 @@ export const loadTermination = async () => {
 export const fetchEmployee= async () => {
     try {
         const response = await axios.get(
-          "http://localhost:8082/employee/get/employee"
+          "http://13.126.190.50:5000/employee/get/employee"
         );
        return response.data 
       } catch (error) {

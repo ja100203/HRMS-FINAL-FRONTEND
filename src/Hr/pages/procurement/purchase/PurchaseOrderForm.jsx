@@ -108,7 +108,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
 
     // setTotalAmount(updatedTotalAmount);
 
-    await axios.delete(`http://localhost:8094/companylist/delete/${id}`);
+    await axios.delete(`http://13.126.190.50:5000/companylist/delete/${id}`);
     loadAllPurchase();
   };
 
@@ -173,7 +173,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
   // const loadBid = async () => {
   //   try {
   //     const result = await axios.get(
-  //       `http://localhost:8094/quotationlist/${bidAllData.length + 1}`
+  //       `http://13.126.190.50:5000/quotationlist/${bidAllData.length + 1}`
   //     );
   //     setCompany(result.data);
   //   } catch (error) {
@@ -183,7 +183,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
   const loadPurchase = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:8094/companylist/${purchaseData.length + 1}`
+        `http://13.126.190.50:5000/companylist/${purchaseData.length + 1}`
       );
       setCompany(result.data);
     } catch (error) {
@@ -253,7 +253,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
   //     ...listData,
   //     total: quantPriceValue,
   //   });
-  //   await axios.post("http://localhost:8094/quotationlist/add", {
+  //   await axios.post("http://13.126.190.50:5000/quotationlist/add", {
   //     ...listData,
   //     total: quantPriceValue,
   //     quotationId: bidAllData.length + 1,
@@ -276,7 +276,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
   //       ...listData,
   //       total: quantPriceValue,
   //     });
-  //     await axios.post("http://localhost:8094/companylist/add", {
+  //     await axios.post("http://13.126.190.50:5000/companylist/add", {
   //       ...listData,
   //       total: quantPriceValue,
   //       purchaseorderId: bidAllData.length + 1,
@@ -307,7 +307,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
   const handleComAdd = async (id) => {
     setSaveDisable(false);
     await axios.post(
-      "http://localhost:8094/committeelist/create/committeelist",
+      "http://13.126.190.50:5000/committeelist/create/committeelist",
       quotationData,
       {
         headers: {
@@ -329,7 +329,7 @@ const PurchaseOrderForm = ({ formData, setFormData }) => {
 
     setTotalAmount(updatedTotalAmount);
 
-    await axios.delete(`http://localhost:8094/committeelist/delete/${id}`);
+    await axios.delete(`http://13.126.190.50:5000/committeelist/delete/${id}`);
   };
 
   const handleQuotationChange = (e) => {

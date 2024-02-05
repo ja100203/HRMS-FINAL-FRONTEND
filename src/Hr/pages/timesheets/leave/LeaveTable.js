@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
@@ -8,49 +8,49 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
-import DataNotFound from "../../../asset/images/no data 1.png"
-import { styled } from '@mui/system';
+import DataNotFound from "../../../asset/images/no data 1.png";
+import { styled } from "@mui/system";
 import {
   TablePagination,
   tablePaginationClasses as classes,
-} from '@mui/base/TablePagination';
-const LeaveTable = ({leave,setRecDelete}) => {
+} from "@mui/base/TablePagination";
+const LeaveTable = ({ leave, setRecDelete }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
-  & .${classes.toolbar} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 0 0 0 10px;
+    & .${classes.toolbar} {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0 0 0 10px;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: center;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
     }
-  }
 
-  & .${classes.selectLabel} {
-    margin: 0;
-  }
-
-  & .${classes.displayedRows} {
-    margin: 0;
-
-    @media (min-width: 768px) {
-      margin-left: auto;
+    & .${classes.selectLabel} {
+      margin: 0;
     }
-  }
 
-  & .${classes.spacer} {
-    display: none;
-  }
+    & .${classes.displayedRows} {
+      margin: 0;
 
-  & .${classes.actions} {
-    display: flex;
-    gap: 0rem;
-  }
-`;
+      @media (min-width: 768px) {
+        margin-left: auto;
+      }
+    }
+
+    & .${classes.spacer} {
+      display: none;
+    }
+
+    & .${classes.actions} {
+      display: flex;
+      gap: 0rem;
+    }
+  `;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -93,7 +93,6 @@ const LeaveTable = ({leave,setRecDelete}) => {
             "REQUEST DURATION",
             "APPLIED ON",
             "REASON",
-            
           ],
         ],
         body: leave.map((row) => [
@@ -102,7 +101,6 @@ const LeaveTable = ({leave,setRecDelete}) => {
           row.RequestDuration,
           row.AppliedOn,
           row.Reason,
-         
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -145,7 +143,6 @@ const LeaveTable = ({leave,setRecDelete}) => {
             "REQUEST DURATION",
             "APPLIED ON",
             "REASON",
-            
           ],
         ],
         body: leave.map((row) => [
@@ -154,7 +151,6 @@ const LeaveTable = ({leave,setRecDelete}) => {
           row.RequestDuration,
           row.AppliedOn,
           row.Reason,
-         
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -195,24 +191,23 @@ const LeaveTable = ({leave,setRecDelete}) => {
       { width: 25 },
     ];
 
-   
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "leave.xlsx");
   };
 
-    const handleDelete = (id) => {
-        setRecDelete(id)
-    }
+  const handleDelete = (id) => {
+    setRecDelete(id);
+  };
 
-    console.log(leave)
-    const handlePrint = () => {
-      createPdf();
-      const pdfContent = doc.output('bloburl');
-    
-      if (pdfContent) {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
+  console.log(leave);
+  const handlePrint = () => {
+    createPdf();
+    const pdfContent = doc.output("bloburl");
+
+    if (pdfContent) {
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`
           <html>
             <head>
               <title>Print Document</title>
@@ -246,138 +241,160 @@ const LeaveTable = ({leave,setRecDelete}) => {
             </body>
           </html>
         `);
-      }
-    };
+    }
+  };
 
-    const renderLeaveData = () => {
-      return (
-        <tr>
-          <td colSpan="12" className="text-center">
-            <img style={{margin:"50px 0 50px 0"}} src={DataNotFound}></img>
-            <h1>No Data Found!</h1>
-            <p>It Looks like there is no data to display in this table at the moment</p>
-          </td>
-        </tr>
-      );
-    };
-    
-   
+  const renderLeaveData = () => {
+    return (
+      <tr>
+        <td colSpan="12" className="text-center">
+          <img style={{ margin: "50px 0 50px 0" }} src={DataNotFound}></img>
+          <h1>No Data Found!</h1>
+          <p>
+            It Looks like there is no data to display in this table at the
+            moment
+          </p>
+        </td>
+      </tr>
+    );
+  };
+
   return (
-
-    <div><div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
-    <button
-      className=""
-      style={{
-        width: "5%",
-        height: "35px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginRight: "5px",
-      }}
-      onClick={handlePrint}
-    >
-      PRINT
-    </button>
-    <button
-      onClick={convertToPdf}
-      className=""
-      style={{
-        width: "5%",
-        height: "35px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginRight: "5px",
-      }}
-    >
-      PDF
-    </button>
-    <button
-      onClick={convertToExcel}
-      className=""
-      style={{
-        width: "5%",
-        height: "35px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginRight: "5px",
-      }}
-    >
-      EXCEL
-    </button>
-    <CSVLink
-      data={leave}
-      filename="leave.csv"
-      style={{ textDecoration: "none" }}
-    >
-      <button
-        className=""
-        style={{
-          width: "5%",
-          height: "35px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginRight: "5px",
-        }}
+    <div>
+      <div
+        className="d-flex"
+        style={{ position: "absolute", right: "-160px", top: "100px" }}
       >
-        CSV
-      </button>
-    </CSVLink>
-  </div>
-  <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
-  <div className="table-start-container">
-        <table id='table' className="table table-bordered table-hover shadow">
-              <thead>
-                <tr className="text-center">
-                 <th>Sl</th>
-                  <th>Employee Name</th>
-                  <th>Leave Type</th>
-                  <th>Request Duration</th>
-                  <th>Applied On</th>
-                  <th>Reason</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                  
-                </tr>
-              </thead>
+        <button
+          className=""
+          style={{
+            width: "5%",
+            height: "35px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: "5px",
+          }}
+          onClick={handlePrint}
+        >
+          PRINT
+        </button>
+        <button
+          onClick={convertToPdf}
+          className=""
+          style={{
+            width: "5%",
+            height: "35px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: "5px",
+          }}
+        >
+          PDF
+        </button>
+        <button
+          onClick={convertToExcel}
+          className=""
+          style={{
+            width: "5%",
+            height: "35px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: "5px",
+          }}
+        >
+          EXCEL
+        </button>
+        <CSVLink
+          data={leave}
+          filename="leave.csv"
+          style={{ textDecoration: "none" }}
+        >
+          <button
+            className=""
+            style={{
+              width: "5%",
+              height: "35px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "5px",
+            }}
+          >
+            CSV
+          </button>
+        </CSVLink>
+      </div>
+      <input
+        type="text"
+        className="mb-3 searchFilter"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <div className="table-start-container">
+        <table id="table" className="table table-bordered table-hover shadow">
+          <thead>
+            <tr className="text-center">
+              <th>Sl</th>
+              <th>Employee Name</th>
+              <th>Leave Type</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Reason</th>
+              <th>Approval</th>
+              <th colSpan="2">Action</th>
+            </tr>
+          </thead>
 
-              <tbody className="text-center">
-                { leave.length === 0 ? renderLeaveData() : (rowsPerPage > 0
-            ? leave.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : leave
-          ).filter((elem)=>{
-            if(search.length===0)
-              return elem;
-            else  
-              return (elem.EmployeeName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.LeaveType.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.RequestDuration.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.AppliedOn.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.Reason.toLowerCase().includes(search.toLocaleLowerCase()) 
-              )
-          }).map((leave, index) => (
+          <tbody className="text-center">
+            {leave.length === 0
+              ? renderLeaveData()
+              : (rowsPerPage > 0
+                  ? leave.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : leave
+                )
+                  .filter((elem) => {
+                    if (search.length === 0) return elem;
+                    else
+                      return (
+                        elem.employeeName.toLowerCase().includes(
+                          search.toLocaleLowerCase()
+                        ) ||
+                        elem.leaveType.toLowerCase().includes(
+                          search.toLocaleLowerCase()
+                        ) ||
+                        elem.RequestDuration.toLowerCase().includes(
+                          search.toLocaleLowerCase()
+                        ) ||
+                        elem.AppliedOn.toString()
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.Reason.toLowerCase().includes(
+                          search.toLocaleLowerCase()
+                        )
+                      );
+                  })
+                  .map((leave, index) => (
                     <tr key={index}>
                       <th scope="row" key={index}>
                         {index + 1}
                       </th>
-                    
-                      <td>{leave.Sl}</td>
-                      <td>{leave.EmployeeName}</td>
-                      <td>{leave.LeaveType}</td>
-                      <td>{leave.RequestDuration}</td>
-                      <td>{leave.AppliedOn}</td>
-                      <td>{leave.Reason}</td>
-                      <td>{leave.Status}</td>
-                      <td>{leave.Action}</td>
-                 
-                      
-                    
+                      <td>{leave.employeeName}</td>
+                      <td>{leave.leaveType}</td>
+                      <td>{leave.startDate}</td>
+                      <td>{leave.endDate}</td>
+                      <td>{leave.leaveReason}</td>
+                      <td>{leave.approval}</td>
+
                       <td className="mx-2">
                         <Link
-                          to={`/edit-leave/${leave.leaveId}`}
+                          to={`/timesheets/leave/edit-Leave/${leave.leaveId}`}
                           className="btn btn-warning"
                         >
                           <FaEdit />
@@ -393,34 +410,34 @@ const LeaveTable = ({leave,setRecDelete}) => {
                       </td>
                     </tr>
                   ))}
-              </tbody>
-              <tfoot>
-          <tr>
-            <CustomTablePagination
-            className="pagingg"
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={12}
-              count={leave.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  "aria-label": "rows per page",
-                },
-                actions: {
-                  // showFirstButton: true,
-                  // showLastButton: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-            </table>
-    </div></div>
-   
-  )
-}
+          </tbody>
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                className="pagingg"
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={12}
+                count={leave.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    "aria-label": "rows per page",
+                  },
+                  actions: {
+                    // showFirstButton: true,
+                    // showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  );
+};
 
-export default LeaveTable
+export default LeaveTable;

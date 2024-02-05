@@ -28,7 +28,7 @@ const EditBank = () => {
   }, []);
   const loadLoan = async () => {
     const result = await axios.get(
-        `http://13.126.190.50:5000/addbank/get/${id}`
+        `http://13.126.190.50:8092/addbank/get/${id}`
     );
     setLoan(result.data);
 };
@@ -42,7 +42,7 @@ const EditBank = () => {
 const updateLoan = async (e) => {
     e.preventDefault();
     await axios.put(
-        `http://13.126.190.50:5000/addbank/update/${id}`,
+        `http://13.126.190.50:8092/addbank/update/${id}`,
       loan
     );
     navigate("/hr/bank/add-bank");

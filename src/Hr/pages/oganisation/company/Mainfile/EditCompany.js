@@ -56,7 +56,7 @@ const EditCompany = () => {
 	};
 	
 	const updateCompany = async (e) => {
-		await axios.patch(`http://13.126.190.50:5000/company/update/${id}`,
+		await axios.patch(`http://13.126.190.50:8081/company/update/${id}`,
 		company);
 		navigation("/hr/organisation/company");
 	  };

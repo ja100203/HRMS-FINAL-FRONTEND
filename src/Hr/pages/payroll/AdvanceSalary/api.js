@@ -51,7 +51,7 @@ export const fetchCompanies = async () => {
 export const fetchLocations = async () => {
     try {
         const response = await axios.get(
-          "http://localhost:8081/location/get/location"
+          "http://13.126.190.50:5000/location/get/location"
         );
        return response.data 
       } catch (error) {

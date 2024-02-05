@@ -26,7 +26,7 @@ const EditTransfer = () => {
   }, []);
 
   const loadTransfer = async () => {
-    const result = await axios.get(`http://13.126.190.50:5000/transfers/get/${id}`);
+    const result = await axios.get(`http://13.126.190.50:8082/transfers/get/${id}`);
     setTransfer(result.data);
   };
 
@@ -38,7 +38,7 @@ const EditTransfer = () => {
   };
   const updateTransfer = async (e) => {
     e.preventDefault();
-    await axios.put(`http://13.126.190.50:5000/transfers/update/${id}`, transfer);
+    await axios.put(`http://13.126.190.50:8082/transfers/update/${id}`, transfer);
     navigate("/hr/employee/transfer");
   };
   const [menu, setMenu] = useState(false);

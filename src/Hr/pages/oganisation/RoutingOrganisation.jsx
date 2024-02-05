@@ -46,7 +46,7 @@ const routesData = [
   { path: "/hr/organisation/announcements", element: <AnnouncementsView /> },
   { path: "/hr/organisation/expences", element: <ExpensesView /> },
   {
-    path: "/hr/organisation/edit-designation/:id",
+    path: "/organisation/edit-designation/:id",
     element: <EditDesignation />,
   },
   // { path: "/organisation/designation-profile/:id", element: <DesignationProfile /> },

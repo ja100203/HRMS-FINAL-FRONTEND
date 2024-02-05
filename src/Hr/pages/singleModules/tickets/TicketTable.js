@@ -318,10 +318,11 @@ const TicketTable = ({ ticket, setRecDelete }) => {
           <thead>
             <tr className="text-center">
               <th>ID</th>
-              <th>Ticket Code</th>
-              <th>Subject</th>
-              <th>Employee</th>
+              <th>Employee Name</th>
+              <th>Priority</th>
+              <th>Created by</th>
               <th>Date</th>
+              <th>Project Title</th>
               <th colSpan="3">Actions</th>
             </tr>
           </thead>
@@ -360,10 +361,11 @@ const TicketTable = ({ ticket, setRecDelete }) => {
                       <th scope="row" key={index}>
                         {index + 1}
                       </th>
-                      <td>{ticket.ticketsCode}</td>
-                      <td>{ticket.subject}</td>
                       <td>{ticket.employeeName}</td>
+                      <td>{ticket.priority}</td>
+                      <td>{ticket.createdBy}</td>
                       <td>{ticket.date}</td>
+                      <td>{ticket.projectTitle}</td>
                       <td className="mx-2">
                         <Link
                           to={`/edit-ticket/${ticket.ticketsId}`}
