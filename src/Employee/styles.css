@@ -9238,15 +9238,17 @@ img {
   color: inherit;
 }
 .table thead th {
-  border-top: 0;
-  border-bottom-width: 1px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-weight: 500;
   font-size: 1.1rem;
-  background-color: #c9c9c9;
+  background-color: rgba(249, 249, 249, 1);
+color:rgba(44, 41, 69, 1);
+border: none;
 }
-
+.table thead th.border-bottom{
+  border-bottom: 4px solid black
+}
 #table > tbody {
   vertical-align: middle;
 }

@@ -4,6 +4,7 @@ import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import * as XLSX from "xlsx";
+import '../../../../Employee/styles.css'
 import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
@@ -14,6 +15,7 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
+import '../../../../Employee/styles.css'
 
 
 const CompanyTable = ({ company, setRecDelete }) => {
@@ -346,8 +348,8 @@ const convertToExcel = () => {
       <table id="table" className="table table-bordered table-hover shadow">
         <thead>
           <tr className="text-center">
-            <th>ID</th>
-            <th>Company Name</th>
+            <th class="border-bottom">SL No</th>
+            <th class="border-bottom">Company Name</th>
             <th>Company Type</th>
             <th>Email</th>
             <th>Contact Number</th>

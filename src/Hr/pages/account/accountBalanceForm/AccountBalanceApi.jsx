@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://13.126.190.50:5000"
+const url = "http://13.126.190.50:8093"
 
 export const saveAccountBalance = async (formData) => {
     try{
@@ -34,7 +34,7 @@ export const saveAccountBalance = async (formData) => {
 export const fetchEmployee = async () => {
   try {
       const response = await axios.get(
-          "http://13.126.190.50:5000/employee/get/employee"
+          "http://13.126.190.50:8092/employee/get/employee"
         );
         return response.data
   } catch (error){
@@ -45,7 +45,7 @@ export const fetchEmployee = async () => {
 export const fetchDepartment = async () => {
   try {
       const response = await axios.get(
-          "http://13.126.190.50:5000/department/get/department"
+          "http://13.126.190.50:8091/department/get/department"
         );
         return response.data
   } catch (error){

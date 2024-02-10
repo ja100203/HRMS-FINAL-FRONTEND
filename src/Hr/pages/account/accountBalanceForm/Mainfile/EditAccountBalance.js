@@ -41,7 +41,7 @@ const EditAccountBalance = () => {
 
   const updateAccountBalance = async (e) => {
     e.preventDefault();
-    await axios.put(`http://13.126.190.50:5000/accountBalance/update/${id}`, accountBalance);
+    await axios.put(`http://13.126.190.50:8093/accountBalance/update/${id}`, accountBalance);
     navigate("/hr/account/accountBalance");
   };
 

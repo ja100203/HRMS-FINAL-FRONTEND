@@ -7,7 +7,7 @@ import MainEmpRouting from "../src/Employee/components/MainEmpRouting";
 function App() {
   return (
     <div className="App">
-      <MainHrRouting />
+      <MainHrRouting /> 
       <MainEmpRouting />
     </div>
   );
