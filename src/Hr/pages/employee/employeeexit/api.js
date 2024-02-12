@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveEmployeeExit = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/employee_exit/create/employee_exit",
+            "http://13.126.190.50:8082/employee_exit/create/employee_exit",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveEmployeeExit = async (formData) => {
 
 export const deleteEmployeeExit = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/employee_exit/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8082/employee_exit/delete/${id}`)
     } catch(error) {
         console.error("Error deleting employeeExit",error)
     }
@@ -22,7 +22,7 @@ export const deleteEmployeeExit = async (id) => {
 export const loadEmployeeExit = async () => {
     try {
         const result = await axios.get(
-            "http://13.126.190.50:5000/employee_exit/get/employee_exit",
+            "http://13.126.190.50:8082/employee_exit/get/employee_exit",
             {
               validateStatus: () => {
                 return true;

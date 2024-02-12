@@ -267,7 +267,7 @@ const TravelTable = ({travel,setRecDelete}) => {
   return (
 
     <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -370,18 +370,14 @@ const TravelTable = ({travel,setRecDelete}) => {
                 <td className="mx-2">
                   <Link
                     to={`/employee/edit-travel/${travel.travelId}`}
-                    className="btn btn-warning"
                   >
-                    <FaEdit />
+                    <FaEdit className='action-edit'/>
                   </Link>
                 </td>
                 <td className="mx-2">
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(travel.travelId)}
-                  >
-                    <FaTrashAlt />
-                  </button>
+                
+                    <FaTrashAlt className='action-delete' onClick={() => handleDelete(travel.travelId)}
+                    />
                 </td>
               </tr>
             ))}

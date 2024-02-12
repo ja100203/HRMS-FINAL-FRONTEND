@@ -36,7 +36,7 @@ import React, {
   
     const loadHoliday = async () => {
       const result = await axios.get(
-        `http://13.126.190.50:5000/holidays/get/${id}`
+        `http://13.126.190.50:8084/holidays/get/${id}`
       );
       setHoliday(result.data);
     };
@@ -50,7 +50,7 @@ import React, {
     const updateHoliday = async (e) => {
       e.preventDefault();
       await axios.put(
-        `http://13.126.190.50:5000/holidays/update/${id}`,
+        `http://13.126.190.50:8084/holidays/update/${id}`,
         holiday
       );
       navigate("/hr/timesheets/holiday");

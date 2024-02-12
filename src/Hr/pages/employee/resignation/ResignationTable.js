@@ -266,7 +266,7 @@ const  ResignationTable= ({resignation,setRecDelete}) => {
 
     <div>
 
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -376,18 +376,13 @@ const  ResignationTable= ({resignation,setRecDelete}) => {
             <td className="mx-2">
               <Link
                 to={`/employee/edit-resignation/${resignation.resignationId}`}
-                className="btn btn-warning"
               >
-                <FaEdit />
+                <FaEdit className='action-eye'/>
               </Link>
             </td>
             <td className="mx-2">
-              <button
-                className="btn btn-danger"
-                onClick={() => handleDelete(resignation.resignationId)}
-              >
-                <FaTrashAlt />
-              </button>
+                <FaTrashAlt className='action-eye' onClick={() => handleDelete(resignation.resignationId)}
+                />
             </td>
           </tr>
         ))}

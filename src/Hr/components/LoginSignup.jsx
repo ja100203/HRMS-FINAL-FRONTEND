@@ -1,17 +1,20 @@
+import React from "react";
+import "../LoginSignup.scss";
 import HRDashboard from "../components/Dashboard"
 import EmployeeDashboard from "../../Employee/components/Dashboard"
 import useAuth from "../hooks/useAuth"
 
+
 const LoginSignup = () => {
 
-   const {isHR, isEmployee } = useAuth();
+  const {isHR, isEmployee } = useAuth();
 
-   return (
-      <div>
-        {isHR && <p><HRDashboard /></p>}
-        {isEmployee && <p><EmployeeDashboard /></p>}
-      </div>
-    );
+  return (
+     <div>
+       {isHR && <p><HRDashboard /></p>}
+       {isEmployee && <p><EmployeeDashboard /></p>}
+     </div>
+   );
 
 };
 

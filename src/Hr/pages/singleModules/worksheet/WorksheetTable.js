@@ -270,7 +270,7 @@ const convertToExcel = () => {
 
     return (
       <div>
-      <div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+      <div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -333,7 +333,10 @@ const convertToExcel = () => {
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+      
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      />
         <div className="table-start-container">
             <table id='table' className="table table-bordered table-hover shadow">
                   <thead>
@@ -380,9 +383,9 @@ const convertToExcel = () => {
                           <td className="mx-2">
                             <button
                               className="btn btn-danger"
-                              onClick={() => handleDelete(worksheet.workSheetId)}
                             >
-                              <FaTrashAlt />
+                              <FaTrashAlt className='action-delete' onClick={() => handleDelete(worksheet.workSheetId)}
+                              />
                             </button>
                           </td>
                         </tr>

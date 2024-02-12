@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const saveAward = async (formData) => {
   try {
-    await axios.post("http://13.126.190.50:5000/awards/create/awards", formData);
+    await axios.post("http://13.126.190.50:8082/awards/create/awards", formData);
   } catch (error) {
     console.error("saveAward", error);
   }
@@ -10,7 +10,7 @@ export const saveAward = async (formData) => {
 
 export const deleteAward = async (id) => {
   try {
-    await axios.delete(`http://13.126.190.50:5000/awards/delete/${id}`);
+    await axios.delete(`http://13.126.190.50:8082/awards/delete/${id}`);
   } catch (error) {
     console.error("Error deleting award", error);
   }
@@ -18,7 +18,7 @@ export const deleteAward = async (id) => {
 
 export const loadAward = async () => {
   try {
-    const result = await axios.get("http://13.126.190.50:5000/awards/get/awards", {
+    const result = await axios.get("http://13.126.190.50:8082/awards/get/awards", {
       validateStatus: () => {
         return true;
       },

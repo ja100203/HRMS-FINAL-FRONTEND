@@ -272,7 +272,7 @@ const WarningTable = ({warning,setRecDelete}) => {
   return (
 
     <div>
-       <div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+       <div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -335,7 +335,10 @@ const WarningTable = ({warning,setRecDelete}) => {
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+      
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      />
       <div className="table-start-container">
         <table id='table' className="table table-bordered table-hover shadow">
         <thead>
@@ -379,25 +382,22 @@ const WarningTable = ({warning,setRecDelete}) => {
                         <td className="mx-2">
                           <Link
                             to={`/employee/warning-profile/${warning.warningsId}`}
-                            className="btn btn-info"
                           >
-                            <FaEye />
+                            <FaEye className='action-eye' />
                           </Link>
                         </td>
                         <td className="mx-2">
                           <Link
                             to={`/employee/edit-warning/${warning.warningsId}`}
-                            className="btn btn-warning"
                           >
-                            <FaEdit />
+                            <FaEdit className='action-edit'/>
                           </Link>
                         </td>
                         <td className="mx-2">
                           <button
-                            className="btn btn-danger"
                             onClick={() => handleDelete(warning.warningsId)}
                           >
-                            <FaTrashAlt />
+                            <FaTrashAlt className='action-delete'/>
                           </button>
                         </td>
                       </tr>

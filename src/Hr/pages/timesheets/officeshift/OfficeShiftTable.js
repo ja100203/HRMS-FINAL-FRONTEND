@@ -37,18 +37,14 @@ const OfficeShiftTable = ({ officeShift, setRecDelete }) => {
                 <td className="mx-2">
                   <Link
                     to={`/edit-officeShift/${shift.officeShiftsId}`}
-                    className="btn btn-warning"
                   >
-                    <FaEdit />
+                    <FaEdit className='action-edit'/>
                   </Link>
                 </td>
                 <td className="mx-2">
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(shift.officeShiftsId)}
-                  >
-                    <FaTrashAlt />
-                  </button>
+                 
+                    <FaTrashAlt className='action-delete' onClick={() => handleDelete(shift.officeShiftsId)}
+                    />
                 </td>
               </tr>
             ))}

@@ -18,7 +18,7 @@ const AccountBalanceProfile = () => {
   }, []);
 
   const loadaccountBalance = async () => {
-    const result = await axios.get(`http://13.126.190.50:5000/accountBalance/get/${id}`);
+    const result = await axios.get(`http://13.126.190.50:8093/accountBalance/get/${id}`);
     setAccountBalance(result.data);
   };
 

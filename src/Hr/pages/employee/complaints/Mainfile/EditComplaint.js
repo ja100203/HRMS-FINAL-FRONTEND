@@ -23,7 +23,7 @@ const EditComplaint = () => {
 
   const loadcomplaint = async () => {
     const result = await axios.get(
-      `http://13.126.190.50:5000/complaints/get/${id}`
+      `http://13.126.190.50:8082/complaints/get/${id}`
     );
     setcomplaint(result.data);
   };
@@ -37,7 +37,7 @@ const EditComplaint = () => {
   const updatecomplaint = async (e) => {
     e.preventDefault();
     await axios.put(
-      `http://13.126.190.50:5000/complaints/update/${id}`,
+      `http://13.126.190.50:8082/complaints/update/${id}`,
       complaint
     );
     navigate("/hr/employee/complaints");

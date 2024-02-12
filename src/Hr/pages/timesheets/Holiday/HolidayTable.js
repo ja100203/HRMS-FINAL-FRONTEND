@@ -258,7 +258,7 @@ const convertToExcel = () => {
 
     return (
       <div>
-      <div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+      <div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -321,7 +321,10 @@ const convertToExcel = () => {
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+      
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      />
          <div className="table-start-container">
             <table id='table' className="table table-bordered table-hover shadow">
                   <thead>
@@ -331,7 +334,7 @@ const convertToExcel = () => {
                       <th>Start Date</th>
                       <th>End Date</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      <th colSpan={3}>Action</th>
                     </tr>
                   </thead>
     
@@ -356,29 +359,25 @@ const convertToExcel = () => {
                           <td>{holiday.eventName}</td>
                           <td>{holiday.startDate}</td>
                           <td>{holiday.endDate}</td>
+                          <td></td>
                           <td className="mx-2">
                             <Link
                               to={`/holiday-profile/${holiday.holidaysId}`}
-                              className="btn btn-info"
                             >
-                              <FaEye />
+                              <FaEye className='action-eye'/>
                             </Link>
                           </td>
                           <td className="mx-2">
                             <Link
-                              to={`/edit-holiday/${holiday.holidaysId}`}
-                              className="btn btn-warning"
+                              to={`/timesheets/edit-holiday/${holiday.holidaysId}`}
                             >
-                              <FaEdit />
+                              <FaEdit className='action-edit'/>
                             </Link>
                           </td>
                           <td className="mx-2">
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => handleDelete(holiday.holidaysId)}
-                            >
-                              <FaTrashAlt />
-                            </button>
+                          
+                              <FaTrashAlt  className='action-delete'  onClick={() => handleDelete(holiday.holidaysId)}
+                              />
                           </td>
                         </tr>
                       ))}

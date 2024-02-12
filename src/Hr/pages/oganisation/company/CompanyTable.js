@@ -4,6 +4,7 @@ import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import * as XLSX from "xlsx";
+import '../../../../Employee/styles.css'
 import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
@@ -14,6 +15,7 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
+import '../../../../Employee/styles.css'
 
 
 const CompanyTable = ({ company, setRecDelete }) => {
@@ -277,8 +279,8 @@ const convertToExcel = () => {
 
   return (
 
-    <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+    <div  className="d-flex" style={{display:"flex",flexDirection:"column"}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -341,13 +343,17 @@ const convertToExcel = () => {
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      />
+
        <div className="table-start-container">
       <table id="table" className="table table-bordered table-hover shadow">
         <thead>
           <tr className="text-center">
-            <th>ID</th>
-            <th>Company Name</th>
+            <th class="border-bottom">SL No</th>
+            <th class="border-bottom">Company Name</th>
             <th>Company Type</th>
             <th>Email</th>
             <th>Contact Number</th>
@@ -396,18 +402,13 @@ const convertToExcel = () => {
               <td className="mx-2">
                 <Link
                   to={`/organisation/edit-company/${company.companyId}`}
-                  className="btn btn-warning"
                 >
-                  <FaEdit />
+                  <FaEdit className='action-edit'/>
                 </Link>
               </td>
               <td className="mx-2">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDelete(company.companyId)}
-                >
-                  <FaTrashAlt />
-                </button>
+                  <FaTrashAlt className='action-delete' onClick={() => handleDelete(company.companyId)}
+                  />
               </td>
             </tr>
           ))}

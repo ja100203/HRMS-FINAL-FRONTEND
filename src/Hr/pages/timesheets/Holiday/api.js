@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveHoliday = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/holidays/create/holidays",
+            "http://13.126.190.50:8084/holidays/create/holidays",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveHoliday = async (formData) => {
 
 export const deleteHoliday = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/holidays/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8084/holidays/delete/${id}`)
     } catch(error) {
         console.error("Error deleting Holiday",error)
     }
@@ -22,7 +22,7 @@ export const deleteHoliday = async (id) => {
 export const loadHoliday = async (id) => {
     try {
        const result =  await axios.get(
-        "http://13.126.190.50:5000/holidays/get/holidays",
+        "http://13.126.190.50:8084/holidays/get/holidays",
             {
               validateStatus: () => {
                 return true;
