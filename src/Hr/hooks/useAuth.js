@@ -23,10 +23,10 @@ const useAuth = () => {
                 if (authenticated) {
                     // Print the token to the console
                     console.log("Token:", client.token);
-                    console.log("Roles:", client.realmAccess.roles);
+                    console.log("Roles:", client.resourceAccess.myclient.roles);
 
                     setToken(client.token);
-                    setRoles(client.realmAccess.roles);
+                    setRoles(client.resourceAccess.myclient.roles);
                 } else {
                     console.error("Failed to authenticate");
                 }
@@ -36,9 +36,9 @@ const useAuth = () => {
             });
     }, []);
 
-    const isHR = roles.includes("hr");
+    const isHR = roles.includes("client_HR");
 
-    const isEmployee = roles.includes("employee");
+    const isEmployee = roles.includes("client_Employee");
 
     return { token, isHR, isEmployee };
 };
