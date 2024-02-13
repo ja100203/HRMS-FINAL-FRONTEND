@@ -30,7 +30,7 @@ const EditWarning = () => {
 
 	const loadwarning = async () => {
 		const result = await axios.get(
-			`http://13.126.190.50:5000/warnings/get/${id}`
+			`http://13.126.190.50:8082/warnings/get/${id}`
 		);
 		setwarning(result.data);
 	};
@@ -44,7 +44,7 @@ const EditWarning = () => {
 	const updatewarning = async (e) => {
 		e.preventDefault();
 		await axios.put(
-			`http://13.126.190.50:5000/warnings/update/${id}`,
+			`http://13.126.190.50:8082/warnings/update/${id}`,
 			warning
 		);
 		navigate("/hr/employee/warning");

@@ -306,43 +306,27 @@ const Performance = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex" }}>
-            <div className="col-xl-8 col-lg-12 col-md-12">
+          <div className="my-4 row container-fluid">
+            <div className="col-xl-9 col-lg-9 col-md-9">
               <div
                 id="card"
                 className="card"
                 style={{
-                  height: "30vh",
-                  width: "100%",
-                  marginTop: "20px",
-                  marginLeft: "10px",
+                  height: "300px",
                 }}
               >
-                <div
-                  className="card-top"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "15px 15px",
-                  }}
-                ></div>
+                <div className="card-top"></div>
 
                 <div>
-                  <div style={{ display: "flex" }}>
-                    <div style={{ width: "450px", marginTop: "20px" }}>
-                      <img
-                        src={dartlogo}
-                        style={{ transform: "scale(0.75)", marginTop: "-70px" }}
-                      />
+                  <div className="d-flex justify-content-around align-items-center p-3 mt-3">
+                    <div className="dat-logo">
+                      <img src={dartlogo} height={250} />
                     </div>
 
                     <div className="mt-3">
                       <h4
                         style={{
                           textAlign: "start",
-                          paddingLeft: "3px",
-                          marginTop: "10px",
                           fontWeight: "500",
                           lineHeight: "28.8px",
                           fontSize: "20px",
@@ -365,470 +349,386 @@ const Performance = () => {
                       >
                         Your Last Week Target is Excellent !
                       </h2>
-                      <button className="emp-header-check-btn">
-                        Check Feedback
-                        <span>
-                          <img
-                            style={{ width: "8px", marginLeft: "6px" }}
-                            src={vector}
-                          />
-                        </span>
-                      </button>
+                      <div className="my-5 text-center">
+                        <button
+                          className="emp-header-check-btn"
+                          style={{ height: "auto" }}
+                        >
+                          Check Feedback
+                          <span>
+                            <img
+                              style={{ width: "8px", marginLeft: "6px" }}
+                              src={vector}
+                            />
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 col-lg-6 col-md-9">
-              <div
-                id="card"
-                className="card"
-                style={{
-                  height: "30vh",
-                  width: "320px",
-                  marginTop: "20px",
-                  marginLeft: "80px",
-                }}
-              >
+            <div className="col-xl-3 col-lg-3 col-md-3">
+              <div id="card" className="card d-flex align-items-center justify-content-center" style={{ height: "300px" }}>
                 <h4
                   style={{
-                    textAlign: "start",
-                    paddingLeft: "20px",
-                    marginTop: "20px",
                     fontWeight: "600",
                     lineHeight: "28.8px",
                     fontSize: "16px",
+                    padding: '0 10px',
+                    textAlign: "center",
+                    marginTop:'30px'
                   }}
                 >
                   RATE YOUR ASSESSMENT
                 </h4>
                 <img
                   src={list}
-                  style={{ transform: "scale(0.65)", marginTop: "-40px" }}
+                  style={{ transform: "scale(0.65)"}}
                 />
 
-                <button
-                  className="emp-header-check-btn"
-                  style={{
-                    width: "201px",
-                    marginLeft: "60px",
-                    marginTop: "-10px",
-                    height: "30px",
-                    borderRadius: "3px",
-                  }}
-                  onClick={handleOpen}
-                >
-                  Fill Your Form
-                  <span>
-                    <img
-                      style={{ width: "8px", marginLeft: "6px" }}
-                      src={vector}
-                    />
-                  </span>
-                </button>
+                <div className="text-center mb-4">
+                  <button
+                    className="emp-header-check-btn-alag"
+                    style={{
+                      width: "auto",
+                      borderRadius: "3px",
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Fill Your Form
+                    <span>
+                      <img
+                        style={{marginLeft:'5px'}}
+                        height={12}
+                        src={vector}
+                      />
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div style={{ display: "flex" }}>
-            <div className="col-xl-8 col-lg-12 col-md-12">
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <div style={{ marginTop: "20px", marginLeft: "15px" }}>
-                  <div className="row clearfix">
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <div style={{ display: "flex" }}>
+          <div className="row container-fluid">
+            <div className="col-xl-9 col-lg-9 col-md-9">
+              {/* <div style={{ display: "flex", flexWrap: "wrap" }}> */}
+              <div className="row">
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div
+                    id="card"
+                    className="card px-3"
+                    style={{ width: "auto" }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "space-between",
+                      }}
+                    >
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ marginTop: "-25px" }}
+                      >
                         <div>
-                          <div>
-                            <div
-                              id="card"
-                              className="card"
-                              style={{ width: "90%" }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div style={{ display: "flex" }}>
-                                  <span
-                                    style={{
-                                      marginTop: "-50px",
-                                      height: "40px",
-                                      padding: "2px",
-                                    }}
-                                  >
-                                    {" "}
-                                    <img src={frame1} />
-                                  </span>
-                                  <span
-                                    style={{
-                                      width: "107px",
-                                      marginTop: "-40px",
-                                      height: "24px",
-                                      fontWeight: "600",
-                                      fontSize: "10px",
-                                      color: "rgba(44, 41, 69, 1)",
-                                    }}
-                                  >
-                                    TEAM WORK
-                                  </span>
-                                </div>
-
-                                <div
-                                  style={{
-                                    borderLeft: "2px solid #f76c24",
-                                    height: "22px",
-                                    paddingLeft: "7px",
-                                    position: "relative",
-                                    right: "90px",
-                                    top: "30px",
-                                    fontSize: "6px",
-                                  }}
-                                >
-                                  Meets Expectations
-                                </div>
-                                <div style={{ width: "140px" }}>
-                                  <ChartApex
-                                    options={teamData.options}
-                                    series={teamData.series}
-                                    type="radialBar"
-                                    height={150}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <img src={frame1} height={55} />
                         </div>
-                        <div>
-                          <div
-                            id="card"
-                            className="card"
-                            style={{ width: "90%" }}
-                          >
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <div style={{ display: "flex" }}>
-                                <span
-                                  style={{
-                                    marginTop: "-50px",
-                                    height: "40px",
-                                    padding: "5px",
-                                  }}
-                                >
-                                  {" "}
-                                  <img src={frame2} />
-                                </span>
-                                <span
-                                  style={{
-                                    width: "107px",
-                                    marginTop: "-40px",
-                                    height: "24px",
-                                    fontWeight: "600",
-                                    fontSize: "10px",
-                                    color: "rgba(44, 41, 69, 1)",
-                                  }}
-                                >
-                                  INITIATIVE
-                                </span>
-                              </div>
-
-                              <div
-                                style={{
-                                  borderLeft: "2px solid #f76c24",
-                                  height: "22px",
-                                  paddingLeft: "7px",
-                                  position: "relative",
-                                  right: "90px",
-                                  top: "30px",
-                                  fontSize: "6px",
-                                }}
-                              >
-                                Meets Expectations
-                              </div>
-                              <div div style={{ width: "140px" }}>
-                                <ChartApex
-                                  options={initiativeData.options}
-                                  series={initiativeData.series}
-                                  type="radialBar"
-                                  height={150}
-                                />
-                              </div>
-                            </div>
-                          </div>
+                        <div
+                          className=""
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "1rem",
+                            color: "rgba(44, 41, 69, 1)",
+                          }}
+                        >
+                          TEAM WORK
                         </div>
-                        <div>
-                          <div>
-                            <div
-                              id="card"
-                              className="card"
-                              style={{ width: "90%" }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div style={{ display: "flex" }}>
-                                  <span
-                                    style={{
-                                      marginTop: "-50px",
-                                      padding: "5px",
-
-                                      height: "40px",
-                                    }}
-                                  >
-                                    {" "}
-                                    <img src={frame3} />
-                                  </span>
-                                  <span
-                                    style={{
-                                      width: "107px",
-                                      marginTop: "-50px",
-                                      height: "24px",
-                                      fontWeight: "600",
-                                      fontSize: "10px",
-                                      color: "rgba(44, 41, 69, 1)",
-                                    }}
-                                  >
-                                    COMMUNICATION & LISTENING
-                                  </span>
-                                </div>
-
-                                <div
-                                  style={{
-                                    borderLeft: "2px solid #f76c24",
-                                    height: "22px",
-                                    paddingLeft: "7px",
-                                    position: "relative",
-                                    right: "90px",
-                                    top: "30px",
-                                    fontSize: "6px",
-                                  }}
-                                >
-                                  Meets Expectations
-                                </div>
-                                <div style={{ width: "140px" }}>
-                                  <ChartApex
-                                    options={communicationData.options}
-                                    series={communicationData.series}
-                                    type="radialBar"
-                                    height={150}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div></div>
                       </div>
-                      <div style={{ display: "flex" }}>
-                        <div>
-                          <div>
-                            <div
-                              id="card"
-                              className="card"
-                              style={{ width: "90%" }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div style={{ display: "flex" }}>
-                                  <span
-                                    style={{
-                                      marginTop: "-50px",
-                                      height: "40px",
-                                      padding: "2px",
-                                    }}
-                                  >
-                                    {" "}
-                                    <img src={frame7} />
-                                  </span>
-                                  <span
-                                    style={{
-                                      width: "104px",
-                                      marginTop: "-45px",
-                                      marginLeft: "5px",
-                                      height: "24px",
-                                      fontWeight: "600",
-                                      fontSize: "10px",
-                                      color: "rgba(44, 41, 69, 1)",
-                                    }}
-                                  >
-                                    WORK QUALITY
-                                  </span>
-                                </div>
 
-                                <div
-                                  style={{
-                                    borderLeft: "2px solid #f76c24",
-                                    height: "22px",
-                                    paddingLeft: "7px",
-                                    position: "relative",
-                                    right: "90px",
-                                    top: "30px",
-                                    fontSize: "6px",
-                                  }}
-                                >
-                                  Meets Expectations
-                                </div>
-                                <div style={{ width: "140px" }}>
-                                  <ChartApex
-                                    options={workData.options}
-                                    series={workData.series}
-                                    type="radialBar"
-                                    height={150}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div
+                        style={{
+                          borderLeft: "3px solid #f76c24",
+                          paddingLeft: "5px",
+                          position: "absolute",
+                          bottom: "10px",
+                        }}
+                      >
+                        Meets Expectations
+                      </div>
+                      <div style={{ width: "140px", marginLeft: "15px" }}>
+                        <ChartApex
+                          options={teamData.options}
+                          series={teamData.series}
+                          type="radialBar"
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div
+                    id="card"
+                    className="card px-3"
+                    style={{ width: "auto" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ marginTop: "-25px" }}
+                      >
                         <div>
+                          <img src={frame2} height={55} />
+                        </div>
+                        <div
+                          className=""
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "1rem",
+                            color: "rgba(44, 41, 69, 1)",
+                          }}
+                        >
+                          INITIATIVE
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          borderLeft: "3px solid #f76c24",
+                          paddingLeft: "5px",
+                          position: "absolute",
+                          bottom: "10px",
+                        }}
+                      >
+                        Meets Expectations
+                      </div>
+                      <div style={{ width: "140px", marginLeft: "15px" }}>
+                        <ChartApex
+                          options={initiativeData.options}
+                          series={initiativeData.series}
+                          type="radialBar"
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div
+                    id="card"
+                    className="card px-3"
+                    style={{ width: "auto" }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "space-between",
+                      }}
+                    >
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ marginTop: "-25px" }}
+                      >
+                        <div>
+                          <img src={frame3} height={55} />
+                        </div>
+                        <div
+                          className=""
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "1rem",
+                            color: "rgba(44, 41, 69, 1)",
+                          }}
+                        >
+                          COMMUNICATION & LISTENING
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          borderLeft: "3px solid #f76c24",
+                          paddingLeft: "5px",
+                          position: "absolute",
+                          bottom: "10px",
+                        }}
+                      >
+                        Meets Expectations
+                      </div>
+                      <div style={{ width: "140px" }}>
+                        <ChartApex
+                          options={communicationData.options}
+                          series={communicationData.series}
+                          type="radialBar"
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div
+                    id="card"
+                    className="card px-3"
+                    style={{ width: "auto" }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "space-between",
+                      }}
+                    >
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ marginTop: "-25px" }}
+                      >
+                        <div>
+                          <img src={frame7} height={55} />
+                        </div>
+                        <div
+                          className=""
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "1rem",
+                            color: "rgba(44, 41, 69, 1)",
+                          }}
+                        >
+                          WORK QUALITY
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          borderLeft: "3px solid #f76c24",
+                          paddingLeft: "5px",
+                          position: "absolute",
+                          bottom: "10px",
+                        }}
+                      >
+                        Meets Expectations
+                      </div>
+                      <div style={{ width: "140px" }}>
+                        <ChartApex
+                          options={workData.options}
+                          series={workData.series}
+                          type="radialBar"
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div
+                    id="card"
+                    className="card px-3"
+                    style={{ width: "auto" }}
+                  >
+                    <div
+                      style={{ display: "flex", alignItems: "space-between" }}
+                    >
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ marginTop: "-25px" }}
+                      >
+                        <div>
+                          <img src={frame6} height={55} />
+                        </div>
+                        <div
+                          className=""
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "1rem",
+                            color: "rgba(44, 41, 69, 1)",
+                          }}
+                        >
+                          ATTENDANCE
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          borderLeft: "3px solid #f76c24",
+                          paddingLeft: "5px",
+                          position: "absolute",
+                          bottom: "10px",
+                        }}
+                      >
+                        Meets Expectations
+                      </div>
+                      <div div style={{ width: "140px" }}>
+                        <ChartApex
+                          options={revenueData.options}
+                          series={revenueData.series}
+                          type="radialBar"
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                  <div>
+                    <div
+                      id="card"
+                      className="card px-3"
+                      style={{ width: "auto" }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "space-between",
+                        }}
+                      >
+                        <div
+                          className="d-flex align-items-center"
+                          style={{ marginTop: "-25px" }}
+                        >
+                          <div>
+                            <img src={frame5} height={55} />
+                          </div>
                           <div
-                            id="card"
-                            className="card"
-                            style={{ width: "90%" }}
+                            className=""
+                            style={{
+                              fontWeight: "600",
+                              fontSize: "1rem",
+                              color: "rgba(44, 41, 69, 1)",
+                            }}
                           >
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <div style={{ display: "flex" }}>
-                                <span
-                                  style={{
-                                    marginTop: "-50px",
-                                    height: "40px",
-                                    padding: "5px",
-                                  }}
-                                >
-                                  {" "}
-                                  <img src={frame6} />
-                                </span>
-                                <span
-                                  style={{
-                                    width: "107px",
-                                    marginTop: "-40px",
-                                    height: "24px",
-                                    fontWeight: "600",
-                                    fontSize: "10px",
-                                    color: "rgba(44, 41, 69, 1)",
-                                  }}
-                                >
-                                  ATTENDANCE
-                                </span>
-                              </div>
-
-                              <div
-                                style={{
-                                  borderLeft: "2px solid #f76c24",
-                                  height: "22px",
-                                  paddingLeft: "7px",
-                                  position: "relative",
-                                  right: "90px",
-                                  top: "30px",
-                                  fontSize: "6px",
-                                }}
-                              >
-                                Meets Expectations
-                              </div>
-                              <div div style={{ width: "140px" }}>
-                                <ChartApex
-                                  options={revenueData.options}
-                                  series={revenueData.series}
-                                  type="radialBar"
-                                  height={150}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div>
-                            <div
-                              id="card"
-                              className="card"
-                              style={{ width: "90%" }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div style={{ display: "flex" }}>
-                                  <span
-                                    style={{
-                                      marginTop: "-60px",
-                                      padding: "5px",
-
-                                      height: "40px",
-                                    }}
-                                  >
-                                    {" "}
-                                    <img src={frame5} />
-                                  </span>
-                                  <span
-                                    style={{
-                                      width: "107px",
-                                      marginTop: "-50px",
-                                      height: "24px",
-                                      fontWeight: "600",
-                                      fontSize: "10px",
-                                      color: "rgba(44, 41, 69, 1)",
-                                    }}
-                                  >
-                                    ADAPTABILTY
-                                  </span>
-                                </div>
-
-                                <div
-                                  style={{
-                                    borderLeft: "2px solid #f76c24",
-                                    height: "22px",
-                                    paddingLeft: "7px",
-                                    position: "relative",
-                                    right: "90px",
-                                    top: "30px",
-                                    fontSize: "6px",
-                                  }}
-                                >
-                                  Meets Expectations
-                                </div>
-                                <div style={{ width: "140px" }}>
-                                  <ChartApex
-                                    options={adaptabilityData.options}
-                                    series={adaptabilityData.series}
-                                    type="radialBar"
-                                    height={150}
-                                  />
-                                </div>
-                              </div>
-                            </div>
+                            ADAPTABILTY
                           </div>
                         </div>
 
-                        <div></div>
+                        <div
+                          style={{
+                            borderLeft: "3px solid #f76c24",
+                            paddingLeft: "5px",
+                            position: "absolute",
+                            bottom: "10px",
+                          }}
+                        >
+                          Meets Expectations
+                        </div>
+                        <div style={{ width: "140px" }}>
+                          <ChartApex
+                            options={adaptabilityData.options}
+                            series={adaptabilityData.series}
+                            type="radialBar"
+                            height={150}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* </div> */}
             </div>
 
-            <div className="col-xl-3 col-lg-6 col-md-9">
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
               <div
                 id="card"
                 className="card"
                 style={{
-                  height: "30vh",
-                  width: "320px",
-                  marginTop: "20px",
-                  marginLeft: "80px",
+                  height: "auto",
                 }}
               >
                 <div id="card-header" className="card-header">
@@ -855,81 +755,81 @@ const Performance = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex" }}>
-            <div
-              id="card"
-              className="card"
-              style={{
-                height: "50vh",
-                width: "800px",
-                marginTop: "20px",
-                marginLeft: "30px",
-              }}
-            >
-              <h4
-                style={{
-                  textAlign: "start",
-                  paddingLeft: "20px",
-                  marginTop: "20px",
-                  fontWeight: "700",
-                  lineHeight: "28.8px",
-                  fontSize: "16px",
-                }}
-              >
-                TARGET
-              </h4>
+          <div className="row container-fluid">
+            <div className="col-xl-6 col-lg-6 col-md-12">
               <div
+                id="card"
+                className="card"
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
+                  height: "auto",
+                  paddingBottom:'30px'
                 }}
               >
-                <div style={{ display: "flex" }}>
-                  <img
-                    style={{
-                      marginTop: "10px",
-                      marginLeft: "25px",
-                      width: "30px",
-                      height: "30px",
-                    }}
-                    src={goal}
-                  />
-                  <div
-                    style={{
-                      marginTop: "8px",
-                      marginLeft: "10px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Code Quality Metrics
+                <h4
+                  style={{
+                    textAlign: "start",
+                    paddingLeft: "20px",
+                    marginTop: "20px",
+                    fontWeight: "700",
+                    lineHeight: "28.8px",
+                    fontSize: "16px",
+                  }}
+                >
+                  TARGET
+                </h4>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div style={{ display: "flex" }}>
+                    <img
+                      style={{
+                        marginTop: "10px",
+                        marginLeft: "25px",
+                        width: "30px",
+                        height: "30px",
+                      }}
+                      src={goal}
+                    />
                     <div
                       style={{
-                        color: "rgba(128, 132, 136, 1)",
-                        fontSize: "10px",
-                        lineHeight: "19.5px",
-                        marginTop: "10px",
-                        marginLeft: "2px",
+                        marginTop: "8px",
+                        marginLeft: "10px",
+                        fontWeight: "600",
                       }}
                     >
-                      Maintain a code quality score above a predefined threshold
-                      (e.g., code review ratings, static code analysis results).
+                      Code Quality Metrics
+                      <div
+                        style={{
+                          color: "rgba(128, 132, 136, 1)",
+                          fontSize: "10px",
+                          lineHeight: "19.5px",
+                          marginTop: "10px",
+                          marginLeft: "2px",
+                        }}
+                      >
+                        Maintain a code quality score above a predefined
+                        threshold (e.g., code review ratings, static code
+                        analysis results).
+                      </div>
                     </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "88px",
+                      height: "21px",
+                      fontSize: "10px",
+                      marginTop: "8px",
+                      marginRight: "20px",
+                      color: "#646978",
+                    }}
+                  >
+                    May 12, 2019
                   </div>
                 </div>
                 <div
-                  style={{
-                    width: "88px",
-                    height: "21px",
-                    fontSize: "10px",
-                    marginTop: "8px",
-                    marginRight: "20px",
-                    color: "#646978",
-                  }}
-                >
-                  May 12, 2019
-                </div>
-              </div>
-              <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -1068,16 +968,15 @@ const Performance = () => {
                   July 12, 2019
                 </div>
               </div>
+              </div>
             </div>
 
-            <div
+           <div className="col-xl-6 col-lg-6 col-md-12">
+           <div
               id="card"
               className="card"
               style={{
                 height: "50vh",
-                width: "600px",
-                marginTop: "20px",
-                marginLeft: "30px",
               }}
             >
               <h4
@@ -1174,6 +1073,7 @@ const Performance = () => {
                 </div>
               </div>
             </div>
+           </div>
           </div>
 
           <Dialog open={open} onClose={handleClose}>

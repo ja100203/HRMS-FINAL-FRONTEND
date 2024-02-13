@@ -214,7 +214,7 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
   return (
 <div>
 
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -306,33 +306,25 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
                     <td>{announcements.companyName}</td>
                     <td>{announcements.createdDate}</td>
                     <td>{announcements.description}</td>
-                    <td>{}</td>
 
                     <td className="mx-2">
                       <Link
                         to={`/organisation/announcements-profile/${announcements.announcementsId}`}
-                        className="btn btn-info"
                       >
-                        <FaEye />
+                        <FaEye className='action-eye'/>
                       </Link>
                     </td>
                     <td className="mx-2">
                       <Link
                         to={`/organisation/edit-announcements/${announcements.announcementsId}`}
-                        className="btn btn-warning"
                       >
-                        <FaEdit />
+                        <FaEdit className='action-edit'/>
                       </Link>
                     </td>
                     <td className="mx-2">
-                      <button
-                        className="btn btn-danger"
-                        onClick={() =>
+                        <FaTrashAlt className='action-delete'  onClick={() =>
                           handleDelete(announcements.announcementsId)
-                        }
-                      >
-                        <FaTrashAlt />
-                      </button>
+                        }/>
                     </td>
                   </tr>
                 ))}

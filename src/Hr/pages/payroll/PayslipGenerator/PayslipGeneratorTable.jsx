@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
-import DataNotFound from "../../../asset/images/no data 1.png";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import * as XLSX from "xlsx";
@@ -9,17 +7,18 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
-
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import DataNotFound from "../../../asset/images/no data 1.png";
 import { styled } from "@mui/system";
 import {
   TablePagination,
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
 
-const TalentTable = ({ talent, setRecDelete }) => {
+const DepartmentTable = ({ salary, setRecDelete }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
-    & .${classes.toolbar} { 
+    & .${classes.toolbar} {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -58,7 +57,7 @@ const TalentTable = ({ talent, setRecDelete }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - talent.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - salary.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -68,7 +67,6 @@ const TalentTable = ({ talent, setRecDelete }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   let doc;
   const convertToPdf = () => {
     try {
@@ -90,23 +88,21 @@ const TalentTable = ({ talent, setRecDelete }) => {
       doc.autoTable({
         head: [
           [
-            "ID",
-            "NAME",
-            "PROJECT MANAGER",
-            "MANAGER NAME",
-            "START-DATE",
-            "END-DATE",
-            "JON LOCATION",
+            "SL",
+            "BASIC SALARY",
+            "HOUSE RENTAL ALLOWANCES",
+            "MEDICAL ALLOWANCES",
+            "TAX DEDUCTION",
+            "CREATED DATE",
           ],
         ],
-        body: talent.map((row) => [
-          row.TalentId,
-          row.name,
-          row.projectName,
-          row.mangerName,
-          row.startDate,
-          row.endDate,
-          row.jobLocation,
+        body: salary.map((row) => [
+          row.sl,
+          row.basicSalery,
+          row.houseRentAllowance,
+          row.medicalAllowance,
+          row.taxDeduction,
+          row.createdDate,
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -118,11 +114,12 @@ const TalentTable = ({ talent, setRecDelete }) => {
         },
         startY: tableStartY,
       });
-      doc.save("talent.pdf");
+      doc.save("salarytemplate.pdf");
     } catch (error) {
       console.error("Error creating PDF:", error);
     }
   };
+
   const createPdf = () => {
     try {
       doc = new jsPDF();
@@ -143,23 +140,21 @@ const TalentTable = ({ talent, setRecDelete }) => {
       doc.autoTable({
         head: [
           [
-            "ID",
-            "NAME",
-            "PROJECT MANAGER",
-            "MANAGER NAME",
-            "START-DATE",
-            "END-DATE",
-            "JON LOCATION",
+            "SL",
+            "BASIC SALARY",
+            "HOUSE RENTAL ALLOWANCES",
+            "MEDICAL ALLOWANCES",
+            "TAX DEDUCTION",
+            "CREATED DATE",
           ],
         ],
-        body: talent.map((row) => [
-          row.TalentId,
-          row.name,
-          row.projectName,
-          row.mangerName,
-          row.startDate,
-          row.endDate,
-          row.jobLocation,
+        body: salary.map((row) => [
+          row.sl,
+          row.basicSalery,
+          row.houseRentAllowance,
+          row.medicalAllowance,
+          row.taxDeduction,
+          row.createdDate,
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -177,7 +172,7 @@ const TalentTable = ({ talent, setRecDelete }) => {
   };
 
   const convertToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(talent);
+    const ws = XLSX.utils.json_to_sheet(salary);
 
     ws["!cols"] = [
       { width: 20 },
@@ -202,14 +197,11 @@ const TalentTable = ({ talent, setRecDelete }) => {
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, "talent.xlsx");
+    XLSX.writeFile(wb, "salarytemplate.xlsx");
   };
-
   const handleDelete = (id) => {
     setRecDelete(id);
   };
-
-  console.log(talent);
 
   const handlePrint = () => {
     createPdf();
@@ -254,7 +246,8 @@ const TalentTable = ({ talent, setRecDelete }) => {
     }
   };
 
-  const renderTalentData = () => {
+  console.log(salary);
+  const renderSalaryData = () => {
     return (
       <tr>
         <td colSpan="12" className="text-center">
@@ -273,7 +266,7 @@ const TalentTable = ({ talent, setRecDelete }) => {
     <div>
       <div
         className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "180px" }}
+        style={{ position: "absolute", right: "-160px", top: "100px" }}
       >
         <button
           className=""
@@ -318,8 +311,8 @@ const TalentTable = ({ talent, setRecDelete }) => {
           EXCEL
         </button>
         <CSVLink
-          data={talent}
-          filename="Talent.csv"
+          data={salary}
+          filename="salarytemplate.csv"
           style={{ textDecoration: "none" }}
         >
           <button
@@ -337,76 +330,74 @@ const TalentTable = ({ talent, setRecDelete }) => {
           </button>
         </CSVLink>
       </div>
-      
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
-      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      <input
+        type="text"
+        className="mb-3 searchFilter"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <div className="table-start-container">
-        <table className="table table-bordered table-hover shadow">
+        <table id="table" className="table table-bordered table-hover shadow">
           <thead>
             <tr className="text-center">
-              <th>ID</th>
-              <th>Name</th>
-              <th>Project Name</th>
-              <th>Manager Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Job Location</th>
-              <th colSpan={2}>Action</th>
+              <th>SL.</th>
+              <th>Basic Salary</th>
+              <th>House Rental Allowance</th>
+              <th>Medical Allowance</th>
+              <th>Tax Deduction</th>
+              <th>Created Date</th>
+              <th colSpan="3">Actions</th>
             </tr>
           </thead>
 
           <tbody className="text-center">
-            {talent.length === 0
-              ? renderTalentData()
+            {salary.length === 0
+              ? renderSalaryData()
               : (rowsPerPage > 0
-                  ? talent.slice(
+                  ? salary.slice(
                       page * rowsPerPage,
                       page * rowsPerPage + rowsPerPage
                     )
-                  : talent
+                  : salary
                 )
                   .filter((elem) => {
                     if (search.length === 0) return elem;
                     else
                       return (
-                        elem.name
+                        elem.basicSalery
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.projectName
+                        elem.houseRentAllowance
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.mangerName
+                        elem.medicalAllowance
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.startDate
+                        elem.taxDeduction
                           .toString()
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.endDate
-                          .toLowerCase()
-                          .includes(search.toLocaleLowerCase()) ||
-                        elem.jobLocation
+                        elem.createdDate
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase())
                       );
                   })
-                  .map((talent, index) => (
+
+                  .map((salary, index) => (
                     <tr key={index}>
                       <th scope="row" key={index}>
                         {index + 1}
                       </th>
-                      
-                      <td>{talent.name}</td>
-                      <td>{talent.projectName}</td>
-                      <td>{talent.managerName}</td>
-                      <td>{talent.startDate}</td>
-                      <td>{talent.endDate}</td>
-                      <td>{talent.jobLocation}</td>
+                      <td>{salary.basicSalery}</td>
+                      <td>{salary.houseRentAllowance}</td>
+                      <td>{salary.medicalAllowance}</td>
+                      <td>{salary.taxDeduction}</td>
+                      <td>{salary.createdDate}</td>
 
                       <td className="mx-2">
                         <Link
-                          to={`/edit-Talent/${talent.talentId}`}
+                          to={`/payroll/edit-salary-template/${salary.salaryTemplateId}`}
                           className="btn btn-warning"
                         >
                           <FaEdit />
@@ -415,7 +406,7 @@ const TalentTable = ({ talent, setRecDelete }) => {
                       <td className="mx-2">
                         <button
                           className="btn btn-danger"
-                          onClick={() => handleDelete(talent.talentId)}
+                          onClick={() => handleDelete(salary.salaryTemplateId)}
                         >
                           <FaTrashAlt />
                         </button>
@@ -423,13 +414,14 @@ const TalentTable = ({ talent, setRecDelete }) => {
                     </tr>
                   ))}
           </tbody>
+
           <tfoot>
             <tr>
               <CustomTablePagination
                 className="pagingg"
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={12}
-                count={talent.length}
+                count={salary.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 slotProps={{
@@ -452,4 +444,4 @@ const TalentTable = ({ talent, setRecDelete }) => {
   );
 };
 
-export default TalentTable;
+export default DepartmentTable;

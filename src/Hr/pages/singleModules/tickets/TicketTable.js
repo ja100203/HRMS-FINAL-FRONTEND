@@ -242,7 +242,7 @@ const TicketTable = ({ ticket, setRecDelete }) => {
     <div>
       <div
         className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "100px" }}
+        style={{ position: "absolute", right: "-160px", top: "180px" }}
       >
         <button
           className=""
@@ -306,12 +306,9 @@ const TicketTable = ({ ticket, setRecDelete }) => {
           </button>
         </CSVLink>
       </div>
-      <input
-        type="text"
-        className="mb-3 searchFilter"
-        placeholder="Search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+      
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
       />
       <div className="table-start-container">
         <table id="table" className="table table-bordered table-hover shadow">
@@ -369,18 +366,14 @@ const TicketTable = ({ ticket, setRecDelete }) => {
                       <td className="mx-2">
                         <Link
                           to={`/edit-ticket/${ticket.ticketsId}`}
-                          className="btn btn-warning"
                         >
-                          <FaEdit />
+                          <FaEdit className='action-edit' />
                         </Link>
                       </td>
                       <td className="mx-2">
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => handleDelete(ticket.ticketsId)}
-                        >
-                          <FaTrashAlt />
-                        </button>
+                        
+                          <FaTrashAlt className='action-delete'  onClick={() => handleDelete(ticket.ticketsId)}
+                          />
                       </td>
                     </tr>
                   ))}

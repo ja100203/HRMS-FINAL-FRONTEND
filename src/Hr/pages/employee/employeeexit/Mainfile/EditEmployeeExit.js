@@ -26,7 +26,7 @@ const EditEmployeeExit = () => {
 
   const loademployeeExit = async () => {
     const result = await axios.get(
-      `http://13.126.190.50:5000/employee_exit/get/${id}`
+      `http://13.126.190.50:8082/employee_exit/get/${id}`
     );
     setemployeeExit(result.data);
 	console.log(employeeExit);
@@ -42,7 +42,7 @@ const EditEmployeeExit = () => {
   const updateemployeeExit = async (e) => {
     e.preventDefault();
     await axios.put(
-      `http://13.126.190.50:5000/employee_exit/update/${id}`,
+      `http://13.126.190.50:8082/employee_exit/update/${id}`,
       employeeExit
     );
     navigate("/hr/employee/employee-exit");

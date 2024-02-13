@@ -278,7 +278,7 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
   return (
 
     <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -374,7 +374,7 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
               return (elem.employeeName.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.uploadPhoto.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.employeeId.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.phone.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.phone.toString().includes(search) ||
               elem.country.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.city.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.teamLeaderName.toLowerCase().includes(search.toLocaleLowerCase())  
@@ -399,26 +399,19 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
                   <td className="mx-2">
                     <Link
                       to={`/employee/employee-profile/${employee.employeeId}`}
-                      className="btn btn-info"
                     >
-                      <FaEye />
+                      <FaEye className='action-eye' />
                     </Link>
                   </td>
                   <td className="mx-2">
                     <Link
                       to={`/employee/edit-employee/${employee.employeeId}`}
-                      className="btn btn-warning"
                     >
-                      <FaEdit />
+                      <FaEdit className='action-edit'/>
                     </Link>
                   </td>
                   <td className="mx-2">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDelete(employee.employeeId)}
-                    >
-                      <FaTrashAlt />
-                    </button>
+                      <FaTrashAlt className='action-delete'  onClick={() => handleDelete(employee.employeeId)} />
                   </td>
                 </tr>
               ))}

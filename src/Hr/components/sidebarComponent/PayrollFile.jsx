@@ -33,6 +33,9 @@ const PayrollFile = () => {
         <p onClick={() => navigation("/hr/payroll/advance-Salary")}>
           Advance Salary
         </p>
+        <p onClick={() => navigation("/hr/payroll/payslip-generator")}>
+          Payslip Generator
+        </p>
       </div>
     </div>
   );

@@ -279,8 +279,8 @@ const convertToExcel = () => {
 
   return (
 
-    <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+    <div  className="d-flex" style={{display:"flex",flexDirection:"column"}}>
+<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
         <button
           className=""
           style={{
@@ -343,7 +343,11 @@ const convertToExcel = () => {
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+
+      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
+      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      />
+
        <div className="table-start-container">
       <table id="table" className="table table-bordered table-hover shadow">
         <thead>
@@ -368,10 +372,12 @@ const convertToExcel = () => {
             if(search.length===0)
               return elem;
             else  
+            console.log(typeof elem.contactNumber);
+
               return elem.companyName.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.companyType.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.email.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.contactNumber.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.contactNumber.toString().includes(search)||
               elem.cin.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.gst.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.uan.toLowerCase().includes(search.toLocaleLowerCase())
@@ -398,18 +404,13 @@ const convertToExcel = () => {
               <td className="mx-2">
                 <Link
                   to={`/organisation/edit-company/${company.companyId}`}
-                  className="btn btn-warning"
                 >
-                  <FaEdit />
+                  <FaEdit className='action-edit'/>
                 </Link>
               </td>
               <td className="mx-2">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDelete(company.companyId)}
-                >
-                  <FaTrashAlt />
-                </button>
+                  <FaTrashAlt className='action-delete' onClick={() => handleDelete(company.companyId)}
+                  />
               </td>
             </tr>
           ))}

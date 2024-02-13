@@ -4,6 +4,7 @@ import AdvanceSalaryView from "../payroll/AdvanceSalary/Mainfile/AdvanceSalaryVi
 import AdvanceSalaryEdit from "../payroll/AdvanceSalary/Mainfile/AdvanceSalaryEdit";
 import SalaryTemplateView from "../payroll/Salarytemplate/Mainfile/SalaryTemplateView";
 import EditSalaryTemplate from "./Salarytemplate/Mainfile/EditSalaryTemplate";
+import PayslipGenerator from './PayslipGenerator/Mainfile/PayslipGeneratorView'
 const RoutingProject = () => {
   return (
     <div>
@@ -28,6 +29,11 @@ const RoutingProject = () => {
             path="/payroll/edit-salary-template/:id"
             exact
             element={<EditSalaryTemplate />}
+          />
+          <Route
+            path="/hr/payroll/payslip-generator"
+            exact
+            element={<PayslipGenerator />}
           />
         </Routes>
       </div>

@@ -109,7 +109,7 @@ html {
   text-align: center;
   line-height: 32px;
 
-  transform: rotate(180deg);
+  transform: rotate(360deg); 
 }
 .ribbon-box-other {
   color: #fff;
@@ -509,7 +509,7 @@ html {
 }
 
 #table tr {
-  background: white;
+  background-color:#C9C9C9;
 }
 
 #card {
@@ -9156,6 +9156,7 @@ img {
 }
 .table {
   color: inherit;
+
 }
 .table thead th {
   border-top: 0;
@@ -9164,13 +9165,28 @@ img {
   padding-bottom: 0.5rem;
   font-weight: 500;
   font-size: 1.1rem;
-  background-color: #c9c9c9;
+  background:rgba(201, 201, 201, 1);
 }
 
 #table > tbody {
   vertical-align: middle;
-}
 
+}
+.action-eye{
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #28AC47;
+}
+.action-edit{
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #6F6F6F;
+}
+.action-delete{
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #E00B0B;
+}
 #table button {
   margin: 0;
   width: auto;
@@ -9182,14 +9198,14 @@ img {
 }
 .table th {
   color: #9aa0ac;
-  font-size: 0.6rem;
   font-weight: 400;
   text-transform: uppercase;
 }
 .table td,
 .table th {
   border-color: #e8e9e9;
-  font-size: 12px;
+height: 3.5rem;
+  font-size: 15px;
 }
 .table.table_custom {
   border-collapse: separate;
@@ -15201,10 +15217,10 @@ svg {
   width: 460px;
 }
 .my_sort_cut {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   min-height: 80px;
   display: block;
-  text-align: center;
+  /* text-align: center; */
 }
 .my_sort_cut:hover i {
   font-size: 40px;
@@ -15224,16 +15240,15 @@ svg {
   position: relative;
 }
 .ribbon .ribbon-box {
-  color: #fff;
-  right: auto;
-  left: 0;
-  top: 15px;
   position: absolute;
+  top: 10px;
+  right: 0;
   height: 32px;
-  min-width: 30px;
+  width: 40px;
   padding: 0 5px;
   text-align: center;
   line-height: 32px;
+  transform:rotate(180deg);
 }
 .ribbon .ribbon-box::before {
   position: absolute;
