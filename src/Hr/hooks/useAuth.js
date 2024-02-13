@@ -16,7 +16,7 @@ const useAuth = () => {
         if (isRun.current) return;
 
         isRun.current = true;
-
+        
         client
             .init({ onLoad: "login-required" })
             .then((authenticated) => {
@@ -40,7 +40,11 @@ const useAuth = () => {
 
     const isEmployee = roles.includes("client_Employee");
 
-    return { token, isHR, isEmployee };
+    const logout = () => {
+        client.logout();
+    };
+
+    return { token, isHR, isEmployee, client, logout };
 };
 
 export default useAuth;

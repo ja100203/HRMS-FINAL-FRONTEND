@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState,useRef } from "react";
+import Keycloak from "keycloak-js";
 
 import DashboardFile from "./sidebarComponent/DashboardFile";
 import Organisationfile from "./sidebarComponent/Organisationfile";
@@ -16,12 +17,24 @@ import ProcurementFile from "./sidebarComponent/ProcurementFile";
 import Recuitmentfile from "./sidebarComponent/Recuitmentfile";
 import Trainingfile from "./sidebarComponent/Trainingfile";
 import { useNavigate } from "react-router-dom/dist";
+// import useAuth from "../hooks/useAuth"
+// import { useHistory } from 'react-router-dom';
 
-const SideBar = ({ menu, setMenu }) => {
-  const navigation = useNavigate();
+const SideBar = ({ menu,logout }) => {
+
+
   const classBtnName = menu ? "mobile-sidebar-container" : "";
   const classSidebarName = menu ? "mobile-sidebar" : "";
-  console.log(menu);
+
+
+  const handleLogout = () => {
+    
+    logout()
+    
+  };
+
+
+
   return (
     <>
       <div className={`sidebar-btn-container ${classBtnName}`}>
@@ -42,7 +55,7 @@ const SideBar = ({ menu, setMenu }) => {
           <Recuitmentfile />
           <Trainingfile />
         </div>
-        <button id="logout-hrms-btn" onClick={() => navigation("/")}>
+        <button id="logout-hrms-btn" onClick={handleLogout} >
           Logout<i class="bx bx-log-out"></i>
         </button>
       </div>

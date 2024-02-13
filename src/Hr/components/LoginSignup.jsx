@@ -7,12 +7,11 @@ import useAuth from "../hooks/useAuth"
 
 const LoginSignup = () => {
 
-  const {isHR, isEmployee } = useAuth();
-
+  const {isHR, isEmployee, client, logout } = useAuth();
   return (
      <div>
-       {isHR && <p><HRDashboard /></p>}
-       {isEmployee && <p><EmployeeDashboard /></p>}
+       {isHR && <p><HRDashboard logout={logout}/></p>}
+       {isEmployee && <p><EmployeeDashboard logout={logout}/></p>}
      </div>
    );
 
