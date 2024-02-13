@@ -366,13 +366,17 @@ const LeaveTable = ({ leave, setRecDelete }) => {
                         elem.leaveType.toLowerCase().includes(
                           search.toLocaleLowerCase()
                         ) ||
-                        elem.RequestDuration.toLowerCase().includes(
+                        elem.startDate.toLowerCase().includes(
                           search.toLocaleLowerCase()
                         ) ||
-                        elem.AppliedOn.toString()
+                        elem.endDate.toLowerCase().includes(
+                          search.toLocaleLowerCase()
+                        ) ||
+                        elem.leaveReason.toString()
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.Reason.toLowerCase().includes(
+
+                        elem.approval.toLowerCase().includes(
                           search.toLocaleLowerCase()
                         )
                       );
@@ -398,7 +402,7 @@ const LeaveTable = ({ leave, setRecDelete }) => {
                       </td>
                       <td className="mx-2">
                        
-                          <FaTrashAlt className='action-edit' onClick={() => handleDelete(leave.leaveId)}
+                          <FaTrashAlt className='action-delete' onClick={() => handleDelete(leave.leaveId)}
                           />
                       </td>
                     </tr>

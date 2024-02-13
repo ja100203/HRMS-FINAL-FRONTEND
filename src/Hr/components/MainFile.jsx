@@ -256,7 +256,7 @@ const [lightOptions] = useState({
                 <div className="col-6 col-md-4 col-xl-2">
                   <div id="card" className="card">
                     <div className="card-body ribbon">
-                      <div className="ribbon-box orange">5</div>
+                      <div className="ribbon-box orange"><p style={{transform:'rotate(180deg'}}>5</p></div>
                       <a
                         href="hr-users.html"
                         className="my_sort_cut text-muted"
@@ -283,7 +283,7 @@ const [lightOptions] = useState({
                 <div className="col-6 col-md-4 col-xl-2">
                   <div id="card" className="card">
                     <div className="card-body ribbon">
-                      <div className="ribbon-box voilet">8</div>
+                      <div className="ribbon-box voilet"><p style={{transform:'rotate(180deg'}}>8</p></div>
                       <a
                         onClick={() => navigation("/hr/event")}
                         className="my_sort_cut text-muted"

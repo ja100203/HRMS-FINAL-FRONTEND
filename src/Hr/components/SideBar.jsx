@@ -16,24 +16,16 @@ import Accountfile from "./sidebarComponent/Accountfile";
 import ProcurementFile from "./sidebarComponent/ProcurementFile";
 import Recuitmentfile from "./sidebarComponent/Recuitmentfile";
 import Trainingfile from "./sidebarComponent/Trainingfile";
-import { useNavigate } from "react-router-dom/dist";
-// import useAuth from "../hooks/useAuth"
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom/dist"; 
 
 const SideBar = ({ menu,logout }) => {
-
 
   const classBtnName = menu ? "mobile-sidebar-container" : "";
   const classSidebarName = menu ? "mobile-sidebar" : "";
 
-
   const handleLogout = () => {
-    
     logout()
-    
   };
-
-
 
   return (
     <>

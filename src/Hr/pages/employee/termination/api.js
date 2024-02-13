@@ -3,7 +3,7 @@ import axios from 'axios';
 export const saveTermination = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:5000/terminations/create/terminations",
+            "http://13.126.190.50:8082/terminations/create/terminations",
             formData
           );
     } catch(error) {
@@ -13,7 +13,7 @@ export const saveTermination = async (formData) => {
 
 export const deleteTermination = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:5000/terminations/delete/${id}`)
+        await axios.delete(`http://13.126.190.50:8082/terminations/delete/${id}`)
     } catch(error) {
         console.error("Error deleting Termination",error)
     }
@@ -22,7 +22,7 @@ export const deleteTermination = async (id) => {
 export const loadTermination = async () => {
     try {
        const result =  await axios.get(
-        "http://13.126.190.50:5000/terminations/get/terminationsId",
+        "http://13.126.190.50:8082/terminations/get/terminationsId",
             {
               validateStatus: () => {
                 return true;
@@ -39,7 +39,7 @@ export const loadTermination = async () => {
 export const fetchEmployee= async () => {
     try {
         const response = await axios.get(
-          "http://13.126.190.50:5000/employee/get/employee"
+          "http://13.126.190.50:8082/employee/get/employee"
         );
        return response.data 
       } catch (error) {

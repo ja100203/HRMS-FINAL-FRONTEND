@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const saveSalaryTemplate = async (formData) => {
+export const savePayslipGenerator = async (formData) => {
     try{
         await axios.post(
-            "http://13.126.190.50:8085/salaryTemplate/create/salaryTemplate",
+            "http://13.126.190.50:8085/payslipGenerator/create/payslipGenerator",
             formData
           );
     } catch(error) {
@@ -11,19 +11,19 @@ export const saveSalaryTemplate = async (formData) => {
     }
 }
 
-export const deleteSalaryTemplate = async (id) => {
+export const deletePayslipGenerator = async (id) => {
     try{
-        await axios.delete(`http://13.126.190.50:8085/salaryTemplate/delete/${id}`)
-        loadSalaryTemplate();
+        await axios.delete(`http://13.126.190.50:8085/payslipGenerator/delete/${id}`)
+        loadPayslipGenerator();
     } catch(error) {
         console.error("Error deleting Payroll",error)
     }
 };
 
-export const loadSalaryTemplate = async () => {
+export const loadPayslipGenerator = async () => {
     try {
        const result =  await axios.get(
-            "http://13.126.190.50:8085/salaryTemplate/get/salaryTemplate",
+            "http://13.126.190.50:8085/payslipGenerator/get/payslipGenerator",
             {
               validateStatus: () => {
                 return true;

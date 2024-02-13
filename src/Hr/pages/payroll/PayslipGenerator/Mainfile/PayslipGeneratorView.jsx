@@ -12,12 +12,10 @@ import { Card } from "@mui/material";
 import CompanyLogoFile from "../../../../components/CompanyLogoFile";
 
 import * as api from "../api";
-import StateSalaryTemplate from "../StateSalaryTemplate";
-import SalaryTemplateTable from "../SalaryTemplateTable";
-import SalaryTemplateForm from "../SalaryTemplateForm";
+import StatePayslipGenerator from "../StatePayslipGenerator";
+import PayslipGeneratorForm from "../PayslipGeneratorForm";
 
-const SalaryTemplateView = () => {
-  const [period, setPeriod] = useState("monthly");
+const PayslipGeneratorView = () => {
 
   const {
     formData,
@@ -32,24 +30,24 @@ const SalaryTemplateView = () => {
     setSalary,
     grossSal,
     setGrossSal,
-  } = StateSalaryTemplate();
+  } = StatePayslipGenerator();
 
   const handleButtonClick = () => {
     setFormVisible((prev) => !prev);
   };
 
   useEffect(() => {
-    loadsalaryTemplate();
+    loadPayslipGenerator();
   }, []);
 
-  const loadsalaryTemplate = async () => {
-    const result = await api.loadSalaryTemplate();
+  const loadPayslipGenerator = async () => {
+    const result = await api.loadPayslipGenerator();
     setSalary(result);
   };
 
   const handleDelete = async () => {
-    await api.deleteSalaryTemplate(recDelete);
-    loadsalaryTemplate();
+    await api.deletePayslipGenerator(recDelete);
+    loadPayslipGenerator();
   };
 
   useEffect(() => {
@@ -91,7 +89,7 @@ const SalaryTemplateView = () => {
                   ) : (
                     <div className="add">
                       <MdAdd />
-                      ADD SALARY TEMPLATE
+                      ADD PAYSLIP
                     </div>
                   )}
                 </Button>
@@ -101,45 +99,22 @@ const SalaryTemplateView = () => {
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <div className="d-flex align-items-center justify-content-between">
-                    <h3 className="form-header">Salary Template</h3>
-                    <div className="mx-5">
-                      <input
-                        type="radio"
-                        name="period"
-                        onClick={(e) => setPeriod("monthly")}
-                        checked = {period=="monthly"?true: false}
-                      />
-                      <label className="mx-1" htmlFor="">
-                        Monthly
-                      </label>
-                      <input
-                        style={{ marginLeft: "10px" }}
-                        type="radio"
-                        name="period"
-                        onClick={(e) => setPeriod("yearly")}
-                        checked = {period=="yearly"?true: false}
-                      />
-                      <label className="mx-1" htmlFor="">
-                        Yearly
-                      </label>
-                    </div>
+                    <h3 className="form-header">Payslip Generator</h3>
                   </div>
                   <DialogContent>
-                    <SalaryTemplateForm
+                    <PayslipGeneratorForm
                       formData={formData}
                       setFormData={setFormData}
                       setFormVisible={setFormVisible}
                       setToggle={setToggle}
                       grossSal={grossSal}
                       setGrossSal={setGrossSal}
-                      period={period}
-                      setPeriod={setPeriod}
                     />
                   </DialogContent>
                 </div>
               </Card>
             </Collapse>
-            {/* <SalaryTemplateTable salary={salary} setRecDelete={setRecDelete} /> */}
+            {/* <PayslipGeneratorTable salary={salary} setRecDelete={setRecDelete} /> */}
           </section>
         </div>
       </div>
@@ -147,4 +122,4 @@ const SalaryTemplateView = () => {
   );
 };
 
-export default SalaryTemplateView;
+export default PayslipGeneratorView;

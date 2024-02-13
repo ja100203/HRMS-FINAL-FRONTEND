@@ -15217,10 +15217,10 @@ svg {
   width: 460px;
 }
 .my_sort_cut {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   min-height: 80px;
   display: block;
-  text-align: center;
+  /* text-align: center; */
 }
 .my_sort_cut:hover i {
   font-size: 40px;
@@ -15240,16 +15240,15 @@ svg {
   position: relative;
 }
 .ribbon .ribbon-box {
-  color: #fff;
-  right: auto;
-  left: 0;
-  top: 15px;
   position: absolute;
+  top: 10px;
+  right: 0;
   height: 32px;
-  min-width: 30px;
+  width: 40px;
   padding: 0 5px;
   text-align: center;
   line-height: 32px;
+  transform:rotate(180deg);
 }
 .ribbon .ribbon-box::before {
   position: absolute;

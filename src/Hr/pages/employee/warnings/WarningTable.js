@@ -363,11 +363,12 @@ const WarningTable = ({warning,setRecDelete}) => {
             if(search.length===0)
               return elem;
             else  
-              return (elem.warningsId.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              return (elem.warningsId.toString().includes(search) ||
               elem.warningToEmployee.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.warningType.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.warningByEmployee.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.warningDate.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.subject.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.warningByEmployee.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              (elem.warningDate && elem.warningDate.toLowerCase().includes(search.toLocaleLowerCase())) ||
               elem.description.toLowerCase().includes(search.toLocaleLowerCase()) 
               )
           }).map((warning,index) => (
@@ -394,11 +395,9 @@ const WarningTable = ({warning,setRecDelete}) => {
                           </Link>
                         </td>
                         <td className="mx-2">
-                          <button
-                            onClick={() => handleDelete(warning.warningsId)}
-                          >
-                            <FaTrashAlt className='action-delete'/>
-                          </button>
+                          
+                            <FaTrashAlt className='action-delete' onClick={() => handleDelete(warning.warningsId)}
+                            />
                         </td>
                       </tr>
                     ))}

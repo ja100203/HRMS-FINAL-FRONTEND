@@ -370,7 +370,7 @@ const emptyRows =
               elem.locationHead.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.address.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.faxNumber.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.phone.toLowerCase().includes(search.toLocaleLowerCase())  
+              elem.phone.toString().includes(search)
               )
             }).map((item, index) => (
                   <tr key={location.id}>

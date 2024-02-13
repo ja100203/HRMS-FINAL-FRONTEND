@@ -372,10 +372,12 @@ const convertToExcel = () => {
             if(search.length===0)
               return elem;
             else  
+            console.log(typeof elem.contactNumber);
+
               return elem.companyName.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.companyType.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.email.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.contactNumber.toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.contactNumber.toString().includes(search)||
               elem.cin.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.gst.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.uan.toLowerCase().includes(search.toLocaleLowerCase())

@@ -363,11 +363,11 @@ const PerformanceTable = ({performances,setRecDelete}) => {
               return elem;
             else  
               return (elem.employeeName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.employeeId.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.qualityOfWorkRating.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.jobKnowledgeRating.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.punctualityAndAttendanceRating.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.overallRating.toLowerCase().includes(search.toLocaleLowerCase()) 
+              elem.employeeId.toString().includes(search) ||
+              elem.qualityOfWorkRating.toString().includes(search) ||
+              elem.jobKnowledgeRating.toString().toString().includes(search) ||
+              elem.punctualityAndAttendanceRating.toString().includes(search) ||
+              elem.overallRating.toString().includes(search) 
               )
           }).map((performances, index) => (
             <tr key={performances.performanceAppraisalId}>

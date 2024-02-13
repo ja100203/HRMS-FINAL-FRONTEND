@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import * as XLSX from "xlsx";
@@ -8,6 +7,7 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import DataNotFound from "../../../asset/images/no data 1.png";
 import { styled } from "@mui/system";
 import {
@@ -15,7 +15,7 @@ import {
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
 
-const AwardTable = ({ award, setRecDelete }) => {
+const DepartmentTable = ({ salary, setRecDelete }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
     & .${classes.toolbar} {
@@ -57,7 +57,7 @@ const AwardTable = ({ award, setRecDelete }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - award.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - salary.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -89,19 +89,20 @@ const AwardTable = ({ award, setRecDelete }) => {
         head: [
           [
             "SL",
-            "EMPLOYEE NAME",
-            "AWARDS NAME",
-            "AWARDS BY",
-            "GIFT",
-            "AWARDS DATE",
+            "BASIC SALARY",
+            "HOUSE RENTAL ALLOWANCES",
+            "MEDICAL ALLOWANCES",
+            "TAX DEDUCTION",
+            "CREATED DATE",
           ],
         ],
-        body: award.map((row) => [
-          row.awardId,
-          row.employeeName,
-          row.awardDescription,
-          row.awardBy,
-          row.date,
+        body: salary.map((row) => [
+          row.sl,
+          row.basicSalery,
+          row.houseRentAllowance,
+          row.medicalAllowance,
+          row.taxDeduction,
+          row.createdDate,
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -113,11 +114,12 @@ const AwardTable = ({ award, setRecDelete }) => {
         },
         startY: tableStartY,
       });
-      doc.save("award.pdf");
+      doc.save("salarytemplate.pdf");
     } catch (error) {
       console.error("Error creating PDF:", error);
     }
   };
+
   const createPdf = () => {
     try {
       doc = new jsPDF();
@@ -139,19 +141,20 @@ const AwardTable = ({ award, setRecDelete }) => {
         head: [
           [
             "SL",
-            "EMPLOYEE NAME",
-            "AWARDS NAME",
-            "AWARDS BY",
-            "GIFT",
-            "AWARDS DATE",
+            "BASIC SALARY",
+            "HOUSE RENTAL ALLOWANCES",
+            "MEDICAL ALLOWANCES",
+            "TAX DEDUCTION",
+            "CREATED DATE",
           ],
         ],
-        body: award.map((row) => [
-          row.awardId,
-          row.employeeName,
-          row.awardDescription,
-          row.awardBy,
-          row.date,
+        body: salary.map((row) => [
+          row.sl,
+          row.basicSalery,
+          row.houseRentAllowance,
+          row.medicalAllowance,
+          row.taxDeduction,
+          row.createdDate,
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -169,7 +172,7 @@ const AwardTable = ({ award, setRecDelete }) => {
   };
 
   const convertToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(award);
+    const ws = XLSX.utils.json_to_sheet(salary);
 
     ws["!cols"] = [
       { width: 20 },
@@ -194,7 +197,10 @@ const AwardTable = ({ award, setRecDelete }) => {
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, "award.xlsx");
+    XLSX.writeFile(wb, "salarytemplate.xlsx");
+  };
+  const handleDelete = (id) => {
+    setRecDelete(id);
   };
 
   const handlePrint = () => {
@@ -204,48 +210,44 @@ const AwardTable = ({ award, setRecDelete }) => {
     if (pdfContent) {
       const printWindow = window.open("", "_blank");
       printWindow.document.write(`
-        <html>
-          <head>
-            <title>Print Document</title>
-            <style>
-            @media print {
-              body {
-                margin: 0;
+          <html>
+            <head>
+              <title>Print Document</title>
+              <style>
+              @media print {
+                body {
+                  margin: 0;
+                }
+                #pdfFrame {
+                  width: 100%;
+                  height: 100%;
+                }
+                @page {
+                  size: landscape;
+                }
               }
-              #pdfFrame {
-                width: 100%;
-                height: 100%;
-              }
-              @page {
-                size: landscape;
-              }
-            }
-          </style>
-          </head>
-          <body>
-            <iframe id="pdfFrame" src="${pdfContent}" width="100%" height="100%"></iframe>
-            <script>
-              document.getElementById('pdfFrame').onload = function() {
-                setTimeout(function() {
-                  window.print();
-                  window.onafterprint = function() {
-                    window.close();
-                  };
-                }, 1000);
-              };
-            </script>
-          </body>
-        </html>
-      `);
+            </style>
+            </head>
+            <body>
+              <iframe id="pdfFrame" src="${pdfContent}" width="100%" height="100%"></iframe>
+              <script>
+                document.getElementById('pdfFrame').onload = function() {
+                  setTimeout(function() {
+                    window.print();
+                    window.onafterprint = function() {
+                      window.close();
+                    };
+                  }, 1000);
+                };
+              </script>
+            </body>
+          </html>
+        `);
     }
   };
 
-  const handleDelete = (id) => {
-    setRecDelete(id);
-  };
-
-  console.log(award);
-  const renderAwardData = () => {
+  console.log(salary);
+  const renderSalaryData = () => {
     return (
       <tr>
         <td colSpan="12" className="text-center">
@@ -264,7 +266,7 @@ const AwardTable = ({ award, setRecDelete }) => {
     <div>
       <div
         className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "180px" }}
+        style={{ position: "absolute", right: "-160px", top: "100px" }}
       >
         <button
           className=""
@@ -309,8 +311,8 @@ const AwardTable = ({ award, setRecDelete }) => {
           EXCEL
         </button>
         <CSVLink
-          data={award}
-          filename="award.csv"
+          data={salary}
+          filename="salarytemplate.csv"
           style={{ textDecoration: "none" }}
         >
           <button
@@ -328,87 +330,98 @@ const AwardTable = ({ award, setRecDelete }) => {
           </button>
         </CSVLink>
       </div>
-    
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
-      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
+      <input
+        type="text"
+        className="mb-3 searchFilter"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
-
       <div className="table-start-container">
         <table id="table" className="table table-bordered table-hover shadow">
           <thead>
             <tr className="text-center">
-              <th>SL</th>
-              <th>Employee Name</th>
-              <th>Awards Name</th>
-              <th>Awards By</th>
-              <th>Awards Date</th>
-              <th colSpan={2}>Action</th>
+              <th>SL.</th>
+              <th>Basic Salary</th>
+              <th>House Rental Allowance</th>
+              <th>Medical Allowance</th>
+              <th>Tax Deduction</th>
+              <th>Created Date</th>
+              <th colSpan="3">Actions</th>
             </tr>
           </thead>
 
           <tbody className="text-center">
-            {award?.length === 0
-              ? renderAwardData()
+            {salary.length === 0
+              ? renderSalaryData()
               : (rowsPerPage > 0
-                  ? award?.slice(
+                  ? salary.slice(
                       page * rowsPerPage,
                       page * rowsPerPage + rowsPerPage
                     )
-                  : award
+                  : salary
                 )
                   .filter((elem) => {
                     if (search.length === 0) return elem;
                     else
                       return (
-                        elem.employeeName
+                        elem.basicSalery
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.awardDescription
+                        elem.houseRentAllowance
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        elem.awardBy
+                        elem.medicalAllowance
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase()) ||
-                        // elem.giftItem
-                        //   .toString()
-                        //   .toLowerCase()
-                        //   .includes(search.toLocaleLowerCase()) ||
-                        elem.date
+                        elem.taxDeduction
+                          .toString()
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.createdDate
                           .toLowerCase()
                           .includes(search.toLocaleLowerCase())
                       );
                   })
-                  .map((award, index) => (
+
+                  .map((salary, index) => (
                     <tr key={index}>
                       <th scope="row" key={index}>
                         {index + 1}
                       </th>
-                      <td>{award.employeeName}</td>
-                      <td>{award.awardDescription}</td>
-                      <td>{award.awardBy}</td>
-                      <td>{award.date}</td>
+                      <td>{salary.basicSalery}</td>
+                      <td>{salary.houseRentAllowance}</td>
+                      <td>{salary.medicalAllowance}</td>
+                      <td>{salary.taxDeduction}</td>
+                      <td>{salary.createdDate}</td>
 
                       <td className="mx-2">
                         <Link
-                          to={`/employee/edit-awards/${award.awardId}`}
+                          to={`/payroll/edit-salary-template/${salary.salaryTemplateId}`}
+                          className="btn btn-warning"
                         >
-                          <FaEdit className='action-edit'/>
+                          <FaEdit />
                         </Link>
                       </td>
                       <td className="mx-2">
-                        
-                          <FaTrashAlt className='action-delete'  onClick={() => handleDelete(award.awardId)} />
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(salary.salaryTemplateId)}
+                        >
+                          <FaTrashAlt />
+                        </button>
                       </td>
                     </tr>
                   ))}
           </tbody>
+
           <tfoot>
             <tr>
               <CustomTablePagination
                 className="pagingg"
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={12}
-                count={award.length}
+                count={salary.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 slotProps={{
@@ -431,4 +444,4 @@ const AwardTable = ({ award, setRecDelete }) => {
   );
 };
 
-export default AwardTable;
+export default DepartmentTable;

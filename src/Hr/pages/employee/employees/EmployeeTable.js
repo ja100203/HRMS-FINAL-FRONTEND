@@ -374,7 +374,7 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
               return (elem.employeeName.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.uploadPhoto.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.employeeId.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.phone.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
+              elem.phone.toString().includes(search) ||
               elem.country.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.city.toLowerCase().includes(search.toLocaleLowerCase()) ||
               elem.teamLeaderName.toLowerCase().includes(search.toLocaleLowerCase())  
