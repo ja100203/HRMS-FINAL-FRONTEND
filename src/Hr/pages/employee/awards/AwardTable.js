@@ -10,12 +10,19 @@ import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
 import DataNotFound from "../../../asset/images/no data 1.png";
 import { styled } from "@mui/system";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
 
-const AwardTable = ({ award, setRecDelete }) => {
+const AwardTable = ({
+  award,
+  setRecDelete,
+  setOpen
+}) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
     & .${classes.toolbar} {
@@ -61,6 +68,10 @@ const AwardTable = ({ award, setRecDelete }) => {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -261,77 +272,94 @@ const AwardTable = ({ award, setRecDelete }) => {
   };
 
   return (
-    <div>
-      <div
-        className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "180px" }}
-      >
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-          onClick={handlePrint}
-        >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={award}
-          filename="award.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
-            }}
-          >
-            CSV
-          </button>
-        </CSVLink>
+    <div
+      className="d-flex"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <div className=" table-ka-top-btns">
+        <Button variant="outlined" onClick={handleOpen} id="add-btn" style={{width:'max-content', marginTop:'20px'}}>
+          <MdAdd />
+          ADD AWARDS
+        </Button>
+        {
+          <div className="search-print">
+            <input
+              type="text"
+              className="search-beside-btn"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "20rem",
+                borderRadius: "5px",
+                height: "40px",
+                padding: "10px",
+                border: "1px solid rgba(247, 108, 36, 1)",
+                marginRight: "30px",
+              }}
+            />
+            <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+              <button
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+                onClick={handlePrint}
+              >
+                PRINT
+              </button>
+              <button
+                onClick={convertToPdf}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                PDF
+              </button>
+              <button
+                onClick={convertToExcel}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                EXCEL
+              </button>
+              <CSVLink
+                data={award}
+                filename="award.csv"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  CSV
+                </button>
+              </CSVLink>
+            </div>
+          </div>
+        }
       </div>
-    
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
-      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
-      />
 
       <div className="table-start-container">
         <table id="table" className="table table-bordered table-hover shadow">
@@ -389,15 +417,15 @@ const AwardTable = ({ award, setRecDelete }) => {
                       <td>{award.date}</td>
 
                       <td className="mx-2">
-                        <Link
-                          to={`/employee/edit-awards/${award.awardId}`}
-                        >
-                          <FaEdit className='action-edit'/>
+                        <Link to={`/employee/edit-awards/${award.awardId}`}>
+                          <FaEdit className="action-edit" />
                         </Link>
                       </td>
                       <td className="mx-2">
-                        
-                          <FaTrashAlt className='action-delete'  onClick={() => handleDelete(award.awardId)} />
+                        <FaTrashAlt
+                          className="action-delete"
+                          onClick={() => handleDelete(award.awardId)}
+                        />
                       </td>
                     </tr>
                   ))}

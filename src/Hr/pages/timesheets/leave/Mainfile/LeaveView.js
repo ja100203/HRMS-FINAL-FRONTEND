@@ -25,9 +25,7 @@ const LeaveView = () => {
   } = StateLeave()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
  
 
@@ -83,30 +81,10 @@ const LeaveView = () => {
               <span style={{color:'black'}}> Leave</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD LEAVE
-                    </div>
-                  )}
-                </Button>
+                
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -127,7 +105,7 @@ const LeaveView = () => {
                 </div>
               </Card>
             </Collapse>
-            <LeaveTable leave={leave} setRecDelete={setRecDelete} />
+            <LeaveTable leave={leave} setRecDelete={setRecDelete}  setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

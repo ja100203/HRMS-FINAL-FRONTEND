@@ -23,9 +23,7 @@ const ContraVoucherView = ( ) => {
    setContraVoucher,contraVoucher,toggle,recDelete,setRecDelete,setToggle,setFormVisible,formVisible,formData,setFormData,
   } = StateContraVoucher();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+  
   
 
  
@@ -81,29 +79,10 @@ const ContraVoucherView = ( ) => {
             <span style={{color:'black'}}> Contra Voucher</span>
           </div>
           </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD CONTRAVOUCHER
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                 
@@ -131,7 +110,7 @@ const ContraVoucherView = ( ) => {
                 </div>
               </Card>
             </Collapse>
-            <ContraVoucherTable contraVoucher={contraVoucher} setRecDelete={setRecDelete}/>
+            <ContraVoucherTable contraVoucher={contraVoucher} setRecDelete={setRecDelete}  setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
             <div></div>
           </section>
         </div>

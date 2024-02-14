@@ -25,9 +25,7 @@ const TravelView = () => {
 } = StateTravel()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -93,30 +91,10 @@ const TravelView = () => {
               <span style={{color:'grey'}}> Travels</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD TRAVEL
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                 
@@ -133,7 +111,7 @@ const TravelView = () => {
                 </div>
               </Card>
             </Collapse>
-            <TravelTable travel={travel} setRecDelete={setRecDelete} />
+            <TravelTable travel={travel} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
           </section>
         </div>
       </div>

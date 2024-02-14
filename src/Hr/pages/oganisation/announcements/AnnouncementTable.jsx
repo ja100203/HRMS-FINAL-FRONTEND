@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
@@ -8,9 +8,18 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
-import DataNotFound from "../../../asset/images/no data 1.png"
+import DataNotFound from "../../../asset/images/no data 1.png";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 
-const AnnouncementTable = ({announcements,setRecDelete}) => {
+const AnnouncementTable = ({
+  announcements,
+  setRecDelete,
+  setFormVisible,
+  setToggle,
+  toggle,
+}) => {
   let doc;
   const convertToPdf = () => {
     try {
@@ -39,7 +48,6 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
             "DEPARTMENT NAME",
             "DATE",
             "DESCRIPTION",
-            
           ],
         ],
         body: announcements.map((row) => [
@@ -146,35 +154,40 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
       { width: 25 },
     ];
 
-   
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "announcements.xlsx");
   };
 
-    const handleDelete = (id) => {
-        setRecDelete(id)
-    }
-    
+  const handleDelete = (id) => {
+    setRecDelete(id);
+  };
 
-    const renderAnnouncementData = () => {
-      return (
-        <tr>
-          <td colSpan="12" className="text-center">
-            <img style={{margin:"50px 0 50px 0"}} src={DataNotFound}></img>
-            <h1>No Data Found!</h1>
-            <p>It Looks like there is no data to display in this table at the moment</p>
-          </td>
-        </tr>
-      );
-    };
-    const handlePrint = () => {
-      createPdf();
-      const pdfContent = doc.output('bloburl');
-    
-      if (pdfContent) {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
+  };
+
+  const renderAnnouncementData = () => {
+    return (
+      <tr>
+        <td colSpan="12" className="text-center">
+          <img style={{ margin: "50px 0 50px 0" }} src={DataNotFound}></img>
+          <h1>No Data Found!</h1>
+          <p>
+            It Looks like there is no data to display in this table at the
+            moment
+          </p>
+        </td>
+      </tr>
+    );
+  };
+  const handlePrint = () => {
+    createPdf();
+    const pdfContent = doc.output("bloburl");
+
+    if (pdfContent) {
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`
           <html>
             <head>
               <title>Print Document</title>
@@ -208,93 +221,122 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
             </body>
           </html>
         `);
-      }
-    };
+    }
+  };
 
   return (
-<div>
-
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+    <div
+      className="d-flex"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <div className=" table-ka-top-btns" style={{ marginTop: "-30px" }}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setToggle(!toggle);
+            handleButtonClick();
           }}
-          onClick={handlePrint}
+          id="add-btn"
+          style={{ width: "max-content", marginTop: "10px" }}
         >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={announcements}
-          filename="announcements.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
-            }}
-          >
-            CSV
-          </button>
-        </CSVLink>
+          {toggle ? (
+            <div className="hide">
+              <BiSolidHide />
+              HIDE
+            </div>
+          ) : (
+            <div className="add">
+              <MdAdd />
+              ADD ANNOUNCEMENTS
+            </div>
+          )}
+        </Button>
+        {
+          <div className="search-print">
+            <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+              <button
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+                onClick={handlePrint}
+              >
+                PRINT
+              </button>
+              <button
+                onClick={convertToPdf}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                PDF
+              </button>
+              <button
+                onClick={convertToExcel}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                EXCEL
+              </button>
+              <CSVLink
+                data={announcements}
+                filename="announcements.csv"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  CSV
+                </button>
+              </CSVLink>
+            </div>
+          </div>
+        }
       </div>
-<div className="table-start-container">
-    <table id='table' className="table table-bordered table-hover shadow">
-              <thead>
-                <tr className="text-center">
-                  <th>Sl.</th>
-                  <th>Title</th>
-                  <th>Start-Date</th>
-                  <th>End-Date</th>
-                  <th>Department Name</th>
-                  <th>Company Name</th>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th colSpan="3">Actions</th>
-                </tr>
-              </thead>
 
-              <tbody className="text-center">
-                {announcements.length === 0 ? renderAnnouncementData() : announcements && announcements.map((announcements, index) => (
+      <div className="table-start-container">
+        <table id="table" className="table table-bordered table-hover shadow">
+          <thead>
+            <tr className="text-center">
+              <th>Sl.</th>
+              <th>Title</th>
+              <th>Start-Date</th>
+              <th>End-Date</th>
+              <th>Department Name</th>
+              <th>Company Name</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th colSpan="3">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody className="text-center">
+            {announcements.length === 0
+              ? renderAnnouncementData()
+              : announcements &&
+                announcements.map((announcements, index) => (
                   <tr key={announcements.announcementsId}>
                     <td scope="row" key={index}>
                       {index + 1}
@@ -311,29 +353,31 @@ const AnnouncementTable = ({announcements,setRecDelete}) => {
                       <Link
                         to={`/organisation/announcements-profile/${announcements.announcementsId}`}
                       >
-                        <FaEye className='action-eye'/>
+                        <FaEye className="action-eye" />
                       </Link>
                     </td>
                     <td className="mx-2">
                       <Link
                         to={`/organisation/edit-announcements/${announcements.announcementsId}`}
                       >
-                        <FaEdit className='action-edit'/>
+                        <FaEdit className="action-edit" />
                       </Link>
                     </td>
                     <td className="mx-2">
-                        <FaTrashAlt className='action-delete'  onClick={() =>
+                      <FaTrashAlt
+                        className="action-delete"
+                        onClick={() =>
                           handleDelete(announcements.announcementsId)
-                        }/>
+                        }
+                      />
                     </td>
                   </tr>
                 ))}
-              </tbody>
-            </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
-   
-  )
-}
+  );
+};
 
-export default AnnouncementTable
+export default AnnouncementTable;

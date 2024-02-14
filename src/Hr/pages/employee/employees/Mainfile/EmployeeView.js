@@ -28,9 +28,7 @@ const EmployeeView = () => {
     
   } = StateEmployee();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
 
 
 
@@ -87,33 +85,14 @@ const EmployeeView = () => {
               <span style={{color:'black'}}> Employees</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id='add-btn'
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD EMPLOYEE
-                    </div>
-                  )}
-                </Button>
+                
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <EmployeeForm formData={formData} setFormData={setFormData} setFormVisible={setFormVisible} setToggle={setToggle}/>
             </Collapse>
             <br />
-            <EmployeeTable employee={employeeData} setRecDelete={setRecDelete}/>
+            <EmployeeTable employee={employeeData} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

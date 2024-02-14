@@ -20,9 +20,6 @@ import { Link } from "react-router-dom";
 
 const ProjectView = () => {
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  }; 
 
   useEffect(() => {
     loadProject();
@@ -81,28 +78,9 @@ const ProjectView = () => {
             <span style={{color:'black'}}> Projects</span>
           </div>
           </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"                 >
-                  {toggle ? (
-                    <div companyName="hide">
-                      <BiSolidHide style={{ fontSize: "14px", marginRight: "3px" }} />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd style={{ fontSize: "14px", marginRight: "3px" }} />
-                      ADD PROJECT
-                    </div>
-                  )}
-                </Button>
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3
@@ -120,7 +98,7 @@ const ProjectView = () => {
               </Card>
             </Collapse>
             <br />
-            <ProjectTable project={project} setRecDelete={setRecDelete}/>
+            <ProjectTable project={project} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

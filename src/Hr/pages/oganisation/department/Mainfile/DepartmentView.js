@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import SideBar from "../../../../components/SideBar";
 import Header from "../../../../components/Header";
-
 import Button from "@mui/material/Button";
 import DialogContent from "@mui/material/DialogContent";
 import { MdAdd } from "react-icons/md";
 import Collapse from "@mui/material/Collapse";
 import { BiSolidHide } from "react-icons/bi";
 import { Card } from "@mui/material";
-
-
-
 import * as api from "../DepartmentApi"
 import StateDepartment from "../StateDepartment";
 import DepartmentTable from "../DepartmentTable";
@@ -20,13 +15,19 @@ import CompanyLogoFile from "../../../../components/CompanyLogoFile";
 import { Link } from "react-router-dom";
 const DepartmentView = () => {
 
-  const { formData,setFormData,department, setDepartment, formVisible, setFormVisible, toggle, setToggle, recDelete, setRecDelete
+  const { formData,
+    setFormData,
+    department,
+     setDepartment,
+      formVisible,
+       setFormVisible,
+        toggle, 
+        setToggle,
+         recDelete, 
+         setRecDelete
   } = StateDepartment()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
 
  
 
@@ -70,7 +71,7 @@ const [menu, setMenu] = useState(false);
         <section>
           <div
             className="above-table"
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{ display: "flex",flexDirection:"column", justifyContent: "space-between" }}
           >
             <div style={{marginTop:"60px",width:'200px'}}>
             <div style={{fontSize:"1.4rem",width:'500px',display:'flex'}}>
@@ -85,30 +86,10 @@ const [menu, setMenu] = useState(false);
             <span style={{color:'black'}} > Department</span>
           </div>
           </div>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  setToggle(!toggle);
-                  handleButtonClick();
-                }}
-                id='add-btn'
-              >
-                {toggle ? (
-                  <div className="hide">
-                    <BiSolidHide
-                    />
-                    HIDE
-                  </div>
-                ) : (
-                  <div className="add">
-                    <MdAdd />
-                    ADD DEPARTMENT
-                  </div>
-                )}
-              </Button>
+              
             </div>
           </div>
-          <Collapse in={formVisible}>
+          <Collapse className="mt-3" in={formVisible}>
             <Card
               variant="outlined"
         
@@ -120,12 +101,16 @@ const [menu, setMenu] = useState(false);
                   <h3>Add Department</h3>
                 </h3>
                 <DialogContent>
-                  <DepartmentForm formData={formData} setFormData={setFormData} setFormVisible={setFormVisible} setToggle={setToggle}/>
+                  <DepartmentForm 
+                  formData={formData} 
+                  setFormData={setFormData} 
+                  setFormVisible={setFormVisible} 
+                  setToggle={setToggle}/>
                 </DialogContent>
               </div>
             </Card>
           </Collapse>
-          <DepartmentTable department={department} setRecDelete={setRecDelete} />
+          <DepartmentTable department={department} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
         </section>
       </div>
     </div>

@@ -23,9 +23,7 @@ const SubTypeView = () => {
 
  
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -82,17 +80,10 @@ const SubTypeView = () => {
             <span style={{color:'black'}}> Sub Type</span>
           </div>
           </div>
-                <Button
-                  variant="outlined"
-                  onClick={handleOpen}
-                  id="add-btn"
-                >
-                  <MdAdd/>
-                  ADD SUBTYPE
-                </Button>
+                
               </div>
             </div>
-            <SubTypeTable subType={subType} setRecDelete={setRecDelete}/>
+            <SubTypeTable subType={subType} setRecDelete={setRecDelete} setOpen={setOpen}/>
             <div>
               <Dialog open={open} onClose={handleClose}>
               <DialogTitle id="form-header-popup">

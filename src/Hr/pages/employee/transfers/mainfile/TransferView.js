@@ -86,30 +86,10 @@ const TransferView = () => {
               <span style={{color:'black'}}> Transfers</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD TRANSFER
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                 
@@ -127,7 +107,7 @@ const TransferView = () => {
                 </div>
               </Card>
             </Collapse>
-            <TransferTable transfer={transfer} setRecDelete={setRecDelete} />
+            <TransferTable transfer={transfer} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
           </section>
         </div>
       </div>

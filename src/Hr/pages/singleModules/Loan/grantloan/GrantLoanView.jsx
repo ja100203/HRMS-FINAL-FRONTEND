@@ -29,9 +29,6 @@ const GrantLoanView = () => {
 } = GrantLoanState();
 
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
 
   useEffect(() => {
   }, []);
@@ -84,28 +81,9 @@ const GrantLoanView = () => {
               <span style={{color:'black'}}> Loans</span>
             </div>
             </div>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              setToggle(!toggle);
-              handleButtonClick();
-            }}
-            id="add-btn"          >
-            {toggle ? (
-              <div>
-                <BiSolidHide style={{ fontSize: "14px", marginRight: "3px" }} />
-                HIDE
-              </div>
-            ) : (
-              <div>
-                <MdAdd style={{ fontSize: "14px", marginRight: "3px" }} />
-                ADD LOAN
-              </div>
-            )}
-          </Button>
         </div>
       </div>
-      <Collapse in={formVisible}>
+      <Collapse className="mt-3" in={formVisible}>
         <Card variant="outlined" >
           <div style={{ marginTop: "20px" }}>
             <h3
@@ -122,7 +100,7 @@ const GrantLoanView = () => {
       </Collapse>
       <br />
 
-      <GrantLoanTable loan={loan} setRecDelete={setRecDelete}/>
+      <GrantLoanTable loan={loan} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
       
     </section>
         </div>

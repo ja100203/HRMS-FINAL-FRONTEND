@@ -32,9 +32,7 @@ const ComplaintView = () => {
     formData,setFormData
    
   } = StateComplaint();
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+  
 
   useEffect(() => {
     loadcomplaint();
@@ -90,31 +88,12 @@ const ComplaintView = () => {
               <span style={{color:'black'}}> Complaints</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div>
-                      <MdAdd />
-                      ADD COMPLAINTS
-                    </div>
-                  )}
-                </Button>
+             
               </div>
               </div>
             </div>
 
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                
@@ -132,7 +111,7 @@ const ComplaintView = () => {
               </Card>
             </Collapse>
 
-            <ComplaintTable complaint={complaint} setRecDelete={setRecDelete} />
+            <ComplaintTable complaint={complaint} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

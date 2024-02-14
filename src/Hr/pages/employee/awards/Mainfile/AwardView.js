@@ -85,18 +85,11 @@ const AwardsView = () => {
               <span style={{color:'black'}}> Awards</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={handleOpen}
-                  
-                  id="add-btn"
-                >
-                  <MdAdd  />
-                  ADD AWARDS
-                </Button>
+                
               </div>
             </div>
-            <AwardTable award={award} setRecDelete={setRecDelete}/>
+            <AwardTable award={award} setRecDelete={setRecDelete} setOpen={setOpen}  />
+        
             <div>
               <Dialog open={open} onClose={handleClose}>
               <DialogTitle id="form-header-popup">

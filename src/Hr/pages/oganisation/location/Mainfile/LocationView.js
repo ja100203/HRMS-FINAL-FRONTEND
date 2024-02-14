@@ -20,11 +20,18 @@ import { Link } from "react-router-dom";
 
 const LocationView = () => {
 
- const {toggle,setToggle,formVisible,formData,setFormData,setFormVisible,location,setLocation,recDelete,setRecDelete} = StateLocation()
+ const {toggle,
+  setToggle,
+  formVisible,
+  formData,
+  setFormData,
+  setFormVisible,
+  location,
+  setLocation,
+  recDelete,
+  setRecDelete} = StateLocation()
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
 
   useEffect(() => {
     loadLocation();
@@ -64,7 +71,7 @@ const LocationView = () => {
           <section>
             <div
               className="above-table"
-              style={{ display: "flex", justifyContent: "space-between" }}
+              style={{ display: "flex",flexDirection:"column", justifyContent: "space-between" }}
             >
               <div style={{marginTop:"60px",width:'150px'}}>
               <div style={{fontSize:"1.4rem",width:'500px',display:'flex'}}>
@@ -79,30 +86,11 @@ const LocationView = () => {
               <span style={{color:'black'}}> Location</span>
               </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD LOCATION
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
 
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -113,12 +101,15 @@ const LocationView = () => {
                     Add Location
                   </h3>
                   <DialogContent>
-                    <LocationForm formData={formData} setFormData={setFormData} setFormVisible={setFormVisible} setToggle={setToggle}/>
+                    <LocationForm formData={formData} 
+                    setFormData={setFormData}
+                     setFormVisible={setFormVisible} 
+                     setToggle={setToggle}/>
                   </DialogContent>
                 </div>
               </Card>
             </Collapse>
-           <LocationTable location={location} setRecDelete={setRecDelete} />
+           <LocationTable location={location} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

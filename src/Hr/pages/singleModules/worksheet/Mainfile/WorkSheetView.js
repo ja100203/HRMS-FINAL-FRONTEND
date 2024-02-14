@@ -32,9 +32,7 @@ const WorksheetView = () => {
     setFormData,
   } = StateWorksheet();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
 
   useEffect(() => {
     loadWorksheet();
@@ -87,29 +85,10 @@ const WorksheetView = () => {
             <span style={{color:'black'}}> Worksheet</span>
           </div>
           </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD WORKSHEET
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3 className="form-header">Add Worksheet</h3>
@@ -124,7 +103,7 @@ const WorksheetView = () => {
                 </div>
               </Card>
             </Collapse>
-            <WorksheetTable worksheet={worksheet} setRecDelete={setRecDelete} />
+            <WorksheetTable worksheet={worksheet} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
           </section>
         </div>
       </div>

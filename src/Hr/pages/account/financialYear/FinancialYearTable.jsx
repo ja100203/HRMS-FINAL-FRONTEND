@@ -9,13 +9,16 @@ import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
 import { styled } from '@mui/system';
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
 import DataNotFound from "../../../asset/images/no data 1.png"
 
-const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
+const FinancialYearTable = ({ financialYearSection, setRecDelete,setOpen }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
   & .${classes.toolbar} {
@@ -120,6 +123,10 @@ const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
       console.error("Error creating PDF:", error);
     }
   };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   const createPdf = () => {
     try {
       doc = new jsPDF();
@@ -261,17 +268,45 @@ const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
   };
   return (
 
-    <div>
-     <div className="d-flex" style={{position:'absolute', right:'-160px', top:'100px'}}>
+    <div
+    className="d-flex"
+    style={{ display: "flex", flexDirection: "column" }}
+  >
+    <div className=" table-ka-top-btns">
+    <Button
+                  variant="outlined"
+                  onClick={handleOpen}
+                  id='add-btn'
+                >
+                  <MdAdd style={{ fontSize: "14px", marginRight: "3px" }} />
+                  ADD FINANCIAL YEAR
+                </Button>
+                {
+                  <div className="search-print">
+                    <input
+                      type="text"
+                      className="search-beside-btn"
+                      placeholder="Search"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      style={{
+                        width: "20rem",
+                        borderRadius: "5px",
+                        height: "40px",
+                        padding: "10px",
+                        border: "1px solid rgba(247, 108, 36, 1)",
+                        marginRight: "30px",
+                      }}
+                    />
+                    <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
         <button
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
           onClick={handlePrint}
         >
@@ -281,12 +316,11 @@ const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
           onClick={convertToPdf}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
         >
           PDF
@@ -295,12 +329,11 @@ const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
           onClick={convertToExcel}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
         >
           EXCEL
@@ -313,19 +346,21 @@ const FinancialYearTable = ({ financialYearSection, setRecDelete }) => {
           <button
             className=""
             style={{
-              width: "5%",
-              height: "35px",
+              height: "40px",
               display: "flex",
               alignItems: "center",
+              width: "100px",
               justifyContent: "center",
-              marginRight: "5px",
             }}
           >
             CSV
           </button>
         </CSVLink>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+      </div>
+    }
+  </div>
+
        <table className="table table-bordered table-hover shadow">
       <thead>
         <tr className="text-center">

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -8,51 +8,62 @@ import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import DataNotFound from "../../../asset/images/no data 1.png"
-import { styled } from '@mui/system';
+import DataNotFound from "../../../asset/images/no data 1.png";
+import { styled } from "@mui/system";
 import {
   TablePagination,
   tablePaginationClasses as classes,
-} from '@mui/base/TablePagination';
+} from "@mui/base/TablePagination";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 
-const DepartmentTable = ({salary,setRecDelete}) => {
+const DepartmentTable = ({
+  salary,
+  setRecDelete,
+  toggle,
+  setToggle,
+  setFormVisible,
+}) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
-  & .${classes.toolbar} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 0 0 0 10px;
+    & .${classes.toolbar} {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0 0 0 10px;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: center;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
     }
-  }
 
-  & .${classes.selectLabel} {
-    margin: 0;
-  }
-
-  & .${classes.displayedRows} {
-    margin: 0;
-
-    @media (min-width: 768px) {
-      margin-left: auto;
+    & .${classes.selectLabel} {
+      margin: 0;
     }
-  }
 
-  & .${classes.spacer} {
-    display: none;
-  }
+    & .${classes.displayedRows} {
+      margin: 0;
 
-  & .${classes.actions} {
-    display: flex;
-    gap: 0rem;
-  }
-`;
+      @media (min-width: 768px) {
+        margin-left: auto;
+      }
+    }
 
+    & .${classes.spacer} {
+      display: none;
+    }
+
+    & .${classes.actions} {
+      display: flex;
+      gap: 0rem;
+    }
+  `;
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
+  };
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -146,7 +157,6 @@ const DepartmentTable = ({salary,setRecDelete}) => {
             "MEDICAL ALLOWANCES",
             "TAX DEDUCTION",
             "CREATED DATE",
-            
           ],
         ],
         body: salary.map((row) => [
@@ -156,7 +166,6 @@ const DepartmentTable = ({salary,setRecDelete}) => {
           row.medicalAllowance,
           row.taxDeduction,
           row.createdDate,
-         
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -197,22 +206,21 @@ const DepartmentTable = ({salary,setRecDelete}) => {
       { width: 25 },
     ];
 
-   
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "salarytemplate.xlsx");
   };
-    const handleDelete = (id) => {
-        setRecDelete(id)
-    }
+  const handleDelete = (id) => {
+    setRecDelete(id);
+  };
 
-    const handlePrint = () => {
-      createPdf();
-      const pdfContent = doc.output('bloburl');
-    
-      if (pdfContent) {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
+  const handlePrint = () => {
+    createPdf();
+    const pdfContent = doc.output("bloburl");
+
+    if (pdfContent) {
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`
           <html>
             <head>
               <title>Print Document</title>
@@ -246,123 +254,178 @@ const DepartmentTable = ({salary,setRecDelete}) => {
             </body>
           </html>
         `);
-      }
-    };
+    }
+  };
 
-    console.log(salary)
-    const renderSalaryData = () => {
-      return (
-        <tr>
-          <td colSpan="12" className="text-center">
-            <img style={{margin:"50px 0 50px 0"}} src={DataNotFound}></img>
-            <h1>No Data Found!</h1>
-            <p>It Looks like there is no data to display in this table at the moment</p>
-          </td>
-        </tr>
-      );
-    };
-    
-   
+  console.log(salary);
+  const renderSalaryData = () => {
+    return (
+      <tr>
+        <td colSpan="12" className="text-center">
+          <img style={{ margin: "50px 0 50px 0" }} src={DataNotFound}></img>
+          <h1>No Data Found!</h1>
+          <p>
+            It Looks like there is no data to display in this table at the
+            moment
+          </p>
+        </td>
+      </tr>
+    );
+  };
+
   return (
-
     <div>
-<div
-        className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "100px" }}
-      >
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-          onClick={handlePrint}
-        >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={salary}
-          filename="salarytemplate.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
+      <div className="d-flex"
+      style={{ display: "flex", flexDirection: "column" }}>
+        <div className=" table-ka-top-btns">
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setToggle(!toggle);
+              handleButtonClick();
             }}
+            id="add-btn"
+            style={{ width: "max-content", marginTop: "20px" }}
           >
-            CSV
-          </button>
-        </CSVLink>
+            {toggle ? (
+              <div className="hide">
+                <BiSolidHide />
+                HIDE
+              </div>
+            ) : (
+              <div className="add">
+                <MdAdd />
+                ADD SALARY TEMPLATE
+              </div>
+            )}
+          </Button>
+          {
+            <div className="search-print">
+              <input
+                type="text"
+                className="search-beside-btn"
+                placeholder="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{
+                  width: "20rem",
+                  borderRadius: "5px",
+                  height: "40px",
+                  padding: "10px",
+                  border: "1px solid rgba(247, 108, 36, 1)",
+                  marginRight: "30px",
+                }}
+              />
+              <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                  onClick={handlePrint}
+                >
+                  PRINT
+                </button>
+                <button
+                  onClick={convertToPdf}
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  PDF
+                </button>
+                <button
+                  onClick={convertToExcel}
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  EXCEL
+                </button>
+                <CSVLink
+                  data={salary}
+                  filename="company.csv"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className=""
+                    style={{
+                      height: "40px",
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    CSV
+                  </button>
+                </CSVLink>
+              </div>
+            </div>
+          }
+        </div>
       </div>
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
       <div className="table-start-container">
-        <table id='table' className="table table-bordered table-hover shadow">
-              <thead>
-                <tr className="text-center">
-                  <th>SL.</th>
-                  <th>Basic Salary</th>
-                  <th>House Rental Allowance</th>
-                  <th>Medical Allowance</th>
-                  <th>Tax Deduction</th>
-                  <th>Created Date</th>
-                  <th colSpan="3">Actions</th>
-                </tr>
-              </thead>
+        <table id="table" className="table table-bordered table-hover shadow">
+          <thead>
+            <tr className="text-center">
+              <th>SL.</th>
+              <th>Basic Salary</th>
+              <th>House Rental Allowance</th>
+              <th>Medical Allowance</th>
+              <th>Tax Deduction</th>
+              <th>Created Date</th>
+              <th colSpan="3">Actions</th>
+            </tr>
+          </thead>
 
-              <tbody className="text-center">
-                { salary.length === 0 ? renderSalaryData() :(rowsPerPage > 0
-            ? salary.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : salary ).filter((elem)=>{
-            if(search.length===0)
-              return elem;
-            else  
-              return (elem.basicSalery.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.houseRentAllowance.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.medicalAllowance.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.taxDeduction.toString().toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.createdDate.toLowerCase().includes(search.toLocaleLowerCase())
-              )
-          })
+          <tbody className="text-center">
+            {salary.length === 0
+              ? renderSalaryData()
+              : (rowsPerPage > 0
+                  ? salary.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : salary
+                )
+                  .filter((elem) => {
+                    if (search.length === 0) return elem;
+                    else
+                      return (
+                        elem.basicSalery
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.houseRentAllowance
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.medicalAllowance
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.taxDeduction
+                          .toString()
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.createdDate
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
+                      );
+                  })
 
-                  
                   .map((salary, index) => (
                     <tr key={index}>
                       <th scope="row" key={index}>
@@ -373,7 +436,7 @@ const DepartmentTable = ({salary,setRecDelete}) => {
                       <td>{salary.medicalAllowance}</td>
                       <td>{salary.taxDeduction}</td>
                       <td>{salary.createdDate}</td>
-                    
+
                       <td className="mx-2">
                         <Link
                           to={`/payroll/edit-salary-template/${salary.salaryTemplateId}`}
@@ -392,36 +455,35 @@ const DepartmentTable = ({salary,setRecDelete}) => {
                       </td>
                     </tr>
                   ))}
-              </tbody>
+          </tbody>
 
-              <tfoot>
-          <tr>
-            <CustomTablePagination
-            className="pagingg"
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={12}
-              count={salary.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  "aria-label": "rows per page",
-                },
-                actions: {
-                  // showFirstButton: true,
-                  // showLastButton: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-            </table>
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                className="pagingg"
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={12}
+                count={salary.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    "aria-label": "rows per page",
+                  },
+                  actions: {
+                    // showFirstButton: true,
+                    // showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
-    </div>
-    
-  )
-}
+  );
+};
 
-export default DepartmentTable
+export default DepartmentTable;

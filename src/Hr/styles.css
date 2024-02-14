@@ -334,7 +334,14 @@ html {
 #header-part .mobile-right {
   display: none;
 }
-
+@media(max-width:1165px){
+  #header-part {
+    width: 90vw;
+  }
+  #logo-design-container{
+    width: 210px;
+  }
+}
 .data-buttons {
   display: flex;
   gap: 10px;
@@ -389,7 +396,6 @@ html {
   overflow: scroll;
   padding-bottom: 10px;
 }
-
 #logout-hrms-btn {
   width: 80%;
   display: flex;
@@ -418,7 +424,12 @@ html {
   gap: 20px;
   height: 100vh;
 }
-
+@media(max-width:1242px){
+  .sidebar-btn-container{
+    width: 261px;
+    padding-top: 20px;
+  }
+}
 .sidebar-container h3 {
   font-size: 1.8rem;
   font-weight: 600;
@@ -7766,7 +7777,9 @@ a:hover {
     display: block;
     margin-right: 10px;
   }
-
+  #header-part {
+    width: 100%;
+  }
   .sidebar-btn-container {
     display: none;
   }
@@ -7777,6 +7790,18 @@ a:hover {
 
   #header-part .right {
     display: none;
+  }
+  .sidebar-btn-container.mobile-sidebar-container {
+    width: 50%;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    display: block;
+    z-index: 99;
+    margin-top: 10.4vh;
+    height: 100vh;
+    overflow: scroll;
+    animation: sidebarIn 500ms ease-out backwards;
   }
 }
 @media screen and (max-width: 767px) {
@@ -7817,6 +7842,18 @@ a:hover {
   .sidebar-btn-container.mobile-sidebar-container {
     margin-top: 7.3vh;
   }
+  .sidebar-btn-container.mobile-sidebar-container {
+    width: 50%;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    display: block;
+    z-index: 99;
+    margin-top: 10.4vh;
+    height: 90vh;
+    overflow: scroll;
+    animation: sidebarIn 500ms ease-out backwards;
+  }
 }
 .page {
   -webkit-transition: all 0.5s ease-in-out;
@@ -7829,8 +7866,8 @@ a:hover {
 }
 @media screen and (max-width: 1200px) {
   .page {
-    left: 60px;
-    width: calc(100% - 60px);
+    /* left: 60px;
+    width: calc(100% - 60px); */
   }
   .mobile-right {
     display: none;
@@ -8868,7 +8905,7 @@ pre {
   hyphens: none;
 }
 img {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 .text-wrap {
   font-size: 1rem;
@@ -15960,4 +15997,31 @@ HEAD .searchFilter {
     padding: 15px 10px;
     font-size: 15px;
   }
+}
+.search-print{
+  display: flex;
+  align-items:center ;
+}
+.table-ka-top-btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -25px;
+}
+@media(max-width:1130px){
+  .table-ka-top-btns{
+    display: inline;
+  }
+}
+@media(max-width:685px){
+  .search-print{
+    flex-direction: column-reverse;
+    align-items: start;
+  }
+}
+
+table thead .text-center th{
+  background-color: rgb(183, 183, 183);
+  color: black;
+  font-weight: 600;
 }

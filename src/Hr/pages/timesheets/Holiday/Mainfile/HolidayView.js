@@ -32,9 +32,7 @@ const HolidayView = () => {
     setFormData,
   } = StateHoliday();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+  
 
   useEffect(() => {
     loadHoliday();
@@ -86,29 +84,10 @@ const HolidayView = () => {
               <span style={{color:'black'}}> Holidays</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD HOLIDAY
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3
@@ -131,7 +110,7 @@ const HolidayView = () => {
                 </div>
               </Card>
             </Collapse>
-            <HolidayTable holiday={holiday} setRecDelete={setRecDelete} />
+            <HolidayTable holiday={holiday} setRecDelete={setRecDelete}  setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

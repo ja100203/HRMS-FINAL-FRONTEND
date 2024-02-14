@@ -22,10 +22,7 @@ const TalentView = () => {
   } = StateTalent()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
-
+ 
  
 
   useEffect(() => {
@@ -80,30 +77,10 @@ const TalentView = () => {
               <span style={{color:'black'}}> Talent</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id='add-btn'
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD Talent
-                    </div>
-                  )}
-                </Button>
+              
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -116,7 +93,7 @@ const TalentView = () => {
                 </div>
               </Card>
             </Collapse>
-            <TalentTable talent={talent} setRecDelete={setRecDelete} />
+            <TalentTable talent={talent} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
           </section>
         </div>
       </div>

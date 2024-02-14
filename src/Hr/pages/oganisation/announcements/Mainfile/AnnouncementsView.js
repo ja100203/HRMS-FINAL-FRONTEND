@@ -62,9 +62,7 @@ const AnnouncementsView = () => {
     }
   });
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
 
   const [menu, setMenu] = useState(false);
 
@@ -96,30 +94,11 @@ const AnnouncementsView = () => {
               <span style={{color:'black'}}> Announcement</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD ANNOUNCEMENTS
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
 
-            <Collapse in={formVisible}>
+            <Collapse in={formVisible} className="mt-3">
               <Card variant="outlined">
                 <div>
                   <h3 className="form-header">Add Announcement</h3>
@@ -138,6 +117,7 @@ const AnnouncementsView = () => {
             <AnnouncementTable
               announcements={announcements}
               setRecDelete={setRecDelete}
+              setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}
             />
           </section>
         </div>

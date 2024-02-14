@@ -24,9 +24,7 @@ const UserView = () => {
   } = StateUser()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+  
 
  
 
@@ -84,30 +82,10 @@ const UserView = () => {
               <span style={{color:'black'}}> Users</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id='add-btn'
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD USER
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -120,7 +98,7 @@ const UserView = () => {
                 </div>
               </Card>
             </Collapse>
-            <UserTable user={user} setRecDelete={setRecDelete} />
+            <UserTable user={user} setRecDelete={setRecDelete}  setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>
