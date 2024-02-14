@@ -1,16 +1,11 @@
 import React, { useEffect,useState} from "react";
 import SideBar from "../../../../components/SideBar";
 import Header from "../../../../components/Header";
-
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-
 import { MdAdd } from "react-icons/md";
-
-
 import StateDesignation from "../StateDesignation";
 import * as api from "../DesignationApi"
 import DesignationTable from "../DesignationTable";
@@ -20,18 +15,17 @@ import { Link } from "react-router-dom";
 
 const DesignationView = () => {
  
-  const {designation,setDesignation,open,setOpen,recDelete,setRecDelete, formData, setFormData} = StateDesignation()
+  const {
+    designation,
+    setDesignation,
+    open,
+    setOpen,
+    recDelete,
+    setRecDelete,
+     formData,
+      setFormData} = StateDesignation();
 
-  
-
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+ 
  
   useEffect(() => {
     loadDesignation();
@@ -42,13 +36,15 @@ const DesignationView = () => {
     setDesignation(result);
   };
 
- 
-
   console.log(designation)
 
   const handleDelete = async () => {
     await api.deleteDesignation(recDelete)
     loadDesignation();
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -85,25 +81,13 @@ const DesignationView = () => {
             <span style={{color:'black'}}> Designation</span>
           </div>
           </div>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  // handleButtonClick();
-                  handleOpen();
-                }}
-                id='add-btn'
-              >
-                <div className="add">
-                  <MdAdd />
-                  ADD DESIGNATION
-                </div>
-              </Button>
+              
             </div>
           </div>
-         <DesignationTable designation={designation} setRecDelete={setRecDelete}/>
+         <DesignationTable designation={designation} setRecDelete={setRecDelete}  setOpen={setOpen}  />
 
           <div>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog  className="mt-3" open={open} onClose={handleClose}>
               <DialogTitle id="form-header-popup">
                 Add Designation
               </DialogTitle>

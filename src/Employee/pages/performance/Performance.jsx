@@ -281,19 +281,15 @@ const Performance = () => {
         <div className="head-foot-part">
           <div>
             <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+              className="per-heading-head"
             >
               <div className="mb-4">
                 <h4 className="heading">MY PERFORMANCE INDEX</h4>
               </div>
 
               <div
-                className="side-icons"
-                style={{ marginTop: "50px", marginRight: "20px" }}
+                className="side-icons" id="side-icons-per"
+                style={{ marginTop: "60px", marginRight: "20px" }}
               >
                 <img src={appl} style={{ cursor: "pointer" }} alt="" />
                 <img
@@ -310,17 +306,14 @@ const Performance = () => {
             <div className="col-xl-9 col-lg-9 col-md-9">
               <div
                 id="card"
-                className="card"
-                style={{
-                  height: "300px",
-                }}
+                className="card per-ka-card"
               >
                 <div className="card-top"></div>
 
                 <div>
-                  <div className="d-flex justify-content-around align-items-center p-3 mt-3">
+                  <div className="per-arrow-wala p-3 mt-3">
                     <div className="dat-logo">
-                      <img src={dartlogo} height={250} />
+                      <img className="dat-dat-img-logo" src={dartlogo} />
                     </div>
 
                     <div className="mt-3">
@@ -369,23 +362,24 @@ const Performance = () => {
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3">
-              <div id="card" className="card d-flex align-items-center justify-content-center" style={{ height: "300px" }}>
+              <div
+                id="card"
+                className="card d-flex align-items-center justify-content-center"
+                style={{ height: "300px" }}
+              >
                 <h4
                   style={{
                     fontWeight: "600",
                     lineHeight: "28.8px",
                     fontSize: "16px",
-                    padding: '0 10px',
+                    padding: "0 10px",
                     textAlign: "center",
-                    marginTop:'30px'
+                    marginTop: "30px",
                   }}
                 >
                   RATE YOUR ASSESSMENT
                 </h4>
-                <img
-                  src={list}
-                  style={{ transform: "scale(0.65)"}}
-                />
+                <img src={list} style={{ transform: "scale(0.65)" }} />
 
                 <div className="text-center mb-4">
                   <button
@@ -399,7 +393,7 @@ const Performance = () => {
                     Fill Your Form
                     <span>
                       <img
-                        style={{marginLeft:'5px'}}
+                        style={{ marginLeft: "5px" }}
                         height={12}
                         src={vector}
                       />
@@ -529,7 +523,7 @@ const Performance = () => {
                         style={{ marginTop: "-25px" }}
                       >
                         <div>
-                          <img src={frame3} height={55} />
+                          <img src={frame3} height={45} />
                         </div>
                         <div
                           className=""
@@ -581,7 +575,7 @@ const Performance = () => {
                         style={{ marginTop: "-25px" }}
                       >
                         <div>
-                          <img src={frame7} height={55} />
+                          <img src={frame7} className="mx-1" height={45} />
                         </div>
                         <div
                           className=""
@@ -630,7 +624,7 @@ const Performance = () => {
                         style={{ marginTop: "-25px" }}
                       >
                         <div>
-                          <img src={frame6} height={55} />
+                          <img src={frame6} height={37} />
                         </div>
                         <div
                           className=""
@@ -683,7 +677,7 @@ const Performance = () => {
                           style={{ marginTop: "-25px" }}
                         >
                           <div>
-                            <img src={frame5} height={55} />
+                            <img src={frame5} height={47} />
                           </div>
                           <div
                             className=""
@@ -762,7 +756,7 @@ const Performance = () => {
                 className="card"
                 style={{
                   height: "auto",
-                  paddingBottom:'30px'
+                  paddingBottom: "30px",
                 }}
               >
                 <h4
@@ -830,15 +824,61 @@ const Performance = () => {
                   </div>
                 </div>
                 <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div style={{ display: "flex" }}>
+                    <img
+                      style={{
+                        marginTop: "10px",
+                        marginLeft: "25px",
+                        width: "30px",
+                        height: "30px",
+                      }}
+                      src={goal}
+                    />
+                    <div
+                      style={{
+                        marginTop: "8px",
+                        marginLeft: "10px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      Task Completion
+                      <div
+                        style={{
+                          color: "rgba(128, 132, 136, 1)",
+                          fontSize: "10px",
+                          lineHeight: "19.5px",
+                          marginTop: "10px",
+                          marginLeft: "2px",
+                        }}
+                      >
+                        Complete a certain number of tasks or user stories by
+                        the end of the day.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      width: "88px",
+                      height: "21px",
+                      fontSize: "10px",
+                      marginTop: "8px",
+                      marginRight: "5px",
+                      color: "#646978",
+                    }}
+                  >
+                    June 12, 2019
+                  </div>
+                </div>
                 <div style={{ display: "flex" }}>
                   <img
                     style={{
-                      marginTop: "10px",
+                      marginTop: "20px",
                       marginLeft: "25px",
                       width: "30px",
                       height: "30px",
@@ -847,12 +887,12 @@ const Performance = () => {
                   />
                   <div
                     style={{
-                      marginTop: "8px",
+                      marginTop: "20px",
                       marginLeft: "10px",
                       fontWeight: "600",
                     }}
                   >
-                    Task Completion
+                    Bug Resolution
                     <div
                       style={{
                         color: "rgba(128, 132, 136, 1)",
@@ -862,218 +902,172 @@ const Performance = () => {
                         marginLeft: "2px",
                       }}
                     >
-                      Complete a certain number of tasks or user stories by the
-                      end of the day.
+                      Resolve a specified number of bugs or issues each day.
                     </div>
                   </div>
-                </div>
-
-                <div
-                  style={{
-                    width: "88px",
-                    height: "21px",
-                    fontSize: "10px",
-                    marginTop: "8px",
-                    marginRight: "5px",
-                    color: "#646978",
-                  }}
-                >
-                  June 12, 2019
-                </div>
-              </div>
-              <div style={{ display: "flex" }}>
-                <img
-                  style={{
-                    marginTop: "20px",
-                    marginLeft: "25px",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                  src={goal}
-                />
-                <div
-                  style={{
-                    marginTop: "20px",
-                    marginLeft: "10px",
-                    fontWeight: "600",
-                  }}
-                >
-                  Bug Resolution
                   <div
                     style={{
-                      color: "rgba(128, 132, 136, 1)",
+                      width: "88px",
+                      height: "21px",
                       fontSize: "10px",
-                      lineHeight: "19.5px",
-                      marginTop: "10px",
-                      marginLeft: "2px",
+                      marginTop: "8px",
+                      marginLeft: "160px",
+                      color: "#646978",
                     }}
                   >
-                    Resolve a specified number of bugs or issues each day.
+                    July 12, 2019
                   </div>
                 </div>
-                <div
-                  style={{
-                    width: "88px",
-                    height: "21px",
-                    fontSize: "10px",
-                    marginTop: "8px",
-                    marginLeft: "160px",
-                    color: "#646978",
-                  }}
-                >
-                  July 12, 2019
-                </div>
-              </div>
-              <div style={{ display: "flex" }}>
-                <img
-                  style={{
-                    marginTop: "20px",
-                    marginLeft: "25px",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                  src={goal}
-                />
-                <div
-                  style={{
-                    marginTop: "20px",
-                    marginLeft: "10px",
-                    fontWeight: "600",
-                  }}
-                >
-                  Time Management
+                <div style={{ display: "flex" }}>
+                  <img
+                    style={{
+                      marginTop: "20px",
+                      marginLeft: "25px",
+                      width: "30px",
+                      height: "30px",
+                    }}
+                    src={goal}
+                  />
                   <div
                     style={{
-                      color: "rgba(128, 132, 136, 1)",
-                      fontSize: "10px",
-                      lineHeight: "19.5px",
-                      marginTop: "10px",
-                      marginLeft: "2px",
+                      marginTop: "20px",
+                      marginLeft: "10px",
+                      fontWeight: "600",
                     }}
                   >
-                    Allocate a specific amount of time to different tasks
-                    (coding, debugging, testing) throughout the day.
+                    Time Management
+                    <div
+                      style={{
+                        color: "rgba(128, 132, 136, 1)",
+                        fontSize: "10px",
+                        lineHeight: "19.5px",
+                        marginTop: "10px",
+                        marginLeft: "2px",
+                      }}
+                    >
+                      Allocate a specific amount of time to different tasks
+                      (coding, debugging, testing) throughout the day.
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "88px",
+                      height: "21px",
+                      fontSize: "10px",
+                      marginTop: "8px",
+                      marginRight: "20px",
+                      color: "#646978",
+                    }}
+                  >
+                    July 12, 2019
                   </div>
                 </div>
-                <div
-                  style={{
-                    width: "88px",
-                    height: "21px",
-                    fontSize: "10px",
-                    marginTop: "8px",
-                    marginRight: "20px",
-                    color: "#646978",
-                  }}
-                >
-                  July 12, 2019
-                </div>
-              </div>
               </div>
             </div>
 
-           <div className="col-xl-6 col-lg-6 col-md-12">
-           <div
-              id="card"
-              className="card"
-              style={{
-                height: "50vh",
-              }}
-            >
-              <h4
+            <div className="col-xl-6 col-lg-6 col-md-12">
+              <div
+                id="card"
+                className="card"
                 style={{
-                  textAlign: "start",
-                  paddingLeft: "20px",
-                  marginTop: "20px",
-                  fontWeight: "600",
-                  lineHeight: "28.8px",
-                  fontSize: "16px",
+                  height: "50vh",
                 }}
               >
-                MY AWARDS
-              </h4>
-              <div style={{ overflow: "scroll", height: "100%" }}>
-                <div
+                <h4
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    flexDirection: "column",
+                    textAlign: "start",
+                    paddingLeft: "20px",
+                    marginTop: "20px",
+                    fontWeight: "600",
+                    lineHeight: "28.8px",
+                    fontSize: "16px",
                   }}
                 >
+                  MY AWARDS
+                </h4>
+                <div style={{ overflow: "scroll", height: "100%" }}>
                   <div
                     style={{
                       display: "flex",
-                      marginLeft: "50px",
-                      width: "650px",
-                      height: "174.62px",
-                      gap: "30px",
+                      justifyContent: "space-between",
+                      flexDirection: "column",
                     }}
                   >
-                    {award.length > 0
-                      ? award.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              style={{
-                                border: "2px solid #EDEFF3",
-                                borderRadius: "3px",
-                                width: "150px",
-                                height: "150px",
-                              }}
-                            >
+                    <div
+                      style={{
+                        display: "flex",
+                        marginLeft: "50px",
+                        width: "650px",
+                        height: "174.62px",
+                        gap: "30px",
+                      }}
+                    >
+                      {award.length > 0
+                        ? award.map((item, index) => {
+                            return (
                               <div
+                                key={index}
                                 style={{
-                                  width: "120px",
-                                  padding: "3px",
-                                  margin: "auto",
+                                  border: "2px solid #EDEFF3",
+                                  borderRadius: "3px",
+                                  width: "150px",
+                                  height: "150px",
                                 }}
                               >
-                                <img
-                                  src={
-                                    item.awardName === "Employee of the Month"
-                                      ? badge1
-                                      : badge2
-                                  }
-                                />
-                              </div>
-                              <div>
                                 <div
                                   style={{
-                                    width: "170px",
-                                    Height: "34px",
-                                    marginTop: "10px",
+                                    width: "120px",
+                                    padding: "3px",
                                     margin: "auto",
-                                    padding: "auto",
-                                    fontSize: "12px",
-                                    fontWeight: "600",
-                                    color: " #48034B",
-                                    align: "center",
                                   }}
                                 >
-                                  {item.awardName}
+                                  <img
+                                    src={
+                                      item.awardName === "Employee of the Month"
+                                        ? badge1
+                                        : badge2
+                                    }
+                                  />
                                 </div>
-                                <div
-                                  style={{
-                                    width: "166px",
-                                    Height: "34px",
-                                    marginTop: "10px",
-                                    marginLeft: "20px",
-                                    fontSize: "8px",
-                                    fontWeight: "400",
-                                    color: "#2C2945",
-                                  }}
-                                >
-                                  Earned on : {item.date}
+                                <div>
+                                  <div
+                                    style={{
+                                      width: "170px",
+                                      Height: "34px",
+                                      marginTop: "10px",
+                                      margin: "auto",
+                                      padding: "auto",
+                                      fontSize: "12px",
+                                      fontWeight: "600",
+                                      color: " #48034B",
+                                      align: "center",
+                                    }}
+                                  >
+                                    {item.awardName}
+                                  </div>
+                                  <div
+                                    style={{
+                                      width: "166px",
+                                      Height: "34px",
+                                      marginTop: "10px",
+                                      marginLeft: "20px",
+                                      fontSize: "8px",
+                                      fontWeight: "400",
+                                      color: "#2C2945",
+                                    }}
+                                  >
+                                    Earned on : {item.date}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })
-                      : "No Awards Recieved"}
+                            );
+                          })
+                        : "No Awards Recieved"}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-           </div>
           </div>
 
           <Dialog open={open} onClose={handleClose}>
@@ -1082,7 +1076,6 @@ const Performance = () => {
               className="card"
               style={{
                 height: "80vh",
-                width: "600px",
                 position: "center",
               }}
             >
@@ -1120,7 +1113,6 @@ const Performance = () => {
                         style={{
                           display: "flex",
                           gap: "10px",
-                          width: "143.65px",
                           height: "21px",
                           marginTop: "20px",
                           marginLeft: "5px",
@@ -1144,12 +1136,7 @@ const Performance = () => {
                           borderRadius: "5px",
                         }}
                       >
-                        <Box
-                          sx={{
-                            width: 500,
-                            maxWidth: "100%",
-                          }}
-                        >
+                        <Box>
                           <TextField
                             fullWidth
                             label="fullWidth"
@@ -1183,7 +1170,6 @@ const Performance = () => {
                         style={{
                           display: "flex",
                           gap: "10px",
-                          width: "143.65px",
                           height: "21px",
                           marginTop: "20px",
                           marginLeft: "5px",
@@ -1201,8 +1187,6 @@ const Performance = () => {
 
                       <div
                         style={{
-                          width: " 500px",
-                          height: "Fixed (51px)",
                           marginTop: "13px",
                           marginLeft: "5px",
                           padding: "10px, 12px, 10px, 12px",
@@ -1243,7 +1227,6 @@ const Performance = () => {
                         style={{
                           display: "flex",
                           gap: "10px",
-                          width: "143.65px",
                           height: "21px",
                           marginTop: "20px",
                           marginLeft: "5px",
@@ -1261,8 +1244,6 @@ const Performance = () => {
 
                       <div
                         style={{
-                          width: " 500px",
-                          height: "Fixed (51px)",
                           marginTop: "13px",
                           marginLeft: "5px",
                           padding: "10px, 12px, 10px, 12px",
@@ -1302,7 +1283,6 @@ const Performance = () => {
                         style={{
                           display: "flex",
                           gap: "10px",
-                          width: "143.65px",
                           height: "21px",
                           marginTop: "20px",
                           marginLeft: "5px",
@@ -1320,8 +1300,6 @@ const Performance = () => {
 
                       <div
                         style={{
-                          width: " 500px",
-                          height: "Fixed (51px)",
                           marginTop: "13px",
                           marginLeft: "5px",
                           padding: "10px, 12px, 10px, 12px",
@@ -1362,7 +1340,6 @@ const Performance = () => {
                         style={{
                           display: "flex",
                           gap: "10px",
-                          width: "143.65px",
                           height: "21px",
                           marginTop: "20px",
                           marginLeft: "5px",
@@ -1380,8 +1357,6 @@ const Performance = () => {
 
                       <div
                         style={{
-                          width: " 500px",
-                          height: "Fixed (51px)",
                           marginTop: "13px",
                           marginLeft: "5px",
                           padding: "10px, 12px, 10px, 12px",
@@ -1396,10 +1371,16 @@ const Performance = () => {
                           variant="outlined"
                         />
                       </div>
-                      <div style={{ marginTop: "30px" }}>
-                        <button className="emp-header-check-btn">Submit</button>
+                      <div className="sub-can-per">
                         <button
-                          className="emp-header-check-btn"
+                          style={{ width: "200px" }}
+                          id="input-btn-submit"
+                        >
+                          Submit
+                        </button>
+                        <button
+                          style={{ width: "200px" }}
+                          id="input-btn-cancel"
                           onClick={handleClose}
                         >
                           Cancel

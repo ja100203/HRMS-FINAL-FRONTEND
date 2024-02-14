@@ -21,9 +21,7 @@ const RequestView = () => {
         genId,setGenId,file,toggle, setToggle,setFile,request,setRequest,formVisible, setFormVisible, fileError,totalAmount, setTotalAmount, setFileError,dateError,setDateError,setCredit,open,setOpen,recDelete,setRecDelete, formData,setFormData
       } = RequestState();
     
-      const handleButtonClick = () => {
-        setFormVisible((prev) => !prev);
-      };
+    
 
       useEffect(() => {
         handleDelete();
@@ -73,28 +71,10 @@ const RequestView = () => {
               <span style={{color:'black'}}> Requests</span>
             </div>
             </div>
-                 <Button
-                   variant="outlined"
-                   onClick={() => {
-                     setToggle(!toggle);
-                     handleButtonClick();
-                   }}
-                   id='add-btn'                >
-                   {toggle ? (
-                     <div className="hide">
-                       <BiSolidHide />
-                       HIDE
-                     </div>
-                   ) : (
-                     <div className="add">
-                       <MdAdd />
-                       ADD REQUEST
-                     </div>
-                   )}
-                 </Button>
+                 
                </div>
              </div>
-             <Collapse in={formVisible}>
+             <Collapse className='mt-3' in={formVisible}>
                <Card
                  variant="outlined"
                

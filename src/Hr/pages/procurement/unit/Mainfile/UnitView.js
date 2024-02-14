@@ -31,9 +31,6 @@ const UnitView = () => {
     
   } = StateUnit();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -92,17 +89,9 @@ const UnitView = () => {
           <span style={{color:'black'}}> Unit</span>
         </div>
         </div>
-              <Button
-                variant="outlined"
-                onClick={handleOpen}
-                id="add-btn"
-              >
-                <MdAdd/>
-                ADD UNIT
-              </Button>
             </div>
           </div>
-          <UnitTable unit={unit} setRecDelete={setRecDelete}/>
+          <UnitTable unit={unit} setRecDelete={setRecDelete} setOpen={setOpen}/>
           <div>
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle id="form-header-popup">

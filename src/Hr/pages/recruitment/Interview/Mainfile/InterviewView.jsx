@@ -20,9 +20,7 @@ const InterviewView = () => {
   } = StateInterview()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
   useEffect(() => {
     loadInterview();
@@ -75,27 +73,7 @@ const InterviewView = () => {
               <span style={{color:'black'}}> Interview</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id='add-btn'
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD Interview
-                    </div>
-                  )}
-                </Button>
+                
               </div>
             </div>
             <Collapse in={formVisible}>
@@ -110,7 +88,7 @@ const InterviewView = () => {
                 </div>
               </Card>
             </Collapse>
-            <InterviewTable interview={interview} setRecDelete={setRecDelete} />
+            <InterviewTable interview={interview} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

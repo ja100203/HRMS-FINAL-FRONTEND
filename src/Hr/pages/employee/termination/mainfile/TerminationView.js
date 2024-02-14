@@ -25,9 +25,6 @@ const TerminationView = () => {
   } =StateTermination();
  
 
- const handleButtonClick = () => {
-  setFormVisible((prev) => !prev);
-};
 
 
 useEffect(() => {
@@ -82,30 +79,10 @@ return (
             <span style={{color:'black'}}> Termination</span>
           </div>
           </div>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  setToggle(!toggle);
-                  handleButtonClick();
-                }}
-                id="add-btn"
-              >
-                {toggle ? (
-                  <div className="hide">
-                    <BiSolidHide
-                    />
-                    HIDE
-                  </div>
-                ) : (
-                  <div className="add">
-                    <MdAdd />
-                    ADD TERMINATION
-                  </div>
-                )}
-              </Button>
+             
             </div>
           </div>
-          <Collapse in={formVisible}>
+          <Collapse className="mt-3" in={formVisible}>
             <Card
               variant="outlined"
              
@@ -122,7 +99,7 @@ return (
               </div>
             </Card>
           </Collapse>
-          <TerminationTable termination={termination} setRecDelete={setRecDelete} />
+          <TerminationTable termination={termination} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
         </section>
       </div>
     </div>

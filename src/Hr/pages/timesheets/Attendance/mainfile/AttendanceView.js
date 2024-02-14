@@ -80,30 +80,9 @@ const  AttendanceView = () => {
               <span style={{color:'black'}}> Leave</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD ATTENDANCE
-                    </div>
-                  )}
-                </Button>
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -124,7 +103,7 @@ const  AttendanceView = () => {
                 </div>
               </Card>
             </Collapse>
-            <AttendanceTable attendance={attendance} setRecDelete={setRecDelete} />
+            <AttendanceTable attendance={attendance} setRecDelete={setRecDelete} toggle={toggle} setToggle={setToggle} setFormVisible={setFormVisible}/>
           </section>
         </div>
       </div>

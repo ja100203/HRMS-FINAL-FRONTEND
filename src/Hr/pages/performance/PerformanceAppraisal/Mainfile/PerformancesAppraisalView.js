@@ -36,9 +36,7 @@ const PerformancesAppraisalView = () => {
   } = StatePerformance();
 
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
   useEffect(() => {
     loadPerformances();
@@ -96,29 +94,10 @@ const PerformancesAppraisalView = () => {
         <span style={{color:'black'}}> Appraisal</span>
       </div>
       </div>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              setToggle(!toggle);
-              handleButtonClick();
-            }}
-          id='add-btn'
-          >
-            {toggle ? (
-              <div>
-                <BiSolidHide style={{ fontSize: "14px", marginRight: "3px" }} />
-                HIDE
-              </div>
-            ) : (
-              <div>
-                <MdAdd style={{ fontSize: "14px", marginRight: "3px" }} />
-                ADD APPRAISAL
-              </div>
-            )}
-          </Button>
+         
         </div>
       </div>
-      <Collapse in={formVisible}>
+      <Collapse className="mt-3" in={formVisible}>
         <Card variant="outlined">
           <div style={{ marginTop: "20px" }}>
             <h3
@@ -136,6 +115,7 @@ const PerformancesAppraisalView = () => {
       <PerformanceTable
         performances={performances}
         setRecDelete={setRecDelete}
+        setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}
       />
 
       <div></div>

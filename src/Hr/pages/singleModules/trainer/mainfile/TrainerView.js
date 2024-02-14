@@ -30,9 +30,6 @@ const TrainerView = () => {
     setFormData
   } = StateTrainer();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
 
   useEffect(() => {
     loadTrainer();
@@ -84,29 +81,9 @@ const TrainerView = () => {
               <span style={{color:'black'}}> Trainer</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id= "add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD TRAINER
-                    </div>
-                  )}
-                </Button>
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                
@@ -123,7 +100,7 @@ const TrainerView = () => {
                 </div>
               </Card>
             </Collapse>
-            <TrainerTable trainer={trainer} setRecDelete={setRecDelete} />
+            <TrainerTable trainer={trainer} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
           </section>
         </div>
       </div>

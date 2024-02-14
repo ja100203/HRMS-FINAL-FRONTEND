@@ -14,6 +14,7 @@ import * as api from "../api"
 import FinancialYearForm from "../FinancialYearForm";
 import { Link } from "react-router-dom";
 
+
 const FinancialYearView = () => {
   const {
    
@@ -30,9 +31,7 @@ const FinancialYearView = () => {
 
  
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+ 
 
   const handleClose = () => {
     setOpen(false);
@@ -89,17 +88,10 @@ const FinancialYearView = () => {
             <span style={{color:'black'}}> Financial Year</span>
           </div>
           </div>
-                <Button
-                  variant="outlined"
-                  onClick={handleOpen}
-                  id='add-btn'
-                >
-                  <MdAdd style={{ fontSize: "14px", marginRight: "3px" }} />
-                  ADD FINANCIAL YEAR
-                </Button>
+                
               </div>
             </div>
-            <FinancialYearTable financialYearSection={financialYearSection} setRecDelete={setRecDelete}/>
+            <FinancialYearTable financialYearSection={financialYearSection} setRecDelete={setRecDelete} setOpen={setOpen}/>
             <div>
               <Dialog open={open} onClose={handleClose}>
                 <h3 className="form-header">

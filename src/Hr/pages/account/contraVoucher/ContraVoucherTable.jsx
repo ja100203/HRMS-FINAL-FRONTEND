@@ -10,12 +10,18 @@ import header from "../../../asset/images/Header.jpeg";
 import footer from "../../../asset/images/Footer.jpeg";
 import DataNotFound from "../../../asset/images/no data 1.jpeg";
 import { styled } from "@mui/system";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
 
-const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
+const ContraVoucherTable = ({ contraVoucher, setRecDelete,  setFormVisible,
+  setToggle,
+  toggle,
+ }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
     & .${classes.toolbar} {
@@ -61,6 +67,10 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+  };
+
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -269,20 +279,59 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
   };
 
   return (
-    <>
-      <div
-        className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "100px" }}
-      >
+    <div
+    className="d-flex"
+    style={{ display: "flex", flexDirection: "column" }}
+  >
+    <div className=" table-ka-top-btns" style={{marginBottom:'-30px'}}> 
+    <Button
+    variant="outlined"
+    onClick={() => {
+      setToggle(!toggle);
+      handleButtonClick();
+    }}
+    id="add-btn"
+    style={{width:'max-content', marginTop:'20px'}}
+  >
+    {toggle ? (
+      <div className="hide">
+        <BiSolidHide />
+        HIDE
+      </div>
+    ) : (
+      <div className="add">
+        <MdAdd />
+        ADD CONTRAVOUCHER
+      </div>
+    )}
+  </Button>
+
+  {
+    <div className="search-print">
+      <input
+        type="text"
+        className="search-beside-btn"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{
+          width: "20rem",
+          borderRadius: "5px",
+          height: "40px",
+          padding: "10px",
+          border: "1px solid rgba(247, 108, 36, 1)",
+          marginRight: "30px",
+        }}
+      />
+      <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
         <button
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
           onClick={handlePrint}
         >
@@ -292,12 +341,11 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
           onClick={convertToPdf}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+            height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
           }}
         >
           PDF
@@ -306,12 +354,11 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
           onClick={convertToExcel}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+            height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
           }}
         >
           EXCEL
@@ -324,25 +371,21 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
           <button
             className=""
             style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
+              height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
             }}
           >
             CSV
           </button>
         </CSVLink>
       </div>
-      <input
-        type="text"
-        className="mb-3 searchFilter"
-        placeholder="Search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      </div>
+    }
+  </div>
+     
       <table className="table table-bordered table-hover shadow">
         <thead>
           <tr className="text-center">
@@ -448,7 +491,7 @@ const ContraVoucherTable = ({ contraVoucher, setRecDelete }) => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </div>
   );
 };
 

@@ -10,6 +10,9 @@ import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
 import DataNotFound from "../../../asset/images/no data 1.png"
 import { styled } from '@mui/system';
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
@@ -17,7 +20,9 @@ import {
 
 
 
-const EmployeeTable = ({ employee, setRecDelete }) => {
+const EmployeeTable = ({ employee, setRecDelete,  setFormVisible,
+  setToggle,
+  toggle, }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
   & .${classes.toolbar} {
@@ -68,6 +73,10 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
   };
 
   let doc;
@@ -277,17 +286,45 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
   console.log(employee.length);
   return (
 
-    <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
+    <div
+    className="d-flex"
+    style={{ display: "flex", flexDirection: "column" }}
+  >
+    <div className=" table-ka-top-btns" style={{marginTop:'-30px'}}>
+<Button
+                  variant="outlined"
+                  onClick={() => {
+                    setToggle(!toggle);
+                    handleButtonClick();
+                  }}
+                  id='add-btn'
+                  style={{width:'max-content', marginTop:'20px'}}
+                >
+                  {toggle ? (
+                    <div className="hide">
+                      <BiSolidHide />
+                      HIDE
+                    </div>
+                  ) : (
+                    <div className="add">
+                      <MdAdd />
+                      ADD EMPLOYEE
+                    </div>
+                  )}
+                </Button>
+{
+  <div className="search-print">
+
+  <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+
         <button
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
           onClick={handlePrint}
         >
@@ -297,12 +334,11 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
           onClick={convertToPdf}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+            height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
           }}
         >
           PDF
@@ -311,12 +347,11 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
           onClick={convertToExcel}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+            height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
           }}
         >
           EXCEL
@@ -329,18 +364,20 @@ const EmployeeTable = ({ employee, setRecDelete }) => {
           <button
             className=""
             style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
+              height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
             }}
           >
             CSV
           </button>
         </CSVLink>
       </div>
+      </div>
+    }
+  </div>
 
       <div className="table-start-container">
       <table id='table' className="table table-bordered table-hover">

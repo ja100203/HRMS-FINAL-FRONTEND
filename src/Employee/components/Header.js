@@ -163,7 +163,7 @@ const Header = ({ menu, setMenu }) => {
               ></i>
             </div>
             <div className="right">
-              <div className="notification d-flex">
+              <div className="notification d-flex align-items-center">
                 <button className="emp-header-check-btn" onClick={openModal}>
                   Check IN / OUT
                 </button>

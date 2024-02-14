@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaEye, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
@@ -8,50 +8,56 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
-import DataNotFound from "../../../asset/images/no data 1.png"
-import { styled } from '@mui/system';
+import DataNotFound from "../../../asset/images/no data 1.png";
+import { styled } from "@mui/system";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
-} from '@mui/base/TablePagination';
+} from "@mui/base/TablePagination";
 
-const PoliciesTable = ({ policies, setRecDelete }) => {
+const PoliciesTable = ({ 
+  policies, 
+  setRecDelete,
+setOpen }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
-  & .${classes.toolbar} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 0 0 0 10px;
+    & .${classes.toolbar} {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0 0 0 10px;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: center;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
     }
-  }
 
-  & .${classes.selectLabel} {
-    margin: 0;
-  }
-
-  & .${classes.displayedRows} {
-    margin: 0;
-
-    @media (min-width: 768px) {
-      margin-left: auto;
+    & .${classes.selectLabel} {
+      margin: 0;
     }
-  }
 
-  & .${classes.spacer} {
-    display: none;
-  }
+    & .${classes.displayedRows} {
+      margin: 0;
 
-  & .${classes.actions} {
-    display: flex;
-    gap: 0rem;
-  }
-`;
+      @media (min-width: 768px) {
+        margin-left: auto;
+      }
+    }
+
+    & .${classes.spacer} {
+      display: none;
+    }
+
+    & .${classes.actions} {
+      display: flex;
+      gap: 0rem;
+    }
+  `;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -62,6 +68,11 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -86,21 +97,12 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
       const tableMargin = 20;
       const tableStartY = 15 + tableMargin;
       doc.autoTable({
-        head: [
-          [
-            "SL",
-            "COMPANY NAME",
-            "TITLE",
-            "DESCRIPTION",
-           
-          ],
-        ],
+        head: [["SL", "COMPANY NAME", "TITLE", "DESCRIPTION"]],
         body: policies.map((row) => [
           row.sl,
           row.companyName,
           row.title,
           row.description,
-          
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -135,14 +137,7 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
       const tableMargin = 20;
       const tableStartY = 15 + tableMargin;
       doc.autoTable({
-        head: [
-          [
-            "SL",
-            "COMPANY NAME",
-            "TITLE",
-            "DESCRIPTION",
-          ],
-        ],
+        head: [["SL", "COMPANY NAME", "TITLE", "DESCRIPTION"]],
         body: policies.map((row) => [
           row.sl,
           row.companyName,
@@ -188,7 +183,6 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
       { width: 25 },
     ];
 
-    
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "policies.xlsx");
@@ -199,8 +193,8 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
 
   const handlePrint = () => {
     createPdf();
-    const pdfContent = doc.output('bloburl');
-  
+    const pdfContent = doc.output("bloburl");
+
     if (pdfContent) {
       const printWindow = window.open("", "_blank");
       printWindow.document.write(`
@@ -244,27 +238,57 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
     return (
       <tr>
         <td colSpan="12" className="text-center">
-          <img style={{margin:"50px 0 50px 0"}} src={DataNotFound}></img>
+          <img style={{ margin: "50px 0 50px 0" }} src={DataNotFound}></img>
           <h1>No Data Found!</h1>
-          <p>It Looks like there is no data to display in this table at the moment</p>
+          <p>
+            It Looks like there is no data to display in this table at the
+            moment
+          </p>
         </td>
       </tr>
     );
   };
 
   return (
+    <div className="d-flex"
+    style={{ display: "flex", flexDirection: "column" }}>
+      <div className=" table-ka-top-btns"      >
+      <Button
+      variant="outlined"
+      onClick={handleOpen}
+      id="add-btn"
+      style={{width:'max-content', marginTop:'20px'}}
+    >
+      <MdAdd/>
+      ADD POLICIES
+    </Button>
 
-    <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
+    {
+    <div className="search-print">
+    <input
+    type="text"
+    className="search-beside-btn"
+    placeholder="Search"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    style={{
+      width: "20rem",
+      borderRadius: "5px",
+      height: "40px",
+      padding: "10px",
+      border: "1px solid rgba(247, 108, 36, 1)",
+      marginRight: "30px",
+    }}
+  />
+  <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
         <button
           className=""
           style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+            height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
           }}
           onClick={handlePrint}
         >
@@ -274,12 +298,11 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
           onClick={convertToPdf}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
         >
           PDF
@@ -288,12 +311,11 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
           onClick={convertToExcel}
           className=""
           style={{
-            width: "5%",
-            height: "35px",
+            height: "40px",
             display: "flex",
             alignItems: "center",
+            width: "100px",
             justifyContent: "center",
-            marginRight: "5px",
           }}
         >
           EXCEL
@@ -306,102 +328,116 @@ const PoliciesTable = ({ policies, setRecDelete }) => {
           <button
             className=""
             style={{
-              width: "5%",
-              height: "35px",
+              height: "40px",
               display: "flex",
               alignItems: "center",
+              width: "100px",
               justifyContent: "center",
-              marginRight: "5px",
             }}
           >
             CSV
           </button>
         </CSVLink>
       </div>
+      </div>
+    }
+  </div>
       
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
-      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
-      />
       <div className="table-start-container">
-      <table id="table" className="table table-bordered table-hover shadow">
-        <thead>
-          <tr className="text-center">
-            <th>SL.</th>
-            <th>Company name</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th colSpan="3">Actions</th>
-          </tr>
-        </thead>
-
-        <tbody className="text-center">
-          {policies.length === 0 ? renderPoliciesData() :(rowsPerPage > 0
-            ? policies.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : policies).filter((elem)=>{
-            if(search.length===0)
-              return elem;
-            else  
-              return (elem.companyName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.title.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.description.toLowerCase().includes(search.toLocaleLowerCase()) 
-              )
-          }).map((policies, index) => (
-            <tr key={policies.expenceId}>
-              <th scope="row" key={index}>
-                {index + 1}
-              </th>
-              <td>{policies.companyName}</td>
-              <td>{policies.title}</td>
-              <td>{policies.description}</td>
-
-              <td className="mx-2">
-                <Link
-                  to={`/organisation/policies-profile/${policies.policiesId}`}
-                >
-                  <FaEye className='action-eye'/>
-                </Link>
-              </td>
-              <td className="mx-2">
-                <Link
-                  to={`/organisation/edit-policies/${policies.policiesId}`}
-                >
-                  <FaEdit className='action-edit'/>
-                </Link>
-              </td>
-              <td className="mx-2">
-                  <FaTrashAlt  onClick={() => handleDelete(policies.policiesId)}
-                  className='action-delete'/>
-              </td>
+        <table id="table" className="table table-bordered table-hover shadow">
+          <thead>
+            <tr className="text-center">
+              <th>SL.</th>
+              <th>Company name</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th colSpan="3">Actions</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <CustomTablePagination
-            className="pagingg"
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={12}
-              count={policies.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  "aria-label": "rows per page",
-                },
-                actions: {
-                  // showFirstButton: true,
-                  // showLastButton: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-      </table>
+          </thead>
+
+          <tbody className="text-center">
+            {policies.length === 0
+              ? renderPoliciesData()
+              : (rowsPerPage > 0
+                  ? policies.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : policies
+                )
+                  .filter((elem) => {
+                    if (search.length === 0) return elem;
+                    else
+                      return (
+                        elem.companyName
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.title
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.description
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
+                      );
+                  })
+                  .map((policies, index) => (
+                    <tr key={policies.expenceId}>
+                      <th scope="row" key={index}>
+                        {index + 1}
+                      </th>
+                      <td>{policies.companyName}</td>
+                      <td>{policies.title}</td>
+                      <td>{policies.description}</td>
+
+                      <td className="mx-2">
+                        <Link
+                          to={`/organisation/policies-profile/${policies.policiesId}`}
+                        >
+                          <FaEye className="action-eye" />
+                        </Link>
+                      </td>
+                      <td className="mx-2">
+                        <Link
+                          to={`/organisation/edit-policies/${policies.policiesId}`}
+                        >
+                          <FaEdit className="action-edit" />
+                        </Link>
+                      </td>
+                      <td className="mx-2">
+                        <FaTrashAlt
+                          onClick={() => handleDelete(policies.policiesId)}
+                          className="action-delete"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                className="pagingg"
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={12}
+                count={policies.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    "aria-label": "rows per page",
+                  },
+                  actions: {
+                    // showFirstButton: true,
+                    // showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
-    </div>
-    
   );
 };
 

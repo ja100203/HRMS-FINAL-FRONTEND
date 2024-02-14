@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
@@ -14,13 +14,24 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 
-const AttendanceTable = ({ attendance, setRecDelete }) => {
+const AttendanceTable = ({
+  attendance,
+  setRecDelete,
+  toggle,
+  setToggle,
+  setFormVisible,
+}) => {
   const [search, setSearch] = useState("");
-  const[calculateTimeDifference, setCalculateTimeDifference] =useState("");
-  const[calculateTotaltimeDifference, setCalculateTotalTimeDifference]=useState("");
-  const[calculateEarlyDifference, setCalculateEarlyDifference]= useState("");
-  const[calculateOvertimeDifference, setCalculateOvertimeDifference]= useState("");
+  const [calculateTimeDifference, setCalculateTimeDifference] = useState("");
+  const [calculateTotaltimeDifference, setCalculateTotalTimeDifference] =
+    useState("");
+  const [calculateEarlyDifference, setCalculateEarlyDifference] = useState("");
+  const [calculateOvertimeDifference, setCalculateOvertimeDifference] =
+    useState("");
 
   const CustomTablePagination = styled(TablePagination)`
     & .${classes.toolbar} {
@@ -209,7 +220,9 @@ const AttendanceTable = ({ attendance, setRecDelete }) => {
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "attendance.xlsx");
   };
-
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
+  };
   const handlePrint = () => {
     createPdf();
     const pdfContent = doc.output("bloburl");
@@ -274,77 +287,109 @@ const AttendanceTable = ({ attendance, setRecDelete }) => {
   };
 
   return (
-    <div>
-      <div
-        className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "180px" }}
-      >
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+    <div className="d-flex"
+    style={{ display: "flex", flexDirection: "column" }}>
+      <div className=" table-ka-top-btns" style={{marginBottom:'-30px'}}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setToggle(!toggle);
+            handleButtonClick();
           }}
-          onClick={handlePrint}
+          id="add-btn"
+          style={{ width: "max-content", marginTop: "20px" }}
         >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={attendance}
-          filename="attendance.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
-            }}
-          >
-            CSV
-          </button>
-        </CSVLink>
+          {toggle ? (
+            <div className="hide">
+              <BiSolidHide />
+              HIDE
+            </div>
+          ) : (
+            <div className="add">
+              <MdAdd />
+              ADD ATTENDANCE
+            </div>
+          )}
+        </Button>
+        {
+          <div className="search-print">
+            <input
+              type="text"
+              className="search-beside-btn"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "20rem",
+                borderRadius: "5px",
+                height: "40px",
+                padding: "10px",
+                border: "1px solid rgba(247, 108, 36, 1)",
+                marginRight: "30px",
+              }}
+            />
+            <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+              <button
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+                onClick={handlePrint}
+              >
+                PRINT
+              </button>
+              <button
+                onClick={convertToPdf}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                PDF
+              </button>
+              <button
+                onClick={convertToExcel}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                EXCEL
+              </button>
+              <CSVLink
+                data={attendance}
+                filename="company.csv"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  CSV
+                </button>
+              </CSVLink>
+            </div>
+          </div>
+        }
       </div>
-    
-      <input type="text" className="mb-3 searchFilter" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} 
-      style={{width:"20rem",borderRadius:"10px",height:"40px",padding:"10px",border:"1px solid rgba(247, 108, 36, 1)",right: "500px",top:"180px",position:"absolute"}}
-      />
       <table className="table table-bordered table-hover shadow">
         <thead>
           <tr className="text-center">
@@ -432,23 +477,20 @@ const AttendanceTable = ({ attendance, setRecDelete }) => {
                     <td>{attendance.status}</td>
 
                     <td className="mx-2">
-                      <Link
-                        to={`/AttendanceForm-profile/${attendance.id}`}
-                      >
-                        <FaEye className='action-eye'/>
+                      <Link to={`/AttendanceForm-profile/${attendance.id}`}>
+                        <FaEye className="action-eye" />
                       </Link>
                     </td>
                     <td className="mx-2">
-                      <Link
-                        to={`/edit-AttendanceForm/${attendance.id}`}
-                      >
-                        <FaEdit className='action-edit'/>
+                      <Link to={`/edit-AttendanceForm/${attendance.id}`}>
+                        <FaEdit className="action-edit" />
                       </Link>
                     </td>
                     <td className="mx-2">
-                      
-                        <FaTrashAlt className='action-delete'  onClick={() => handleDelete(attendance.id)}
-                        />
+                      <FaTrashAlt
+                        className="action-delete"
+                        onClick={() => handleDelete(attendance.id)}
+                      />
                     </td>
                   </tr>
                 ))}

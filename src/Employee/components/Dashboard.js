@@ -5,7 +5,7 @@ import CompanyLogoFile from "./CompanyLogoFile";
 import MainFile from "./MainFile";
 import axios from "axios";
 
-const Dashboard = ({logout}) => {
+const Dashboard = () => {
   const [menu, setMenu] = useState(false);
   const [employeeData, setEmployeeData] = useState([]);
   const loadEmployee = async () => {
@@ -25,7 +25,7 @@ const Dashboard = ({logout}) => {
         <Header menu={menu} setMenu={setMenu} />
       </div>
       <div className="dashboard-container">
-      <SideBar menu={menu} setMenu={setMenu} logout={logout}/>
+        <SideBar menu={menu} setMenu={setMenu} />
         <div className="head-foot-part">
           <MainFile />
         </div>

@@ -24,12 +24,6 @@ const TicketView = () => {
     const {formData,setFormData,formVisible,setFormVisible,toggle,setToggle,ticket,setTicket,recDelete,setRecDelete
     }=StateTicket()
 
-  
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
-
- 
 
   useEffect(() => {
     loadTicket();
@@ -81,30 +75,10 @@ const TicketView = () => {
               <span style={{color:'black'}}> Tickets</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"                >
-            
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD TICKET
-                    </div>
-                  )}
-                </Button>
+                
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                 
@@ -122,7 +96,7 @@ const TicketView = () => {
                 </div>
               </Card>
             </Collapse>
-            <TicketTable ticket={ticket} setRecDelete={setRecDelete} />
+            <TicketTable ticket={ticket} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

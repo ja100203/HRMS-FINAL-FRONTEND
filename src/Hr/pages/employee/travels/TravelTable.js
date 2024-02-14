@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
@@ -8,52 +8,55 @@ import { CSVLink } from "react-csv";
 import logo from "../../../asset/images/logo.png";
 import header from "../../../asset/images/Header.png";
 import footer from "../../../asset/images/Footer.png";
-import DataNotFound from "../../../asset/images/no data 1.png"
-import { styled } from '@mui/system';
+import DataNotFound from "../../../asset/images/no data 1.png";
+import { styled } from "@mui/system";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 import {
   TablePagination,
   tablePaginationClasses as classes,
-} from '@mui/base/TablePagination';
+} from "@mui/base/TablePagination";
 
-
-
-const TravelTable = ({travel,setRecDelete}) => {
+const TravelTable = ({ travel, setRecDelete,  setFormVisible,
+  setToggle,
+  toggle, }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
-  & .${classes.toolbar} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 0 0 0 10px;
+    & .${classes.toolbar} {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0 0 0 10px;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: center;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
     }
-  }
 
-  & .${classes.selectLabel} {
-    margin: 0;
-  }
-
-  & .${classes.displayedRows} {
-    margin: 0;
-
-    @media (min-width: 768px) {
-      margin-left: auto;
+    & .${classes.selectLabel} {
+      margin: 0;
     }
-  }
 
-  & .${classes.spacer} {
-    display: none;
-  }
+    & .${classes.displayedRows} {
+      margin: 0;
 
-  & .${classes.actions} {
-    display: flex;
-    gap: 0rem;
-  }
-`;
+      @media (min-width: 768px) {
+        margin-left: auto;
+      }
+    }
+
+    & .${classes.spacer} {
+      display: none;
+    }
+
+    & .${classes.actions} {
+      display: flex;
+      gap: 0rem;
+    }
+  `;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -96,7 +99,6 @@ const TravelTable = ({travel,setRecDelete}) => {
             "START-DATE",
             "END-DATE",
             "PLACE OF VISIT",
-            
           ],
         ],
         body: travel.map((row) => [
@@ -105,7 +107,6 @@ const TravelTable = ({travel,setRecDelete}) => {
           row.startDate,
           row.endDate,
           row.placeOfVisit,
-          
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -147,7 +148,6 @@ const TravelTable = ({travel,setRecDelete}) => {
             "START-DATE",
             "END-DATE",
             "PLACE OF VISIT",
-            
           ],
         ],
         body: travel.map((row) => [
@@ -156,7 +156,6 @@ const TravelTable = ({travel,setRecDelete}) => {
           row.startDate,
           row.endDate,
           row.placeOfVisit,
-          
         ]),
         styles: { fontSize: 5, fontStyle: "normal" },
         headStyles: {
@@ -197,23 +196,24 @@ const TravelTable = ({travel,setRecDelete}) => {
       { width: 25 },
     ];
 
-   
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "travel.xlsx");
   };
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
+  };
 
+  const handleDelete = (id) => {
+    setRecDelete(id);
+  };
+  const handlePrint = () => {
+    createPdf();
+    const pdfContent = doc.output("bloburl");
 
-    const handleDelete = (id) => {
-        setRecDelete(id)
-    }
-    const handlePrint = () => {
-      createPdf();
-      const pdfContent = doc.output('bloburl');
-    
-      if (pdfContent) {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
+    if (pdfContent) {
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`
           <html>
             <head>
               <title>Print Document</title>
@@ -247,170 +247,211 @@ const TravelTable = ({travel,setRecDelete}) => {
             </body>
           </html>
         `);
-      }
-    };
+    }
+  };
 
-    console.log(travel)
+  console.log(travel);
 
-    const renderTravelData = () => {
-      return (
-        <tr>
-          <td colSpan="12" className="text-center">
-            <img style={{margin:"50px 0 50px 0"}} src={DataNotFound}></img>
-            <h1>No Data Found!</h1>
-            <p>It Looks like there is no data to display in this table at the moment</p>
-          </td>
-        </tr>
-      );
-    };
+  const renderTravelData = () => {
+    return (
+      <tr>
+        <td colSpan="12" className="text-center">
+          <img style={{ margin: "50px 0 50px 0" }} src={DataNotFound}></img>
+          <h1>No Data Found!</h1>
+          <p>
+            It Looks like there is no data to display in this table at the
+            moment
+          </p>
+        </td>
+      </tr>
+    );
+  };
 
   return (
+    <div
+      className="d-flex"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <div className=" table-ka-top-btns">
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setToggle(!toggle);
+            handleButtonClick();
+          }}
+          id="add-btn"
+          style={{width:'max-content', marginTop:'20px'}}
+        >
+          {toggle ? (
+            <div className="hide">
+              <BiSolidHide />
+              HIDE
+            </div>
+          ) : (
+            <div className="add">
+              <MdAdd />
+              ADD TRAVEL
+            </div>
+          )}
+        </Button>
 
-    <div>
-<div className="d-flex" style={{position:'absolute', right:'-160px', top:'180px'}}>
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-          onClick={handlePrint}
-        >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={travel}
-          filename="travel.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
-            }}
-          >
-            CSV
-          </button>
-        </CSVLink>
+        {
+          <div className="search-print">
+            <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+              <button
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+                onClick={handlePrint}
+              >
+                PRINT
+              </button>
+              <button
+                onClick={convertToPdf}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                PDF
+              </button>
+              <button
+                onClick={convertToExcel}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                EXCEL
+              </button>
+              <CSVLink
+                data={travel}
+                filename="travel.csv"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  CSV
+                </button>
+              </CSVLink>
+            </div>
+          </div>
+        }
       </div>
 
-       <div className="table-start-container">
-       <table id='table' className="table table-bordered table-hover shadow">
-        <thead>
-          <tr className="text-center">
-          <th>S. No</th>
-            <th>Employee Name</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Place of Visit</th>
-            <th colSpan="3">Actions</th>
-          </tr>
-        </thead>
+      <div className="table-start-container">
+        <table id="table" className="table table-bordered table-hover shadow">
+          <thead>
+            <tr className="text-center">
+              <th>S. No</th>
+              <th>Employee Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Place of Visit</th>
+              <th colSpan="3">Actions</th>
+            </tr>
+          </thead>
 
-        <tbody className="text-center">
-          {travel.length === 0 ? renderTravelData() :(rowsPerPage > 0
-            ? travel.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : travel
-          )
-          .filter((elem)=>{
-            if(search.length===0)
-              return elem;
-            else  
-              return (elem.employeeName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.startDate.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.endDate.toLowerCase().includes(search.toLocaleLowerCase()) ||
-              elem.placeOfVisit.toString().toLowerCase().includes(search.toLocaleLowerCase()) 
-              )
-          }).map((travel, index) => (
-              <tr key={travel.id}>
-                <th scope="row" key={index}>
-                  {index + 1}
-                </th>
-                <td>{travel.employeeName}</td>
-                <td>{travel.startDate}</td>
-                <td>{travel.endDate}</td>
-                <td>{travel.placeOfVisit}</td>
-                <td className="mx-2">
-                  <Link
-                    to={`/employee/edit-travel/${travel.travelId}`}
-                  >
-                    <FaEdit className='action-edit'/>
-                  </Link>
-                </td>
-                <td className="mx-2">
-                
-                    <FaTrashAlt className='action-delete' onClick={() => handleDelete(travel.travelId)}
-                    />
-                </td>
-              </tr>
-            ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <CustomTablePagination
-            className="pagingg"
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={12}
-              count={travel.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  "aria-label": "rows per page",
-                },
-                actions: {
-                  // showFirstButton: true,
-                  // showLastButton: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
-
-      </table>
+          <tbody className="text-center">
+            {travel.length === 0
+              ? renderTravelData()
+              : (rowsPerPage > 0
+                  ? travel.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : travel
+                )
+                  .filter((elem) => {
+                    if (search.length === 0) return elem;
+                    else
+                      return (
+                        elem.employeeName
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.startDate
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.endDate
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase()) ||
+                        elem.placeOfVisit
+                          .toString()
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
+                      );
+                  })
+                  .map((travel, index) => (
+                    <tr key={travel.id}>
+                      <th scope="row" key={index}>
+                        {index + 1}
+                      </th>
+                      <td>{travel.employeeName}</td>
+                      <td>{travel.startDate}</td>
+                      <td>{travel.endDate}</td>
+                      <td>{travel.placeOfVisit}</td>
+                      <td className="mx-2">
+                        <Link to={`/employee/edit-travel/${travel.travelId}`}>
+                          <FaEdit className="action-edit" />
+                        </Link>
+                      </td>
+                      <td className="mx-2">
+                        <FaTrashAlt
+                          className="action-delete"
+                          onClick={() => handleDelete(travel.travelId)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                className="pagingg"
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={12}
+                count={travel.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    "aria-label": "rows per page",
+                  },
+                  actions: {
+                    // showFirstButton: true,
+                    // showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
-    </div>
-   
-  )
-}
+  );
+};
 
-export default TravelTable
+export default TravelTable;

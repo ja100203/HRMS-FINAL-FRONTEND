@@ -39,6 +39,51 @@ const Worksheets = () => {
   console.log(getWorksheet);
 
   const now = 60;
+
+  const mapka = [
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsvnjxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+    {
+      taskName:'orive project',
+      description: 'njxbscbdskjc dslckjbshcbjsbchdsbckjabsx cghasbv hajsv',
+      createdDate:'23/03/2024',
+      assignedTo: 'Subham Parida'
+    },
+  ]
   return (
     <div>
       <div id="header-container" className="header-container">
@@ -49,11 +94,7 @@ const Worksheets = () => {
         <SideBar menu={menu} setMenu={setMenu} />
         <div className="head-foot-part">
           <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+            className="worksheet-heading-head"
           >
             <div className="mb-4">
               <h4 className="heading">MY TASKS</h4>
@@ -61,7 +102,7 @@ const Worksheets = () => {
 
             <div
               className="side-icons"
-              style={{ marginTop: "50px", marginRight: "20px" }}
+              style={{ marginTop: "60px", marginRight: "20px" }}
             >
               <img src={appl} style={{ cursor: "pointer" }} alt="" />
               <img
@@ -73,20 +114,19 @@ const Worksheets = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div className="row mt-4 mx-2">
             {getWorksheet.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="ticket-cards"
-                  style={{ marginLeft: "20px", paddingTop: "4%" }}
+                  className="col-xl-4 xol-lg-4 col-md-6 worksheet-card"
                 >
                   <div
                     id="card"
                     className="card"
                     style={{
-                      width: "450px",
-                      height: "240px",
+                      width: "390px",
+                      height: "280px",
                       cursor: "pointer",
                     }}
                   >
@@ -172,6 +212,7 @@ const Worksheets = () => {
                         color: "rgba(128, 132, 136, 1)",
                         fontWeight: "500",
                         lineHeight: "19.5px",
+                        width:'auto'
                       }}
                     >
                       {item.description}

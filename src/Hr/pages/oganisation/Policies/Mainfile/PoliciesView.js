@@ -34,10 +34,7 @@ const PoliciesView = () => {
 
  
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -96,17 +93,10 @@ const PoliciesView = () => {
             <span style={{color:'black'}}> Policies</span>
           </div>
           </div>
-              <Button
-                variant="outlined"
-                onClick={handleOpen}
-                id="add-btn"
-              >
-                <MdAdd/>
-                ADD POLICIES
-              </Button>
+             
             </div>
           </div>
-          <PoliciesTable policies={policies} setRecDelete={setRecDelete}/>
+          <PoliciesTable policies={policies} setRecDelete={setRecDelete} setOpen={setOpen} />
           <div>
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle id="form-header-popup">

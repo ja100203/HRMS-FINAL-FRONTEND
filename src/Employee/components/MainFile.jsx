@@ -1185,12 +1185,12 @@ const MainFile = () => {
                       </div>
                     </div>
                     {/* postss last   */}
-                    <div className="">
+                    <div className="" style={{height:"auto"}}>
                       <div id="card" className="card">
                         <div id="card-header" className="card-header">
                           <h3 className="card-title"></h3>
                         </div>
-                        <div className="card-body" style={{ height: "500px" }}>
+                        <div className="card-body">
                           <div className="d-flex mx-4">
                             <div
                               style={{

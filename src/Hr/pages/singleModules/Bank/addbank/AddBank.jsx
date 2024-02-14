@@ -63,9 +63,7 @@ const AddBankView = () => {
     setAddBank(result);
   };
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+
 
   const handleDelete = async () => {
     await bankapi.deleteBank(recDelete);
@@ -111,30 +109,11 @@ const AddBankView = () => {
               <span style={{color:'black'}}> Banks</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD BANK
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
 
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3 className="form-header">ADD BANK FORM</h3>
@@ -149,7 +128,7 @@ const AddBankView = () => {
                 </div>
               </Card>
             </Collapse>
-            <BankTable addbank={addbank} setRecDelete={setRecDelete} />
+            <BankTable addbank={addbank} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
             <br />
           </section>
         </div>

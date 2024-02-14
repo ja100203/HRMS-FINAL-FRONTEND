@@ -14,8 +14,11 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from "@mui/base/TablePagination";
+import { BiSolidHide } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+import Button from "@mui/material/Button";
 
-const DepartmentTable = ({ salary, setRecDelete }) => {
+const DepartmentTable = ({ salary, setRecDelete, toggle, setToggle, setFormVisible }) => {
   const [search, setSearch] = useState("");
   const CustomTablePagination = styled(TablePagination)`
     & .${classes.toolbar} {
@@ -245,7 +248,9 @@ const DepartmentTable = ({ salary, setRecDelete }) => {
         `);
     }
   };
-
+  const handleButtonClick = () => {
+    setFormVisible((prev) => !prev);
+  };
   console.log(salary);
   const renderSalaryData = () => {
     return (
@@ -266,77 +271,110 @@ const DepartmentTable = ({ salary, setRecDelete }) => {
     <div>
       <div
         className="d-flex"
-        style={{ position: "absolute", right: "-160px", top: "100px" }}
+      style={{ display: "flex", flexDirection: "column" }}
       >
-        <button
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
+        <div className=" table-ka-top-btns">
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setToggle(!toggle);
+            handleButtonClick();
           }}
-          onClick={handlePrint}
+          id="add-btn"
+          style={{width:'max-content', marginTop:'20px'}}
         >
-          PRINT
-        </button>
-        <button
-          onClick={convertToPdf}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          PDF
-        </button>
-        <button
-          onClick={convertToExcel}
-          className=""
-          style={{
-            width: "5%",
-            height: "35px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px",
-          }}
-        >
-          EXCEL
-        </button>
-        <CSVLink
-          data={salary}
-          filename="salarytemplate.csv"
-          style={{ textDecoration: "none" }}
-        >
-          <button
-            className=""
-            style={{
-              width: "5%",
-              height: "35px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "5px",
-            }}
-          >
-            CSV
-          </button>
-        </CSVLink>
+          {toggle ? (
+            <div className="hide">
+              <BiSolidHide />
+              HIDE
+            </div>
+          ) : (
+            <div className="add">
+              <MdAdd />
+              ADD COMPANY
+            </div>
+          )}
+        </Button>
+        {
+          <div className="search-print">
+            <input
+              type="text"
+              className="search-beside-btn"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "20rem",
+                borderRadius: "5px",
+                height: "40px",
+                padding: "10px",
+                border: "1px solid rgba(247, 108, 36, 1)",
+                marginRight: "30px",
+              }}
+            />
+            <div className="d-flex mt-4 four-btn" style={{ gap: "10px" }} y>
+              <button
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+                onClick={handlePrint}
+              >
+                PRINT
+              </button>
+              <button
+                onClick={convertToPdf}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                PDF
+              </button>
+              <button
+                onClick={convertToExcel}
+                className=""
+                style={{
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100px",
+                  justifyContent: "center",
+                }}
+              >
+                EXCEL
+              </button>
+              <CSVLink
+                data={salary}
+                filename="company.csv"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className=""
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100px",
+                    justifyContent: "center",
+                  }}
+                >
+                  CSV
+                </button>
+              </CSVLink>
+            </div>
+          </div>
+        }
       </div>
-      <input
-        type="text"
-        className="mb-3 searchFilter"
-        placeholder="Search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      </div>
       <div className="table-start-container">
         <table id="table" className="table table-bordered table-hover shadow">
           <thead>

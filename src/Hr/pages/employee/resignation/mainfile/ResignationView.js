@@ -25,9 +25,7 @@ const ResignationView = () => {
 } = StateResignation()
 
   
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
  
 
@@ -85,30 +83,10 @@ const ResignationView = () => {
               <span style={{color:'grey'}}> Resignation</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD RESIGNATION
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
                 
@@ -125,7 +103,7 @@ const ResignationView = () => {
                 </div>
               </Card>
             </Collapse>
-            <ResignationTable resignation={resignation} setRecDelete={setRecDelete} />
+            <ResignationTable resignation={resignation} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
         </div>
       </div>

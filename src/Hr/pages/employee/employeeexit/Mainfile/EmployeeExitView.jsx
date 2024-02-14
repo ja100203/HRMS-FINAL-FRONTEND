@@ -28,9 +28,6 @@ const EmployeeExitView = () => {
     setFormData,
   } = StateEmployeeExit();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -88,10 +85,7 @@ const EmployeeExitView = () => {
             <span style={{color:'grey'}}> EmployeeExit</span>
           </div>
           </div>
-              <Button variant="outlined" onClick={handleOpen} id="add-btn">
-                <MdAdd className="add" />
-                Add Employee exit
-              </Button>
+             
               </div>
             </div>
             <Dialog open={open} onClose={handleClose}>
@@ -107,6 +101,7 @@ const EmployeeExitView = () => {
             <EmployeeExitTable
               employeeExit={employeeExit}
               setRecDelete={setRecDelete}
+              setOpen={setOpen}
             />
           </section>
         </div>

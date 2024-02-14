@@ -34,9 +34,7 @@ const PromotionView = () => {
   const { promotion, setPromotion, formVisible, setFormVisible, toggle, setToggle,recDelete, setRecDelete,formData,setFormData
   } = StatePromotion()
  
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
   useEffect(() => {
     loadpromotion();
@@ -89,29 +87,10 @@ const PromotionView = () => {
               <span style={{color:'black'}}> Promotions</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide
-                      />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD PROMOTION  </div>
-                  )}
-                </Button>
+                
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card
                 variant="outlined"
               >
@@ -128,7 +107,7 @@ const PromotionView = () => {
                 </div>
               </Card>
             </Collapse>
-            <PromotionTable promotion={promotion} setRecDelete={setRecDelete} />
+            <PromotionTable promotion={promotion} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
           </section>
           </div>
       </div>

@@ -43,10 +43,7 @@ const ExpensesView = () => {
     setRecDelete,
   } = StateExpenses();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
-
+ 
   useEffect(() => {
     handleDelete();
     loadExpenses();
@@ -96,29 +93,10 @@ const ExpensesView = () => {
               <span style={{color:'black'}}> Expenses</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD EXPENSES
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse in={formVisible} className="mt-3">
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3 className="form-header">Add Expenses</h3>
@@ -135,7 +113,7 @@ const ExpensesView = () => {
                 </div>
               </Card>
             </Collapse>
-            <ExpensesTable expenses={expenses} setRecDelete={setRecDelete} />
+            <ExpensesTable expenses={expenses} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle}/>
             <div></div>
           </section>
         </div>

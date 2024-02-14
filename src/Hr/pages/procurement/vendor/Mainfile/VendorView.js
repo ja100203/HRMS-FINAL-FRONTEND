@@ -31,9 +31,7 @@ const VendorView = () => {
     setVendor,
   } = StateVendor();
 
-  const handleButtonClick = () => {
-    setFormVisible((prev) => !prev);
-  };
+ 
 
   const loadVendor = async () => {
     const result = await api.loadVendor();
@@ -88,29 +86,10 @@ const VendorView = () => {
               <span style={{color:'black'}}> Vendor</span>
             </div>
             </div>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setToggle(!toggle);
-                    handleButtonClick();
-                  }}
-                  id="add-btn"
-                >
-                  {toggle ? (
-                    <div className="hide">
-                      <BiSolidHide />
-                      HIDE
-                    </div>
-                  ) : (
-                    <div className="add">
-                      <MdAdd />
-                      ADD VENDOR
-                    </div>
-                  )}
-                </Button>
+               
               </div>
             </div>
-            <Collapse in={formVisible}>
+            <Collapse className="mt-3" in={formVisible}>
               <Card variant="outlined">
                 <div style={{ marginTop: "20px" }}>
                   <h3 className="form-header">Add Vendor</h3>
@@ -125,7 +104,7 @@ const VendorView = () => {
                 </div>
               </Card>
             </Collapse>
-            <VendorTable vendor={vendor} setRecDelete={setRecDelete} />
+            <VendorTable vendor={vendor} setRecDelete={setRecDelete} setFormVisible={setFormVisible} toggle={toggle} setToggle={setToggle} />
             <div></div>
           </section>
         </div>
