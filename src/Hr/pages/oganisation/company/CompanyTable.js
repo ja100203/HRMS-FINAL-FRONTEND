@@ -461,9 +461,8 @@ const CompanyTable = ({
                       <td className="mx-2">
                         <Link
                           to={`/organisation/company-profile/${company.companyId}`}
-                          className="btn btn-info"
                         >
-                          <FaEye />
+                          <FaEye className="action-eye" />
                         </Link>
                       </td>
                       <td className="mx-2">

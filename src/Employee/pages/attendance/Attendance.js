@@ -5,35 +5,77 @@ import CompanyLogoFile from "../../components/CompanyLogoFile";
 import clock from "../../asset/40px/clock.png";
 //import graph from "../../asset/40px/graph";
 import graph from "../../asset/40px/graph.png";
-import axios from "axios"
+import axios from "axios";
 
 const Attendance = () => {
   const [menu, setMenu] = useState(false);
 
-  const [attendanceGet,setAttendanceGet] = useState([])
+  const [attendanceGet, setAttendanceGet] = useState([]);
 
   const getAttendance = async () => {
     try {
-      const result =  await axios.get(
-           "http://13.126.190.50:5000/attendance/get/attendance",
-           {
-             validateStatus: () => {
-               return true;
-             },
-           }
-       
-         );
-         setAttendanceGet(result.data)
-   } catch (error) {
-       console.error("Error load attendance", error)
-   }
-  }
+      const result = await axios.get(
+        "http://13.126.190.50:5000/attendance/get/attendance",
+        {
+          validateStatus: () => {
+            return true;
+          },
+        }
+      );
+      setAttendanceGet(result.data);
+    } catch (error) {
+      console.error("Error load attendance", error);
+    }
+  };
 
   useEffect(() => {
-    getAttendance()
-  },[])
+    getAttendance();
+  }, []);
 
-  console.log(attendanceGet)
+  console.log(attendanceGet);
+
+  const mapka = [
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+    {
+      date: "24/03/2024",
+      clockIn: "12:00:00",
+      clockOut: "12:00:00",
+    },
+  ];
   return (
     <div>
       <div id="header-container" className="header-container">
@@ -49,12 +91,11 @@ const Attendance = () => {
                 <div className="mb-4">
                   <h4
                     style={{
-                      borderLeft: "2px solid #f76c24",
+                      borderLeft: "4px solid #f76c24",
+                      borderRadius: "3px",
                       paddingLeft: "10px",
-                      marginBottom: "15px",
-                      position: "relative",
-                      left: "20px",
-                      top: "25px",
+                      marginTop: "50px",
+                      marginLeft: "20px",
                     }}
                   >
                     ATTENDANCE STATISTICS
@@ -63,7 +104,10 @@ const Attendance = () => {
               </div>
               <div style={{ marginTop: "20px", marginLeft: "15px" }}>
                 <div className="row clearfix">
-                  <div className="col-6 col-md-4 col-xl-2">
+                  <div
+                    className="col-xl-3 col-lg-3 col-md-4 col-xl-2"
+                    style={{ width: "250px" }}
+                  >
                     <div id="card" className="card">
                       <div className="card-body ribbon">
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -79,9 +123,9 @@ const Attendance = () => {
                             style={{
                               borderLeft: "2px solid #f76c24",
                               paddingLeft: "10px",
-                              position: "relative",
-                              left: "40px",
-                              top: "25px",
+                              position: "absolute",
+                              right: "17.5px",
+                              bottom: "17.5px",
                             }}
                           >
                             304
@@ -90,7 +134,10 @@ const Attendance = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-6 col-md-4 col-xl-2">
+                  <div
+                    className="col-xl-3 col-lg-3 col-md-4 col-xl-2"
+                    style={{ width: "250px" }}
+                  >
                     <div id="card" className="card">
                       <div className="card-body ribbon">
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -106,9 +153,9 @@ const Attendance = () => {
                             style={{
                               borderLeft: "2px solid #f76c24",
                               paddingLeft: "10px",
-                              position: "relative",
-                              left: "20px",
-                              top: "25px",
+                              position: "absolute",
+                              right: "17.5px",
+                              bottom: "17.5px",
                             }}
                           >
                             9:30 AM
@@ -118,7 +165,10 @@ const Attendance = () => {
                     </div>
                   </div>
 
-                  <div className="col-6 col-md-4 col-xl-2">
+                  <div
+                    className="col-xl-3 col-lg-3 col-md-4 col-xl-2"
+                    style={{ width: "250px" }}
+                  >
                     <div id="card" className="card">
                       <div className="card-body ribbon">
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -134,9 +184,9 @@ const Attendance = () => {
                             style={{
                               borderLeft: "2px solid #f76c24",
                               paddingLeft: "10px",
-                              position: "relative",
-                              // left: "38px",
-                              top: "25px",
+                              position: "absolute",
+                              right: "17.5px",
+                              bottom: "17.5px",
                             }}
                           >
                             7:30 pm
@@ -145,7 +195,10 @@ const Attendance = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-6 col-md-4 col-xl-2">
+                  <div
+                    className="col-xl-3 col-lg-3 col-md-4 col-xl-2"
+                    style={{ width: "250px" }}
+                  >
                     <div id="card" className="card">
                       <div className="card-body ribbon">
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -161,9 +214,9 @@ const Attendance = () => {
                             style={{
                               borderLeft: "2px solid #f76c24",
                               paddingLeft: "10px",
-                              position: "relative",
-                              left: "40px",
-                              top: "25px",
+                              position: "absolute",
+                              right: "17.5px",
+                              bottom: "17.5px",
                             }}
                           >
                             80%
@@ -192,7 +245,10 @@ const Attendance = () => {
                     </div>
                   </div>
 
-                  <div className="col-6 col-md-4 col-xl-2">
+                  <div
+                    className="col-xl-3 col-lg-3 col-md-4 col-xl-2"
+                    style={{ width: "250px" }}
+                  >
                     <div id="card" className="card">
                       <div className="card-body ribbon">
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -208,9 +264,9 @@ const Attendance = () => {
                             style={{
                               borderLeft: "2px solid #f76c24",
                               paddingLeft: "10px",
-                              position: "relative",
-                              left: "40px",
-                              top: "25px",
+                              position: "absolute",
+                              right: "17.5px",
+                              bottom: "17.5px",
                             }}
                           >
                             20%
@@ -245,7 +301,8 @@ const Attendance = () => {
                 <div className="mb-4">
                   <h4
                     style={{
-                      borderLeft: "2px solid #f76c24",
+                      borderLeft: "4px solid #f76c24",
+                      borderRadius:'3px',
                       paddingLeft: "10px",
                       marginBottom: "15px",
                       position: "relative",
@@ -260,83 +317,88 @@ const Attendance = () => {
 
               <div style={{ marginTop: "20px", marginLeft: "15px" }}>
                 <div className="row clearfix">
-                {
-                  attendanceGet.map((item,index) => {
-                    return(
-                      <div className="col-6 col-md-4 col-xl-2" key={index}>
-                    <div id="card" className="card">
-                      <div className="card-body ribbon">
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <a
-                            href="hr-users.html"
-                            className="my_sort_cut text-muted"
-                          >
+                  {attendanceGet.map((item, index) => {
+                    return (
+                      <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6" key={index}>
+                        <div id="card" className="card">
+                          <div className="card-body ribbon">
                             <div
-                              style={{
-                                display: "flex",
-                                gap: "5px",
-                                width: "262.77px",
-                                height: "24px",
-                                top: "10px",
-                                left: "19.48px",
-                                borderRadius: "3px",
-                                fontWeight: "600px",
-                              }}
+                              style={{ display: "flex", alignItems: "center" }}
                             >
-                              <img src={clock} />
-                              <div className="my-1">{item.date}</div>
-                              <div className="my-1"></div>
-                              <button
-                                style={{
-                                  width: "Fixed (90.14px)",
-                                  height: "Hug (24px)",
-                                  top: "20px",
-                                  left: "212.11px",
-                                  padding: "0px, 10px, 0px, 10px",
-                                  borderRadius: "3px",
-                                  gap: "15px",
-                                  background: "#47024D",
-                                  color: "white",
-                                }}
+                              <a
+                                href="hr-users.html"
+                                className="my_sort_cut text-muted"
                               >
-                                {" "}
-                                On time
-                              </button>
-                            </div>
-                            <div style={{ display: "flex", marginTop: "20px" }}>
-                              <div
-                                style={{
-                                  width: "86px",
-                                  height: "43px",
-                                  top: "87px",
-                                  left: "19.48px",
-                                }}
-                              >
-                                <div>Checkin time</div>
-                                <div>{item.clockIn}</div>
-                              </div>
+                                <div
+                                  style={{
+                                    width: "262.77px",
+                                    height: "24px",
+                                    top: "10px",
+                                    left: "19.48px",
+                                    borderRadius: "3px",
+                                    fontWeight: "600px",
+                                  }}
+                                >
+                                  <div className="d-flex">
+                                    <img src={clock} />
+                                    <div className="my-1 fw-bold mx-2">
+                                      {item.date}
+                                    </div>
+                                  </div>
+                                  <div
+                                    style={{
+                                      width: "max-content",
+                                      padding:'5px 20px',
+                                      borderRadius: "3px",
+                                      background: "#47024D",
+                                      color: "white",
+                                      fontSize: "13px",
+                                      fontWeight:'600', 
+                                      display:'flex',
+                                      alignItems:'center',
+                                      justifyContent: 'center',
+                                      position:'absolute',
+                                      top:'20px',
+                                      right:'20px'
+                                    }}
+                                  >
+                                    On Time
+                                  </div>
+                                </div>
+                                <div
+                                  style={{ display: "flex", marginTop: "20px" }}
+                                >
+                                  <div
+                                    style={{
+                                      width: "86px",
+                                      height: "43px",
+                                      top: "87px",
+                                      left: "19.48px",
+                                    }}
+                                  >
+                                    <div>Checkin time</div>
+                                    <div style={{fontWeight:'700'}}>{item.clockIn}</div>
+                                  </div>
 
-                              <div
-                                style={{
-                                  width: "98px",
-                                  height: "43px",
-                                  top: "87px",
-                                  marginLeft: "40px",
-                                }}
-                              >
-                                <div>Checkout time</div>
-                                <div>{item.clockOut}</div>
-                              </div>
+                                  <div
+                                    style={{
+                                      width: "98px",
+                                      height: "43px",
+                                      top: "87px",
+                                      marginLeft: "40px",
+                                    }}
+                                  >
+                                    <div>Checkout time</div>
+                                    <div style={{fontWeight:'700'}}>{item.clockOut}</div>
+                                  </div>
+                                </div>
+                              </a>
                             </div>
-                          </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                    )
-                  })
-                }
-                  
+                    );
+                  })}
 
                   {/* <div className="col-6 col-md-4 col-xl-2">
                     <div id="card" className="card">

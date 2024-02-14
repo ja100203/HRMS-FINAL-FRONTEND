@@ -218,33 +218,40 @@ const Ticket = () => {
         <SideBar menu={menu} setMenu={setMenu} />
         <div className="head-foot-part">
           <div className="ticket-part">
-            <div className="ticket-top-head">
-              <div className="side-icons" style={{ padding: "0 20px" }}>
-                <img src={appl} style={{ cursor: "pointer" }} alt="" />
-                <img
-                  src={burger}
-                  style={{ cursor: "pointer", margin: "0 10px" }}
-                  alt=""
-                />
-                <img src={filter} style={{ cursor: "pointer" }} alt="" />
-              </div>
-            </div>
-            <div className="d-flex align-items-center justify-content-between">
+            <div className="tickets-heading-head">
               <div className="ticket-header">
-                <p className="ticket-header-title">MY TICKETS</p>
+                <p className="ticket-header-title mt-3">MY TICKETS</p>
               </div>
-              <div
-                id="add-btn"
-                style={{
-                  width: "max-content",
-                  padding: "10px",
-                  fontSize: "15px",
-                  cursor: "pointer",
-                  marginRight: "20px",
-                }}
-                onClick={handleOpen}
-              >
-                Raise Ticket
+              <div className="ticket-heading-head-then">
+                <div className="ticket-top-head">
+                  <div className="side-icons" style={{ padding: "0 20px" }}>
+                    <img src={appl} style={{ cursor: "pointer" }} alt="" />
+                    <img
+                      src={burger}
+                      style={{ cursor: "pointer", margin: "0 10px" }}
+                      alt=""
+                    />
+                    <img src={filter} style={{ cursor: "pointer" }} alt="" />
+                  </div>
+                </div>
+                <div
+                  id="add-btn"
+                  style={{
+                    width: "max-content",
+                    padding: "10px",
+                    fontSize: "15px",
+                    cursor: "pointer",
+                    marginRight: "20px",
+                    height: "30px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "20px",
+                  }}
+                  onClick={handleOpen}
+                >
+                  Raise Ticket
+                </div>
               </div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -258,7 +265,7 @@ const Ticket = () => {
                     <div
                       id="card"
                       className="card"
-                      style={{ width: "370px", height: "185px" }}
+                      style={{ width: "340px", height: "185px" }}
                     >
                       <div
                         className="card-top d-flex align-items-center justify-content-between"
